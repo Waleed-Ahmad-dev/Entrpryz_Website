@@ -29,18 +29,3 @@ body {
   background-color: #FF7A18;
   color: #080A0D;
 }
-
-/* Executive Card Elevation */
-.executive-card {
-  background-color: var(--surface-card);
-  border: 1px solid var(--surface-border);
-  transition: border-color 0.3s ease, transform 0.3s ease;
-}
-.executive-card:hover {
-  border-color: rgba(255, 122, 24, 0.4);
-}
-
-/* Clean border highlights */
-.border-brand-glow {
-  border-color: rgba(255, 122, 24, 0.3);
-}
