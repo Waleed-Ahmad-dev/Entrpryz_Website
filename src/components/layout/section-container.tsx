@@ -1,10 +1,13 @@
 import React from "react";
 import { cn } from "@/lib/utils";
+import { SectionBackground } from "@/components/ui/section-background";
 
 interface SectionContainerProps extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
   darkSurface?: boolean;
   borderBottom?: boolean;
+  backgroundImage?: string;
+  backgroundOpacity?: number;
 }
 
 export function SectionContainer({
@@ -12,6 +15,8 @@ export function SectionContainer({
   className,
   darkSurface = false,
   borderBottom = true,
+  backgroundImage,
+  backgroundOpacity = 0.5,
   ...props
 }: SectionContainerProps) {
   return (
@@ -24,7 +29,10 @@ export function SectionContainer({
       )}
       {...props}
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      {backgroundImage && (
+        <SectionBackground src={backgroundImage} opacity={backgroundOpacity} />
+      )}
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {children}
       </div>
     </section>
