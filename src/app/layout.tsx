@@ -19,13 +19,13 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Entrpryz — Technology. Simplified.",
+  title: "Entrpryz — Enterprise Technology & Advisory",
   description:
-    "25+ Years of Technology & Digital Transformation Experience — Now Focused on Your Business.",
+    "25+ Years of ERP, Systems Architecture, and Enterprise Leadership — Grounded in Execution.",
   keywords: [
-    "Digital Transformation",
-    "ERP Implementation",
-    "Software Development",
+    "Enterprise Technology",
+    "ERP Architecture",
+    "Systems Optimization",
     "IT Leadership",
     "Oracle NetSuite",
     "SAP Business One",
@@ -44,8 +44,6 @@ export default function RootLayout({
       className={`${montserrat.variable} ${spaceGrotesk.variable} dark`}
     >
       <body className="min-h-screen bg-background text-text-primary antialiased flex flex-col relative selection:bg-brand-orange selection:text-background">
-        {/* Subtle noise grain texture overlay */}
-        <div className="bg-noise" aria-hidden="true" />
         <Header />
         <main className="flex-1">{children}</main>
         <Footer />
