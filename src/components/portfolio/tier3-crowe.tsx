@@ -10,11 +10,11 @@ export function Tier3CroweSection() {
     <div className="space-y-12 border border-surface-border bg-surface-card p-6 sm:p-10 md:p-12 relative">
       {/* Tier Flag Header */}
       <div className="space-y-4">
-        <div className="inline-flex items-center gap-2 bg-surface-border border border-brand-orange/50 px-3 py-1 text-xs font-bold uppercase tracking-label text-brand-amber">
+        <div className="inline-flex items-center gap-2 bg-surface-border border border-brand-orange/50 px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand-amber">
           <Layers className="h-3.5 w-3.5 text-brand-orange" />
           <span>Tier 3 — Enterprise Executive Track Record</span>
         </div>
-        <h2 className="text-2xl sm:text-4xl font-bold tracking-h2 text-text-primary uppercase">
+        <h2 className="text-2xl sm:text-4xl font-display font-bold tracking-tight text-text-primary uppercase">
           {tier.title}
         </h2>
         <p className="text-base text-text-secondary font-medium italic border-l-2 border-brand-orange/60 pl-4">
@@ -24,7 +24,7 @@ export function Tier3CroweSection() {
 
       {/* Featured Case Studies */}
       <div className="space-y-6">
-        <h3 className="text-xs uppercase tracking-label font-bold text-text-primary border-b border-surface-border pb-2">
+        <h3 className="text-xs uppercase tracking-wider font-bold text-text-primary border-b border-surface-border pb-2">
           Featured SAP Business One &amp; Post-Implementation Reviews
         </h3>
 
@@ -32,7 +32,7 @@ export function Tier3CroweSection() {
           {tier.featured.map((item, idx) => (
             <div
               key={idx}
-              className="border border-surface-border bg-background p-6 space-y-4 flex flex-col justify-between hover:border-brand-orange transition-all duration-300 group"
+              className="border border-surface-border bg-background p-6 space-y-4 flex flex-col justify-between hover:border-brand-orange transition-colors group"
             >
               {item.image && (
                 <div className="relative aspect-[16/9] w-full overflow-hidden bg-surface-dark border border-surface-border">
@@ -42,14 +42,13 @@ export function Tier3CroweSection() {
                     fill
                     className="object-cover opacity-75 group-hover:opacity-95 transition-opacity"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent" />
                 </div>
               )}
 
               <div className="space-y-3 flex-1">
                 <div className="space-y-1">
                   <div className="flex items-center justify-between">
-                    <h4 className="text-lg font-bold text-text-primary group-hover:text-brand-orange transition-colors">
+                    <h4 className="text-lg font-display font-bold text-text-primary group-hover:text-brand-orange transition-colors">
                       {item.client}
                     </h4>
                     {item.location && (
@@ -82,7 +81,7 @@ export function Tier3CroweSection() {
 
       {/* Additional Crowe SAP B1 Engagements */}
       <div className="space-y-6 pt-6 border-t border-surface-border">
-        <h3 className="text-xs uppercase tracking-label font-bold text-text-primary">
+        <h3 className="text-xs uppercase tracking-wider font-bold text-text-primary">
           Additional SAP Business One &amp; Advisory Engagements (50+ Deployments)
         </h3>
         <EngagementFilterGrid engagements={tier.additional} defaultPlatformFilter="SAP Business One" />
