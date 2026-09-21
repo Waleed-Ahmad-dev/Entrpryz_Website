@@ -6,7 +6,7 @@ import { SectionContainer } from "@/components/layout/section-container";
 
 export function FounderSpotlightSection() {
   return (
-    <SectionContainer darkSurface={true}>
+    <SectionContainer darkSurface={true} backgroundImage="/images/bg-team.jpg">
       <div className="space-y-16">
         <div className="space-y-3">
           <div className="inline-flex items-center gap-2 border border-brand-orange/40 bg-background px-3.5 py-1 text-xs uppercase tracking-wider font-semibold text-brand-orange">
