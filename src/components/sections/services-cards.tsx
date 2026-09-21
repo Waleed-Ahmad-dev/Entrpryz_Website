@@ -12,7 +12,7 @@ const SERVICE_ICONS = [
 
 export function ServicesCardsSection() {
   return (
-    <SectionContainer darkSurface={false}>
+    <SectionContainer darkSurface={false} backgroundImage="/images/bg-code.jpg">
       <div className="space-y-16">
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <span className="text-xs uppercase tracking-wider font-semibold text-brand-orange border border-brand-orange/40 bg-surface-card px-3.5 py-1 inline-block">
