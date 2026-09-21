@@ -4,7 +4,7 @@ import { ShieldCheck } from "lucide-react";
 
 export function WhyEntrpryzSection() {
   return (
-    <SectionContainer darkSurface={false}>
+    <SectionContainer darkSurface={false} backgroundImage="/images/bg-handshake.jpg">
       <div className="space-y-16">
         <div className="max-w-3xl space-y-4">
           <div className="inline-flex items-center gap-2 border border-brand-orange/40 bg-surface-card px-3.5 py-1 text-xs uppercase tracking-wider font-semibold text-brand-orange">
