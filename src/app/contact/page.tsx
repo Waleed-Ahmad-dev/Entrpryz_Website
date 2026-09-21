@@ -88,7 +88,7 @@ export default function ContactPage() {
             </div>
 
             <div className="border border-brand-orange/40 bg-background p-6">
-              <p className="text-xs font-mono text-brand-orange uppercase tracking-label font-semibold">
+              <p className="text-xs font-mono text-brand-orange uppercase tracking-wider font-semibold">
                 Technology. Simplified.
               </p>
               <p className="text-xs text-text-secondary mt-2">
@@ -118,7 +118,7 @@ export default function ContactPage() {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label className="text-xs font-semibold uppercase tracking-label text-text-secondary">
+                      <label className="text-xs font-semibold uppercase tracking-wider text-text-secondary">
                         Your Name *
                       </label>
                       <input
@@ -134,7 +134,7 @@ export default function ContactPage() {
                     </div>
 
                     <div className="space-y-2">
-                      <label className="text-xs font-semibold uppercase tracking-label text-text-secondary">
+                      <label className="text-xs font-semibold uppercase tracking-wider text-text-secondary">
                         Email Address *
                       </label>
                       <input
@@ -152,7 +152,7 @@ export default function ContactPage() {
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label className="text-xs font-semibold uppercase tracking-label text-text-secondary">
+                      <label className="text-xs font-semibold uppercase tracking-wider text-text-secondary">
                         Organization / Company
                       </label>
                       <input
@@ -170,7 +170,7 @@ export default function ContactPage() {
                     </div>
 
                     <div className="space-y-2">
-                      <label className="text-xs font-semibold uppercase tracking-label text-text-secondary">
+                      <label className="text-xs font-semibold uppercase tracking-wider text-text-secondary">
                         Area of Interest
                       </label>
                       <select
@@ -200,7 +200,7 @@ export default function ContactPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-xs font-semibold uppercase tracking-label text-text-secondary">
+                    <label className="text-xs font-semibold uppercase tracking-wider text-text-secondary">
                       Message / Project Details *
                     </label>
                     <textarea
@@ -217,7 +217,7 @@ export default function ContactPage() {
 
                   <button
                     type="submit"
-                    className="w-full inline-flex items-center justify-center gap-2 bg-brand-orange px-8 py-4 text-xs font-semibold uppercase tracking-cta text-background hover:bg-brand-amber transition-all shadow-lg active:scale-95"
+                    className="w-full inline-flex items-center justify-center gap-2 bg-brand-orange px-8 py-4 text-xs font-semibold uppercase tracking-widest text-background hover:bg-brand-amber transition-all shadow-lg active:scale-95"
                   >
                     <span>Submit Consultation Request</span>
                     <Send className="h-4 w-4" />

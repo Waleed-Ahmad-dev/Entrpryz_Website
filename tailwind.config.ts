@@ -19,19 +19,14 @@ const config: Config = {
           hover: "#E56800",
         },
         surface: {
-          DEFAULT: "#15191E",
+          DEFAULT: "#12161B",
           dark: "#080A0D",
-          card: "#15191E",
-          border: "#262D35",
-          hover: "#1D232A",
+          card: "#12161B",
+          border: "#222830",
         },
         text: {
           primary: "#F5F5F5",
-          secondary: "#A7ADB5",
-        },
-        muted: {
-          DEFAULT: "#15191E",
-          foreground: "#A7ADB5",
+          secondary: "#9BA2AD",
         },
       },
       fontFamily: {
@@ -42,19 +37,6 @@ const config: Config = {
       letterSpacing: {
         h1: "-0.03em",
         h2: "-0.02em",
-        nav: "0.02em",
-        label: "0.08em",
-        cta: "0.04em",
-      },
-      animation: {
-        "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
-        "scan-line": "scanline 8s linear infinite",
-      },
-      keyframes: {
-        scanline: {
-          "0%": { transform: "translateY(-100%)" },
-          "100%": { transform: "translateY(1000%)" },
-        },
       },
     },
   },
