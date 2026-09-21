@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { Mail, PhoneCall, Send, CheckCircle2 } from "lucide-react";
 import { CONTACT_CONTENT } from "@/lib/content";
+import { SectionBackground } from "@/components/ui/section-background";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -29,10 +30,10 @@ export default function ContactPage() {
             src="/images/bg-hero-tech.jpg"
             alt=""
             fill
-            className="object-cover object-center opacity-25"
+            className="object-cover object-center opacity-45"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/80 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/55 to-background" />
         </div>
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-6 text-center">
           <div className="inline-flex items-center gap-2 border border-brand-orange/40 bg-surface-card px-4 py-1.5 text-xs uppercase tracking-wider font-semibold text-brand-orange">
@@ -49,7 +50,9 @@ export default function ContactPage() {
       </section>
 
       {/* Main Content Grid */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section className="bg-background relative overflow-hidden py-12 md:py-20">
+        <SectionBackground src="/images/bg-workspace.jpg" />
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Left Column: Direct Emails */}
           <div className="lg:col-span-5 space-y-8">
@@ -239,6 +242,7 @@ export default function ContactPage() {
           </div>
         </div>
       </div>
+      </section>
     </div>
   );
 }
