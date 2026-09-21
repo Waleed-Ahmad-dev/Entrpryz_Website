@@ -4,7 +4,7 @@ import { CheckCircle2 } from "lucide-react";
 
 export function ExperienceBehindSection() {
   return (
-    <SectionContainer darkSurface={false}>
+    <SectionContainer darkSurface={false} backgroundImage="/images/bg-analytics.jpg">
       <div className="max-w-4xl mx-auto space-y-12">
         <div className="text-center space-y-4">
           <span className="text-xs uppercase tracking-wider font-semibold text-brand-orange">
