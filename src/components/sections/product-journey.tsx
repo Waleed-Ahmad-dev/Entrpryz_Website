@@ -6,7 +6,7 @@ import { SectionContainer } from "@/components/layout/section-container";
 
 export function ProductJourneySection() {
   return (
-    <SectionContainer darkSurface={true}>
+    <SectionContainer darkSurface={true} backgroundImage="/images/bg-header-tech.jpg">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <div className="lg:col-span-7 space-y-6">
           <div className="inline-flex items-center gap-2 border border-brand-orange/40 bg-background px-3.5 py-1 text-xs uppercase tracking-wider font-semibold text-brand-orange">
