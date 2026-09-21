@@ -33,10 +33,10 @@ export default function ServicesPage() {
             src="/images/bg-hero-tech.jpg"
             alt=""
             fill
-            className="object-cover object-center opacity-25"
+            className="object-cover object-center opacity-45"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/80 to-background" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/55 to-background" />
         </div>
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-6 text-center">
           <span className="text-xs uppercase tracking-wider font-semibold text-brand-orange border border-brand-orange/40 bg-surface-card px-4 py-1.5 inline-block">

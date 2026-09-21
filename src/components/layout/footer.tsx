@@ -12,7 +12,7 @@ export function Footer() {
           src="/images/bg-circuit.jpg"
           alt=""
           fill
-          className="object-cover object-center opacity-30"
+          className="object-cover object-center opacity-45"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/70 to-background" />
       </div>
