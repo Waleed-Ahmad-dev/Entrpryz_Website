@@ -4,7 +4,7 @@ import { Trophy } from "lucide-react";
 
 export function AchievementsGridSection() {
   return (
-    <SectionContainer darkSurface={true}>
+    <SectionContainer darkSurface={true} backgroundImage="/images/bg-security.jpg">
       <div className="space-y-16">
         <div className="max-w-3xl space-y-4">
           <div className="inline-flex items-center gap-2 border border-brand-orange/40 bg-background px-3.5 py-1 text-xs uppercase tracking-wider font-semibold text-brand-orange">
