@@ -6,7 +6,7 @@ import { SectionContainer } from "@/components/layout/section-container";
 
 export function BehindEntrpryzSection() {
   return (
-    <SectionContainer darkSurface={true}>
+    <SectionContainer darkSurface={true} backgroundImage="/images/bg-meeting.jpg">
       <div className="space-y-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Founder Photograph Column */}
