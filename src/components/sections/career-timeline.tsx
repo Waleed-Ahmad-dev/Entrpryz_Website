@@ -5,7 +5,7 @@ import { SectionContainer } from "@/components/layout/section-container";
 
 export function CareerTimelineSection() {
   return (
-    <SectionContainer darkSurface={false}>
+    <SectionContainer darkSurface={false} backgroundImage="/images/bg-workspace.jpg">
       <div className="space-y-16">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-surface-border pb-8">
           <div className="space-y-4 max-w-3xl">
