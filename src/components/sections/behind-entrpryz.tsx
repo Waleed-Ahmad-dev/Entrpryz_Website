@@ -6,12 +6,12 @@ import { SectionContainer } from "@/components/layout/section-container";
 
 export function BehindEntrpryzSection() {
   return (
-    <SectionContainer darkSurface={true} backgroundImage="/images/bg-meeting.jpg">
+    <SectionContainer darkSurface={true}>
       <div className="space-y-16">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Founder Photograph Column */}
           <div className="lg:col-span-4 flex justify-center">
-            <div className="relative w-full max-w-sm border border-surface-border bg-background p-3 shadow-xl">
+            <div className="relative w-full max-w-sm border border-surface-border bg-background p-3 shadow-md">
               <div className="relative aspect-[4/5] w-full overflow-hidden bg-surface-dark">
                 <Image
                   src="/images/javed-qureshi.jpg"
@@ -38,7 +38,7 @@ export function BehindEntrpryzSection() {
 
           {/* Text Column */}
           <div className="lg:col-span-8 space-y-6">
-            <div className="inline-flex items-center gap-2 border border-brand-orange/40 bg-background px-3.5 py-1 text-xs uppercase tracking-wider font-semibold text-brand-orange">
+            <div className="inline-flex items-center gap-2 border border-brand-orange/40 bg-background px-3.5 py-1 rounded-sm text-xs uppercase tracking-wider font-semibold text-brand-orange">
               <Award className="h-3.5 w-3.5" />
               <span>Proven Enterprise Leadership</span>
             </div>
@@ -58,7 +58,7 @@ export function BehindEntrpryzSection() {
             <div className="pt-2">
               <Link
                 href="/about"
-                className="inline-flex items-center gap-2 border border-brand-orange bg-brand-orange/10 px-6 py-3 text-xs font-bold uppercase tracking-widest text-brand-orange transition-colors hover:bg-brand-orange hover:text-background"
+                className="inline-flex items-center gap-2 border border-brand-orange bg-brand-orange/10 px-6 py-3 rounded-md text-xs font-bold uppercase tracking-widest text-brand-orange transition-colors hover:bg-brand-orange hover:text-background"
               >
                 <span>{BEHIND_ENTRPRYZ.cta}</span>
                 <ArrowUpRight className="h-4 w-4" />

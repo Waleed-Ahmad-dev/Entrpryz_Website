@@ -6,10 +6,10 @@ import { SectionContainer } from "@/components/layout/section-container";
 
 export function FounderSpotlightSection() {
   return (
-    <SectionContainer darkSurface={true} backgroundImage="/images/bg-team.jpg">
+    <SectionContainer darkSurface={true}>
       <div className="space-y-16">
         <div className="space-y-3">
-          <div className="inline-flex items-center gap-2 border border-brand-orange/40 bg-background px-3.5 py-1 text-xs uppercase tracking-wider font-semibold text-brand-orange">
+          <div className="inline-flex items-center gap-2 border border-brand-orange/40 bg-background px-3.5 py-1 rounded-sm text-xs uppercase tracking-wider font-semibold text-brand-orange">
             <UserCheck className="h-3.5 w-3.5" />
             <span>Executive Leadership</span>
           </div>
@@ -21,7 +21,7 @@ export function FounderSpotlightSection() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Portrait & Bio Left Column */}
           <div className="lg:col-span-5 space-y-6">
-            <div className="relative border border-surface-border bg-background p-3 shadow-xl">
+            <div className="relative border border-surface-border bg-background p-3 shadow-md">
               <div className="relative aspect-[4/5] w-full overflow-hidden bg-surface-dark">
                 <Image
                   src="/images/javed-qureshi.jpg"
@@ -42,7 +42,7 @@ export function FounderSpotlightSection() {
               <div className="pt-2">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-2 bg-brand-orange px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-background hover:bg-brand-amber transition-colors"
+                  className="inline-flex items-center gap-2 bg-brand-orange px-5 py-2.5 rounded-md text-xs font-bold uppercase tracking-widest text-background hover:bg-brand-amber transition-colors"
                 >
                   <span>{FOUNDER_CONTENT.cta}</span>
                   <ArrowUpRight className="h-4 w-4" />

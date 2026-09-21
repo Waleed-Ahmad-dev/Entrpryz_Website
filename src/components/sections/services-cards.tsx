@@ -12,7 +12,7 @@ const SERVICE_ICONS = [
 
 export function ServicesCardsSection() {
   return (
-    <SectionContainer darkSurface={false} backgroundImage="/images/bg-code.jpg">
+    <SectionContainer darkSurface={false}>
       <div className="space-y-16">
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <span className="text-xs uppercase tracking-wider font-semibold text-brand-orange border border-brand-orange/40 bg-surface-card px-3.5 py-1 inline-block">
@@ -78,7 +78,7 @@ export function ServicesCardsSection() {
               <div className="p-6 sm:p-8 pt-0">
                 <Link
                   href={service.ctaHref}
-                  className="inline-flex w-full items-center justify-center gap-2 border border-brand-orange bg-brand-orange/10 px-5 py-3 text-xs font-bold uppercase tracking-wider text-brand-orange transition-colors hover:bg-brand-orange hover:text-background"
+                  className="inline-flex w-full items-center justify-center gap-2 border border-brand-orange bg-brand-orange/10 px-5 py-3 rounded-md text-xs font-bold uppercase tracking-wider text-brand-orange transition-colors hover:bg-brand-orange hover:text-background"
                 >
                   <span>{service.ctaText}</span>
                   <ArrowUpRight className="h-4 w-4" />

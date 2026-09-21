@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X, ArrowUpRight } from "lucide-react";
+import { SectionBackground } from "@/components/ui/section-background";
 
 const NAV_LINKS = [
   { name: "Home", href: "/" },
@@ -20,18 +21,8 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-surface-border bg-background/95 backdrop-blur-md overflow-hidden">
-      {/* Tech background image layer behind nav */}
-      <div className="absolute inset-0 z-0" aria-hidden="true">
-        <Image
-          src="/images/bg-header-tech.jpg"
-          alt=""
-          fill
-          className="object-cover object-center opacity-45"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/60 to-background" />
-      </div>
-
+      {/* Abstract backdrop behind nav */}
+      <SectionBackground />
       <div className="relative z-10 mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand Logo */}
         <Link href="/" className="flex items-center gap-3">
@@ -70,7 +61,7 @@ export function Header() {
         <div className="hidden md:flex items-center gap-4">
           <Link
             href="/contact"
-            className="inline-flex items-center justify-center gap-2 bg-brand-orange px-6 py-3 text-xs font-bold uppercase tracking-widest text-background transition-colors hover:bg-brand-amber active:scale-95"
+            className="inline-flex items-center justify-center gap-2 bg-brand-orange px-6 py-3 rounded-md text-xs font-bold uppercase tracking-widest text-background transition-colors hover:bg-brand-amber active:scale-95"
           >
             <span>Talk to Us</span>
             <ArrowUpRight className="h-4 w-4" />
@@ -117,7 +108,7 @@ export function Header() {
               <Link
                 href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex w-full items-center justify-center gap-2 bg-brand-orange px-6 py-3.5 text-xs font-bold uppercase tracking-widest text-background"
+                className="flex w-full items-center justify-center gap-2 bg-brand-orange px-6 py-3.5 rounded-md text-xs font-bold uppercase tracking-widest text-background"
               >
                 <span>Talk to Us</span>
                 <ArrowUpRight className="h-4 w-4" />

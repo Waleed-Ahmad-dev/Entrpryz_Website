@@ -20,7 +20,7 @@ export default function AboutPage() {
     <div className="space-y-0 pb-20">
       {/* Header */}
       <section className="border-b border-surface-border bg-background py-16 md:py-24 relative overflow-hidden">
-        <SectionBackground src="/images/bg-header-tech.jpg" opacity={0.45} />
+        <SectionBackground />
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-6">
           <span className="text-xs uppercase tracking-wider font-semibold text-brand-orange border border-brand-orange/40 bg-background/80 px-4 py-1.5 inline-block">
             About Entrpryz
@@ -36,7 +36,7 @@ export default function AboutPage() {
 
       {/* Founder Profile */}
       <section className="border-b border-surface-border bg-background relative overflow-hidden py-16 md:py-24">
-        <SectionBackground src="/images/bg-team.jpg" />
+        <SectionBackground />
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="border border-surface-border bg-background/85 backdrop-blur-md p-8 sm:p-12 space-y-12">
             <div className="space-y-2">
@@ -51,7 +51,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
               {/* Founder Image & Contact Box */}
               <div className="lg:col-span-5 space-y-6">
-                <div className="relative aspect-[4/5] border border-surface-border bg-background p-3 shadow-xl overflow-hidden">
+                <div className="relative aspect-[4/5] border border-surface-border bg-background p-3 shadow-md overflow-hidden">
                   <Image
                     src="/images/javed-qureshi.jpg"
                     alt="Javed Ahmad Qureshi"
@@ -70,7 +70,7 @@ export default function AboutPage() {
                   <div className="pt-2">
                     <Link
                       href="/contact"
-                      className="inline-flex items-center gap-2 bg-brand-orange px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-background hover:bg-brand-amber transition-colors"
+                      className="inline-flex items-center gap-2 bg-brand-orange px-5 py-2.5 rounded-md text-xs font-bold uppercase tracking-widest text-background hover:bg-brand-amber transition-colors"
                     >
                       <span>{FOUNDER_CONTENT.cta}</span>
                       <ArrowUpRight className="h-4 w-4" />
@@ -123,7 +123,7 @@ export default function AboutPage() {
 
       {/* About Core Areas */}
       <section className="border-b border-surface-border bg-background relative overflow-hidden py-16 md:py-24">
-        <SectionBackground src="/images/bg-strategy.jpg" />
+        <SectionBackground />
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {ABOUT_ENTRPRYZ.coreAreas.map((area, idx) => (
@@ -145,7 +145,7 @@ export default function AboutPage() {
 
       {/* Certifications & Training */}
       <section className="border-b border-surface-border bg-background relative overflow-hidden py-16 md:py-24">
-        <SectionBackground src="/images/bg-laptops.jpg" />
+        <SectionBackground />
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="space-y-2">
             <div className="inline-flex items-center gap-2 text-xs uppercase tracking-wider font-semibold text-brand-orange">
@@ -177,7 +177,7 @@ export default function AboutPage() {
 
       {/* Team Section */}
       <section className="bg-background relative overflow-hidden py-16 md:py-24">
-        <SectionBackground src="/images/bg-meeting.jpg" />
+        <SectionBackground />
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="space-y-2">
             <div className="inline-flex items-center gap-2 text-xs uppercase tracking-wider font-semibold text-brand-orange">

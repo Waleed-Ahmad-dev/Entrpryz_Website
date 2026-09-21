@@ -17,27 +17,12 @@ const SERVICE_ICONS = [
   <Server key="server" className="h-8 w-8 text-brand-orange" />,
 ];
 
-const SERVICE_BACKGROUNDS = [
-  "/images/bg-analytics.jpg",
-  "/images/bg-code.jpg",
-  "/images/bg-server.jpg",
-];
-
 export default function ServicesPage() {
   return (
     <div className="space-y-16 pb-20">
       {/* Header */}
       <section className="border-b border-surface-border bg-background py-16 md:py-24 relative overflow-hidden">
-        <div className="absolute inset-0 z-0" aria-hidden="true">
-          <Image
-            src="/images/bg-hero-tech.jpg"
-            alt=""
-            fill
-            className="object-cover object-center opacity-45"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/55 to-background" />
-        </div>
+        <SectionBackground />
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-6 text-center">
           <span className="text-xs uppercase tracking-wider font-semibold text-brand-orange border border-brand-orange/40 bg-surface-card px-4 py-1.5 inline-block">
             Core Capabilities
@@ -55,7 +40,7 @@ export default function ServicesPage() {
       <div className="space-y-20">
         {SERVICES.map((service, idx) => (
           <div key={service.id} id={service.id} className="relative overflow-hidden">
-            <SectionBackground src={SERVICE_BACKGROUNDS[idx % SERVICE_BACKGROUNDS.length]} />
+            <SectionBackground />
             <div className={`relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center border border-surface-border p-8 sm:p-12 ${
               idx % 2 === 1 ? "bg-surface-card/90" : "bg-background/90"
             }`}>
@@ -85,7 +70,7 @@ export default function ServicesPage() {
               <div className="pt-4">
                 <Link
                   href={service.ctaHref}
-                  className="inline-flex items-center gap-2 bg-brand-orange px-6 py-3 text-xs font-bold uppercase tracking-widest text-background hover:bg-brand-amber transition-colors"
+                  className="inline-flex items-center gap-2 bg-brand-orange px-6 py-3 rounded-md text-xs font-bold uppercase tracking-widest text-background hover:bg-brand-amber transition-colors"
                 >
                   <span>{service.ctaText}</span>
                   <ArrowUpRight className="h-4 w-4" />
@@ -109,7 +94,7 @@ export default function ServicesPage() {
       </div>
 
       {/* Delivery Process */}
-      <SectionContainer darkSurface={true} backgroundImage="/images/bg-workspace.jpg">
+      <SectionContainer darkSurface={true}>
         <div className="space-y-12">
           <div className="text-center max-w-3xl mx-auto space-y-4">
             <span className="text-xs uppercase tracking-wider font-semibold text-brand-orange border border-brand-orange/40 bg-background px-3.5 py-1 inline-block">

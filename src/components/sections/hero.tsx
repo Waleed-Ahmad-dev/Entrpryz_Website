@@ -2,29 +2,19 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, ChevronRight, Shield } from "lucide-react";
 import { HERO_CONTENT } from "@/lib/content";
+import { SectionBackground } from "@/components/ui/section-background";
 
 export function HeroSection() {
   return (
     <section className="border-b border-surface-border bg-background py-16 md:py-28 relative overflow-hidden">
-      {/* Full-bleed tech background image layer */}
-      <div className="absolute inset-0 z-0" aria-hidden="true">
-        <Image
-          src="/images/bg-hero-tech.jpg"
-          alt=""
-          fill
-          className="object-cover object-center opacity-45"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/60 to-background" />
-        <div className="absolute inset-0 bg-gradient-to-r from-background/70 via-background/30 to-transparent" />
-      </div>
-
+      {/* Abstract backdrop behind the headline */}
+      <SectionBackground glowStrength="medium" />
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-16">
         {/* Top Hero Layout: Massive Headline & Executive Overview */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left Column: Display Headline & Summary */}
           <div className="lg:col-span-8 space-y-6">
-            <div className="inline-flex items-center gap-2 border border-brand-orange/40 bg-surface-card px-3.5 py-1 text-xs uppercase tracking-wider font-semibold text-brand-orange">
+            <div className="inline-flex items-center gap-2 border border-brand-orange/40 bg-surface-card px-3.5 py-1 rounded-sm text-xs uppercase tracking-wider font-semibold text-brand-orange">
               <Shield className="h-3.5 w-3.5" />
               <span>25+ Years Enterprise Technology Leadership</span>
             </div>
@@ -47,7 +37,7 @@ export function HeroSection() {
             <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-brand-orange px-8 py-4 text-xs font-bold uppercase tracking-widest text-background transition-colors hover:bg-brand-amber active:scale-95"
+                className="inline-flex items-center justify-center gap-2 bg-brand-orange px-8 py-4 rounded-md text-xs font-bold uppercase tracking-widest text-background transition-colors hover:bg-brand-amber active:scale-95"
               >
                 <span>{HERO_CONTENT.ctaPrimary}</span>
                 <ArrowUpRight className="h-4 w-4" />
@@ -55,7 +45,7 @@ export function HeroSection() {
 
               <Link
                 href="/services"
-                className="inline-flex items-center justify-center gap-2 border border-surface-border bg-surface-card px-8 py-4 text-xs font-semibold uppercase tracking-widest text-text-primary transition-colors hover:border-brand-orange hover:text-brand-orange active:scale-95"
+                className="inline-flex items-center justify-center gap-2 border border-surface-border bg-surface-card px-8 py-4 rounded-md text-xs font-semibold uppercase tracking-widest text-text-primary transition-colors hover:border-brand-orange hover:text-brand-orange active:scale-95"
               >
                 <span>{HERO_CONTENT.ctaSecondary}</span>
                 <ChevronRight className="h-4 w-4" />

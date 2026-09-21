@@ -66,7 +66,7 @@ export function EngagementFilterGrid({
               <button
                 key={p}
                 onClick={() => setPlatformFilter(p)}
-                className={`px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider transition-colors ${
+                className={`px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider transition-colors rounded-sm ${
                   platformFilter === p
                     ? "bg-brand-orange text-background"
                     : "bg-surface-card text-text-secondary border border-surface-border hover:text-text-primary"

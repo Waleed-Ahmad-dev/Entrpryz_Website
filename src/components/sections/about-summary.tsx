@@ -11,7 +11,7 @@ const CORE_ICONS = [
 
 export function AboutSummarySection() {
   return (
-    <SectionContainer darkSurface={true} backgroundImage="/images/bg-strategy.jpg">
+    <SectionContainer darkSurface={true}>
       <div className="space-y-16">
         <div className="max-w-3xl space-y-4">
           <span className="text-xs uppercase tracking-wider font-semibold text-brand-orange border border-brand-orange/40 bg-background px-3 py-1 inline-block">

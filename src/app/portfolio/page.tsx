@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { ArrowUpRight, Award, ShieldCheck } from "lucide-react";
 import { PORTFOLIO_HEADER, PORTFOLIO_ACHIEVEMENTS, PORTFOLIO_CTA } from "@/lib/portfolio-data";
 import { Tier1EntrpryzSection } from "@/components/portfolio/tier1-entrpryz";
@@ -18,18 +17,9 @@ export default function PortfolioPage() {
     <div className="space-y-16 pb-20">
       {/* Portfolio Header */}
       <section className="border-b border-surface-border bg-background py-16 md:py-24 relative overflow-hidden">
-        <div className="absolute inset-0 z-0" aria-hidden="true">
-          <Image
-            src="/images/bg-header-tech.jpg"
-            alt=""
-            fill
-            className="object-cover object-center opacity-45"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/55 to-background" />
-        </div>
+        <SectionBackground />
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-6">
-          <div className="inline-flex items-center gap-2 border border-brand-orange/40 bg-surface-card px-4 py-1.5 text-xs uppercase tracking-wider font-semibold text-brand-orange">
+          <div className="inline-flex items-center gap-2 border border-brand-orange/40 bg-surface-card px-4 py-1.5 rounded-sm text-xs uppercase tracking-wider font-semibold text-brand-orange">
             <Award className="h-4 w-4" />
             <span>Proven Enterprise Track Record</span>
           </div>
@@ -52,7 +42,7 @@ export default function PortfolioPage() {
 
         {/* Portfolio Notable Achievements Band */}
         <div className="relative overflow-hidden">
-          <SectionBackground src="/images/bg-security.jpg" />
+          <SectionBackground />
           <div className="relative z-10 border border-brand-orange bg-background/85 backdrop-blur-md p-8 sm:p-12 space-y-6">
             <div className="inline-flex items-center gap-2 text-xs uppercase tracking-wider font-bold text-brand-orange">
               <ShieldCheck className="h-4 w-4" />
@@ -77,7 +67,7 @@ export default function PortfolioPage() {
 
         {/* Portfolio Page CTA */}
         <div className="relative overflow-hidden">
-          <SectionBackground src="/images/bg-handshake.jpg" />
+          <SectionBackground />
           <div className="relative z-10 border border-surface-border bg-background/85 backdrop-blur-md p-8 sm:p-12 text-center space-y-6 max-w-3xl mx-auto">
             <h2 className="text-2xl sm:text-4xl font-display font-bold tracking-tight text-text-primary uppercase">
               {PORTFOLIO_CTA.headline}
@@ -85,7 +75,7 @@ export default function PortfolioPage() {
             <div>
               <Link
                 href={PORTFOLIO_CTA.buttonHref}
-                className="inline-flex items-center gap-2 bg-brand-orange px-8 py-4 text-xs font-bold uppercase tracking-widest text-background hover:bg-brand-amber transition-colors active:scale-95"
+                className="inline-flex items-center gap-2 bg-brand-orange px-8 py-4 rounded-md text-xs font-bold uppercase tracking-widest text-background hover:bg-brand-amber transition-colors active:scale-95"
               >
                 <span>{PORTFOLIO_CTA.buttonText}</span>
                 <ArrowUpRight className="h-4 w-4" />

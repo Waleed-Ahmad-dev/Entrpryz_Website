@@ -6,10 +6,10 @@ import { SectionContainer } from "@/components/layout/section-container";
 
 export function ProductJourneySection() {
   return (
-    <SectionContainer darkSurface={true} backgroundImage="/images/bg-header-tech.jpg">
+    <SectionContainer darkSurface={true}>
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
         <div className="lg:col-span-7 space-y-6">
-          <div className="inline-flex items-center gap-2 border border-brand-orange/40 bg-background px-3.5 py-1 text-xs uppercase tracking-wider font-semibold text-brand-orange">
+          <div className="inline-flex items-center gap-2 border border-brand-orange/40 bg-background px-3.5 py-1 rounded-sm text-xs uppercase tracking-wider font-semibold text-brand-orange">
             <Sparkles className="h-3.5 w-3.5" />
             <span>Product Innovation</span>
           </div>
@@ -31,13 +31,13 @@ export function ProductJourneySection() {
           </div>
 
           <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 pt-2">
-            <span className="inline-flex items-center gap-2 border border-surface-border bg-background px-4 py-2 text-xs font-mono text-brand-amber">
+            <span className="inline-flex items-center gap-2 border border-surface-border bg-background px-4 py-2 rounded-md text-xs font-mono text-brand-amber">
               <Box className="h-4 w-4" />
               {PRODUCT_JOURNEY.status}
             </span>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-brand-orange px-6 py-3 text-xs font-bold uppercase tracking-widest text-background hover:bg-brand-amber transition-colors"
+              className="inline-flex items-center gap-2 bg-brand-orange px-6 py-3 rounded-md text-xs font-bold uppercase tracking-widest text-background hover:bg-brand-amber transition-colors"
             >
               <span>{PRODUCT_JOURNEY.cta}</span>
               <ArrowUpRight className="h-4 w-4" />

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 import { Mail, PhoneCall, Send, CheckCircle2 } from "lucide-react";
 import { CONTACT_CONTENT } from "@/lib/content";
 import { SectionBackground } from "@/components/ui/section-background";
@@ -25,18 +24,9 @@ export default function ContactPage() {
     <div className="space-y-16 pb-20">
       {/* Header */}
       <section className="border-b border-surface-border bg-background py-16 md:py-24 relative overflow-hidden">
-        <div className="absolute inset-0 z-0" aria-hidden="true">
-          <Image
-            src="/images/bg-hero-tech.jpg"
-            alt=""
-            fill
-            className="object-cover object-center opacity-45"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/55 to-background" />
-        </div>
+        <SectionBackground />
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-6 text-center">
-          <div className="inline-flex items-center gap-2 border border-brand-orange/40 bg-surface-card px-4 py-1.5 text-xs uppercase tracking-wider font-semibold text-brand-orange">
+          <div className="inline-flex items-center gap-2 border border-brand-orange/40 bg-surface-card px-4 py-1.5 rounded-sm text-xs uppercase tracking-wider font-semibold text-brand-orange">
             <PhoneCall className="h-4 w-4" />
             <span>Direct Engagement</span>
           </div>
@@ -51,7 +41,7 @@ export default function ContactPage() {
 
       {/* Main Content Grid */}
       <section className="bg-background relative overflow-hidden py-12 md:py-20">
-        <SectionBackground src="/images/bg-workspace.jpg" />
+        <SectionBackground />
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Left Column: Direct Emails */}
@@ -142,7 +132,7 @@ export default function ContactPage() {
                         onChange={(e) =>
                           setFormData({ ...formData, name: e.target.value })
                         }
-                        className="w-full bg-background border border-surface-border px-4 py-3 text-sm text-text-primary focus:border-brand-orange focus:outline-none"
+                        className="w-full bg-background border border-surface-border px-4 py-3 text-sm rounded-md text-text-primary focus:border-brand-orange focus:outline-none"
                         placeholder="John Doe"
                       />
                     </div>
@@ -158,7 +148,7 @@ export default function ContactPage() {
                         onChange={(e) =>
                           setFormData({ ...formData, email: e.target.value })
                         }
-                        className="w-full bg-background border border-surface-border px-4 py-3 text-sm text-text-primary focus:border-brand-orange focus:outline-none"
+                        className="w-full bg-background border border-surface-border px-4 py-3 text-sm rounded-md text-text-primary focus:border-brand-orange focus:outline-none"
                         placeholder="john@company.com"
                       />
                     </div>
@@ -178,7 +168,7 @@ export default function ContactPage() {
                             organization: e.target.value,
                           })
                         }
-                        className="w-full bg-background border border-surface-border px-4 py-3 text-sm text-text-primary focus:border-brand-orange focus:outline-none"
+                        className="w-full bg-background border border-surface-border px-4 py-3 text-sm rounded-md text-text-primary focus:border-brand-orange focus:outline-none"
                         placeholder="Company Name"
                       />
                     </div>
@@ -192,7 +182,7 @@ export default function ContactPage() {
                         onChange={(e) =>
                           setFormData({ ...formData, service: e.target.value })
                         }
-                        className="w-full bg-background border border-surface-border px-4 py-3 text-sm text-text-primary focus:border-brand-orange focus:outline-none"
+                        className="w-full bg-background border border-surface-border px-4 py-3 text-sm rounded-md text-text-primary focus:border-brand-orange focus:outline-none"
                       >
                         <option value="Digital Transformation">
                           Digital Transformation (ERP/CRM)
@@ -224,14 +214,14 @@ export default function ContactPage() {
                       onChange={(e) =>
                         setFormData({ ...formData, message: e.target.value })
                       }
-                      className="w-full bg-background border border-surface-border px-4 py-3 text-sm text-text-primary focus:border-brand-orange focus:outline-none"
+                      className="w-full bg-background border border-surface-border px-4 py-3 text-sm rounded-md text-text-primary focus:border-brand-orange focus:outline-none"
                       placeholder="Briefly describe your business requirements..."
                     />
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full inline-flex items-center justify-center gap-2 bg-brand-orange px-8 py-4 text-xs font-semibold uppercase tracking-widest text-background hover:bg-brand-amber transition-all shadow-lg active:scale-95"
+                    className="w-full inline-flex items-center justify-center gap-2 bg-brand-orange px-8 py-4 rounded-md text-xs font-semibold uppercase tracking-widest text-background hover:bg-brand-amber transition-all shadow-md active:scale-95"
                   >
                     <span>Submit Consultation Request</span>
                     <Send className="h-4 w-4" />

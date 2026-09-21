@@ -4,10 +4,10 @@ import { Workflow } from "lucide-react";
 
 export function WorkflowStepsSection() {
   return (
-    <SectionContainer darkSurface={true} backgroundImage="/images/bg-server.jpg">
+    <SectionContainer darkSurface={true}>
       <div className="space-y-16">
         <div className="max-w-3xl space-y-4">
-          <div className="inline-flex items-center gap-2 border border-brand-orange/40 bg-background px-3.5 py-1 text-xs uppercase tracking-wider font-semibold text-brand-orange">
+          <div className="inline-flex items-center gap-2 border border-brand-orange/40 bg-background px-3.5 py-1 rounded-sm text-xs uppercase tracking-wider font-semibold text-brand-orange">
             <Workflow className="h-3.5 w-3.5" />
             <span>Structured Engagement Methodology</span>
           </div>

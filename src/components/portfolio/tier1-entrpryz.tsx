@@ -9,11 +9,11 @@ export function Tier1EntrpryzSection() {
 
   return (
     <div className="border border-brand-orange bg-background/85 backdrop-blur-md p-6 sm:p-10 md:p-12 relative overflow-hidden">
-      <SectionBackground src="/images/bg-meeting.jpg" />
+      <SectionBackground />
       <div className="relative z-10 space-y-12">
       {/* Tier Flag Header */}
       <div className="space-y-4">
-        <div className="inline-flex items-center gap-2 bg-brand-orange px-3 py-1 text-xs font-bold uppercase tracking-wider text-background">
+        <div className="inline-flex items-center gap-2 bg-brand-orange px-3 py-1 rounded-sm text-xs font-bold uppercase tracking-wider text-background">
           <span>Tier 1 — Primary Brand Portfolio</span>
         </div>
         <h2 className="text-2xl sm:text-4xl font-display font-bold tracking-tight text-text-primary uppercase">

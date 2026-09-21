@@ -29,3 +29,24 @@ body {
   background-color: #FF7A18;
   color: #080A0D;
 }
+
+/* Premium technical grid — fades out so it never competes with copy */
+.abstract-grid {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.032) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.032) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 90% 65% at 50% 0%, black 10%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 65% at 50% 0%, black 10%, transparent 78%);
+}
+
+/* Soft, blurred brand glow — low-key, editorial */
+.glow-orb {
+  background: radial-gradient(
+    circle,
+    rgba(255, 122, 24, 0.16) 0%,
+    rgba(255, 157, 61, 0.06) 40%,
+    transparent 68%
+  );
+  filter: blur(48px);
+}

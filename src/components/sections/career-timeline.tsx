@@ -5,11 +5,11 @@ import { SectionContainer } from "@/components/layout/section-container";
 
 export function CareerTimelineSection() {
   return (
-    <SectionContainer darkSurface={false} backgroundImage="/images/bg-workspace.jpg">
+    <SectionContainer darkSurface={false}>
       <div className="space-y-16">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-surface-border pb-8">
           <div className="space-y-4 max-w-3xl">
-            <div className="inline-flex items-center gap-2 border border-brand-orange/40 bg-surface-card px-3.5 py-1 text-xs uppercase tracking-wider font-semibold text-brand-orange">
+            <div className="inline-flex items-center gap-2 border border-brand-orange/40 bg-surface-card px-3.5 py-1 rounded-sm text-xs uppercase tracking-wider font-semibold text-brand-orange">
               <Briefcase className="h-3.5 w-3.5" />
               <span>Executive Career Track Record</span>
             </div>
@@ -25,7 +25,7 @@ export function CareerTimelineSection() {
 
           <Link
             href="/portfolio"
-            className="inline-flex items-center gap-2 bg-brand-orange px-6 py-3 text-xs font-bold uppercase tracking-widest text-background hover:bg-brand-amber transition-colors shrink-0"
+            className="inline-flex items-center gap-2 bg-brand-orange px-6 py-3 rounded-md text-xs font-bold uppercase tracking-widest text-background hover:bg-brand-amber transition-colors shrink-0"
           >
             <span>View Full Portfolio Page</span>
             <ArrowUpRight className="h-4 w-4" />

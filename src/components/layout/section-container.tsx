@@ -6,8 +6,7 @@ interface SectionContainerProps extends React.HTMLAttributes<HTMLElement> {
   children: React.ReactNode;
   darkSurface?: boolean;
   borderBottom?: boolean;
-  backgroundImage?: string;
-  backgroundOpacity?: number;
+  showBackdrop?: boolean;
 }
 
 export function SectionContainer({
@@ -15,8 +14,7 @@ export function SectionContainer({
   className,
   darkSurface = false,
   borderBottom = true,
-  backgroundImage,
-  backgroundOpacity = 0.5,
+  showBackdrop = true,
   ...props
 }: SectionContainerProps) {
   return (
@@ -29,9 +27,7 @@ export function SectionContainer({
       )}
       {...props}
     >
-      {backgroundImage && (
-        <SectionBackground src={backgroundImage} opacity={backgroundOpacity} />
-      )}
+      {showBackdrop && <SectionBackground />}
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {children}
       </div>

@@ -31,6 +31,10 @@ export const metadata: Metadata = {
     "SAP Business One",
     "Entrpryz",
   ],
+  icons: {
+    icon: "/images/logo-transparent.png",
+    apple: "/images/logo-main.png",
+  },
 };
 
 export default function RootLayout({
