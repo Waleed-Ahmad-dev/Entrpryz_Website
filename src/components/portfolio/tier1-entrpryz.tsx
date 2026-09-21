@@ -2,12 +2,15 @@ import Image from "next/image";
 import { ExternalLink } from "lucide-react";
 import { PORTFOLIO_TIERS } from "@/lib/portfolio-data";
 import { EngagementFilterGrid } from "./engagement-filter-grid";
+import { SectionBackground } from "@/components/ui/section-background";
 
 export function Tier1EntrpryzSection() {
   const tier = PORTFOLIO_TIERS[0];
 
   return (
-    <div className="space-y-12 border border-brand-orange bg-surface-card p-6 sm:p-10 md:p-12 relative">
+    <div className="border border-brand-orange bg-background/85 backdrop-blur-md p-6 sm:p-10 md:p-12 relative overflow-hidden">
+      <SectionBackground src="/images/bg-meeting.jpg" />
+      <div className="relative z-10 space-y-12">
       {/* Tier Flag Header */}
       <div className="space-y-4">
         <div className="inline-flex items-center gap-2 bg-brand-orange px-3 py-1 text-xs font-bold uppercase tracking-wider text-background">
@@ -90,6 +93,7 @@ export function Tier1EntrpryzSection() {
           Additional Entrpryz &amp; Independent Engagements
         </h3>
         <EngagementFilterGrid engagements={tier.additional} />
+      </div>
       </div>
     </div>
   );

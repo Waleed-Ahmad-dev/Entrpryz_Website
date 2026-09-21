@@ -2,12 +2,15 @@ import Image from "next/image";
 import { ExternalLink, Building } from "lucide-react";
 import { PORTFOLIO_TIERS } from "@/lib/portfolio-data";
 import { EngagementFilterGrid } from "./engagement-filter-grid";
+import { SectionBackground } from "@/components/ui/section-background";
 
 export function Tier2KeystoneSection() {
   const tier = PORTFOLIO_TIERS[1];
 
   return (
-    <div className="space-y-12 border border-surface-border bg-surface-card p-6 sm:p-10 md:p-12 relative">
+    <div className="border border-surface-border bg-background/85 backdrop-blur-md p-6 sm:p-10 md:p-12 relative overflow-hidden">
+      <SectionBackground src="/images/bg-analytics.jpg" />
+      <div className="relative z-10 space-y-12">
       {/* Tier Flag Header */}
       <div className="space-y-4">
         <div className="inline-flex items-center gap-2 bg-surface-border border border-brand-orange/50 px-3 py-1 text-xs font-bold uppercase tracking-wider text-brand-amber">
@@ -85,6 +88,7 @@ export function Tier2KeystoneSection() {
           Additional Keystone NetSuite Practice Engagements
         </h3>
         <EngagementFilterGrid engagements={tier.additional} defaultPlatformFilter="Oracle NetSuite" />
+      </div>
       </div>
     </div>
   );
