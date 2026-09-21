@@ -7,7 +7,7 @@ import { SectionContainer } from "@/components/layout/section-container";
 export const metadata = {
   title: "Services & Capabilities — Entrpryz",
   description:
-    "Digital Transformation, Software Development, and Technology & IT Services tailored for your business.",
+    "ERP & Systems Advisory, Software Engineering, and IT Infrastructure & Security services for enterprises.",
 };
 
 const SERVICE_ICONS = [
@@ -20,16 +20,16 @@ export default function ServicesPage() {
   return (
     <div className="space-y-16 pb-20">
       {/* Header */}
-      <section className="border-b border-surface-border bg-background bg-grid-pattern py-16 md:py-24">
+      <section className="border-b border-surface-border bg-background py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-6 text-center">
-          <span className="text-xs uppercase tracking-label font-semibold text-brand-orange border border-brand-orange/40 bg-surface-card px-4 py-1.5 inline-block">
-            Our Core Offerings
+          <span className="text-xs uppercase tracking-wider font-semibold text-brand-orange border border-brand-orange/40 bg-surface-card px-4 py-1.5 inline-block">
+            Core Capabilities
           </span>
-          <h1 className="text-4xl sm:text-6xl font-bold tracking-h1 text-text-primary uppercase leading-tight max-w-4xl mx-auto">
+          <h1 className="text-4xl sm:text-6xl font-display font-bold tracking-tight text-text-primary uppercase leading-tight max-w-4xl mx-auto">
             What We Do
           </h1>
           <p className="text-base sm:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
-            Senior-level enterprise thinking delivered with agility, precision, and focus on practical commercial results.
+            Senior-level enterprise expertise delivered with strict focus on your operating model, financial controls, and system reliability.
           </p>
         </div>
       </section>
@@ -45,12 +45,12 @@ export default function ServicesPage() {
             }`}
           >
             <div className={`lg:col-span-7 space-y-6 ${idx % 2 === 1 ? "lg:order-2" : ""}`}>
-              <div className="p-3 w-fit bg-background border border-surface-border">
+              <div className="p-3 w-fit bg-surface-card border border-surface-border">
                 {SERVICE_ICONS[idx]}
               </div>
 
               <div className="space-y-2">
-                <h2 className="text-3xl font-bold text-text-primary uppercase">
+                <h2 className="text-3xl font-display font-bold text-text-primary uppercase">
                   {service.title}
                 </h2>
                 <p className="text-lg font-semibold text-brand-amber">
@@ -70,7 +70,7 @@ export default function ServicesPage() {
               <div className="pt-4">
                 <Link
                   href={service.ctaHref}
-                  className="inline-flex items-center gap-2 bg-brand-orange px-6 py-3 text-xs font-semibold uppercase tracking-cta text-background hover:bg-brand-amber transition-colors"
+                  className="inline-flex items-center gap-2 bg-brand-orange px-6 py-3 text-xs font-bold uppercase tracking-widest text-background hover:bg-brand-amber transition-colors"
                 >
                   <span>{service.ctaText}</span>
                   <ArrowUpRight className="h-4 w-4" />
@@ -79,12 +79,12 @@ export default function ServicesPage() {
             </div>
 
             <div className={`lg:col-span-5 ${idx % 2 === 1 ? "lg:order-1" : ""}`}>
-              <div className="relative aspect-[4/3] w-full border-2 border-surface-border bg-surface-dark overflow-hidden group">
+              <div className="relative aspect-[4/3] w-full border border-surface-border bg-surface-dark overflow-hidden">
                 <Image
                   src={service.image}
                   alt={service.title}
                   fill
-                  className="object-cover opacity-75 group-hover:opacity-95 group-hover:scale-105 transition-all duration-500"
+                  className="object-cover opacity-70 hover:opacity-90 transition-opacity"
                 />
               </div>
             </div>
@@ -96,10 +96,10 @@ export default function ServicesPage() {
       <SectionContainer darkSurface={true}>
         <div className="space-y-12">
           <div className="text-center max-w-3xl mx-auto space-y-4">
-            <span className="text-xs uppercase tracking-label font-semibold text-brand-orange">
-              Our Process
+            <span className="text-xs uppercase tracking-wider font-semibold text-brand-orange border border-brand-orange/40 bg-background px-3.5 py-1 inline-block">
+              Engagement Methodology
             </span>
-            <h2 className="text-3xl sm:text-5xl font-bold tracking-h2 text-text-primary uppercase">
+            <h2 className="text-3xl sm:text-5xl font-display font-bold tracking-tight text-text-primary uppercase">
               {HOW_WE_WORK.headline}
             </h2>
           </div>
@@ -110,10 +110,10 @@ export default function ServicesPage() {
                 key={step.number}
                 className="border border-surface-border bg-background p-6 space-y-3"
               >
-                <span className="text-3xl font-bold text-brand-orange font-sans">
+                <span className="text-3xl font-display font-bold text-brand-orange">
                   {step.number}
                 </span>
-                <h3 className="text-base font-bold text-text-primary uppercase">
+                <h3 className="text-base font-display font-bold text-text-primary uppercase">
                   {step.title}
                 </h3>
                 <p className="text-xs text-text-secondary leading-relaxed">
