@@ -26,10 +26,10 @@ export function Header() {
           src="/images/bg-header-tech.jpg"
           alt=""
           fill
-          className="object-cover object-center opacity-25"
+          className="object-cover object-center opacity-45"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/80 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/60 to-background" />
       </div>
 
       <div className="relative z-10 mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
