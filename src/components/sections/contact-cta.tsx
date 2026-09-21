@@ -5,7 +5,7 @@ import { SectionContainer } from "@/components/layout/section-container";
 
 export function ContactCTASection() {
   return (
-    <SectionContainer darkSurface={false} borderBottom={false}>
+    <SectionContainer darkSurface={false} borderBottom={false} backgroundImage="/images/bg-office.jpg">
       <div className="border border-brand-orange bg-surface-card p-8 sm:p-14 text-center max-w-5xl mx-auto space-y-6">
         <div className="inline-flex items-center gap-2 border border-brand-orange/40 bg-background px-4 py-1 text-xs uppercase tracking-wider font-semibold text-brand-orange">
           <span>Direct Executive Engagement</span>
