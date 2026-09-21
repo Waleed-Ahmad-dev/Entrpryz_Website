@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight, Award, ShieldCheck } from "lucide-react";
 import { PORTFOLIO_HEADER, PORTFOLIO_ACHIEVEMENTS, PORTFOLIO_CTA } from "@/lib/portfolio-data";
-import { SectionContainer } from "@/components/layout/section-container";
 import { Tier1EntrpryzSection } from "@/components/portfolio/tier1-entrpryz";
 import { Tier2KeystoneSection } from "@/components/portfolio/tier2-keystone";
 import { Tier3CroweSection } from "@/components/portfolio/tier3-crowe";
@@ -16,14 +15,14 @@ export default function PortfolioPage() {
   return (
     <div className="space-y-16 pb-20">
       {/* Portfolio Header */}
-      <section className="border-b border-surface-border bg-background bg-grid-pattern py-16 md:py-24">
+      <section className="border-b border-surface-border bg-background py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-6">
-          <div className="inline-flex items-center gap-2 border border-brand-orange/40 bg-surface-card px-4 py-1.5 text-xs uppercase tracking-label font-semibold text-brand-orange">
+          <div className="inline-flex items-center gap-2 border border-brand-orange/40 bg-surface-card px-4 py-1.5 text-xs uppercase tracking-wider font-semibold text-brand-orange">
             <Award className="h-4 w-4" />
             <span>Proven Enterprise Track Record</span>
           </div>
 
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold tracking-h1 text-text-primary uppercase leading-tight max-w-4xl">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-display font-bold tracking-tight text-text-primary uppercase leading-tight max-w-4xl">
             {PORTFOLIO_HEADER.headline}
           </h1>
 
@@ -41,7 +40,7 @@ export default function PortfolioPage() {
 
         {/* Portfolio Notable Achievements Band */}
         <div className="border border-brand-orange bg-surface-card p-8 sm:p-12 space-y-6">
-          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-label font-bold text-brand-orange">
+          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-wider font-bold text-brand-orange">
             <ShieldCheck className="h-4 w-4" />
             <span>Notable Track Record Milestones</span>
           </div>
@@ -50,7 +49,7 @@ export default function PortfolioPage() {
             {PORTFOLIO_ACHIEVEMENTS.map((ach, idx) => (
               <div
                 key={idx}
-                className="border border-surface-border bg-background p-4 space-y-1 text-xs sm:text-sm text-text-primary font-medium"
+                className="border border-surface-border bg-background p-4 text-xs sm:text-sm text-text-primary font-medium"
               >
                 <span className="text-brand-orange font-mono font-bold mr-2">
                   0{idx + 1}.
@@ -62,14 +61,14 @@ export default function PortfolioPage() {
         </div>
 
         {/* Portfolio Page CTA */}
-        <div className="border border-surface-border bg-background p-8 sm:p-12 text-center space-y-6 max-w-3xl mx-auto shadow-2xl">
-          <h2 className="text-2xl sm:text-4xl font-bold tracking-h2 text-text-primary uppercase">
+        <div className="border border-surface-border bg-background p-8 sm:p-12 text-center space-y-6 max-w-3xl mx-auto">
+          <h2 className="text-2xl sm:text-4xl font-display font-bold tracking-tight text-text-primary uppercase">
             {PORTFOLIO_CTA.headline}
           </h2>
           <div>
             <Link
               href={PORTFOLIO_CTA.buttonHref}
-              className="inline-flex items-center gap-2 bg-brand-orange px-8 py-4 text-xs font-semibold uppercase tracking-cta text-background hover:bg-brand-amber transition-all shadow-lg active:scale-95"
+              className="inline-flex items-center gap-2 bg-brand-orange px-8 py-4 text-xs font-bold uppercase tracking-widest text-background hover:bg-brand-amber transition-colors active:scale-95"
             >
               <span>{PORTFOLIO_CTA.buttonText}</span>
               <ArrowUpRight className="h-4 w-4" />
