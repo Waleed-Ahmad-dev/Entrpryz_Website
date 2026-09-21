@@ -7,7 +7,7 @@ import {
   CERTIFICATIONS,
   TEAM,
 } from "@/lib/content";
-import { SectionContainer } from "@/components/layout/section-container";
+import { SectionBackground } from "@/components/ui/section-background";
 
 export const metadata = {
   title: "About Entrpryz & Leadership",
@@ -17,21 +17,12 @@ export const metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="space-y-16 pb-20">
+    <div className="space-y-0 pb-20">
       {/* Header */}
       <section className="border-b border-surface-border bg-background py-16 md:py-24 relative overflow-hidden">
-        <div className="absolute inset-0 z-0" aria-hidden="true">
-          <Image
-            src="/images/bg-header-tech.jpg"
-            alt=""
-            fill
-            className="object-cover object-center opacity-25"
-            priority
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/80 to-background" />
-        </div>
+        <SectionBackground src="/images/bg-header-tech.jpg" opacity={0.45} />
         <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-6">
-          <span className="text-xs uppercase tracking-wider font-semibold text-brand-orange border border-brand-orange/40 bg-surface-card px-4 py-1.5 inline-block">
+          <span className="text-xs uppercase tracking-wider font-semibold text-brand-orange border border-brand-orange/40 bg-background/80 px-4 py-1.5 inline-block">
             About Entrpryz
           </span>
           <h1 className="text-4xl sm:text-6xl font-display font-bold tracking-tight text-text-primary uppercase leading-tight max-w-4xl">
@@ -44,165 +35,177 @@ export default function AboutPage() {
       </section>
 
       {/* Founder Profile */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="border border-surface-border bg-surface-card p-8 sm:p-12 space-y-12">
+      <section className="border-b border-surface-border bg-background relative overflow-hidden py-16 md:py-24">
+        <SectionBackground src="/images/bg-team.jpg" />
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="border border-surface-border bg-background/85 backdrop-blur-md p-8 sm:p-12 space-y-12">
+            <div className="space-y-2">
+              <span className="text-xs uppercase tracking-wider font-semibold text-brand-orange">
+                Executive Leadership
+              </span>
+              <h2 className="text-3xl sm:text-5xl font-display font-bold tracking-tight text-text-primary uppercase">
+                Meet the Founder
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+              {/* Founder Image & Contact Box */}
+              <div className="lg:col-span-5 space-y-6">
+                <div className="relative aspect-[4/5] border border-surface-border bg-background p-3 shadow-xl overflow-hidden">
+                  <Image
+                    src="/images/javed-qureshi.jpg"
+                    alt="Javed Ahmad Qureshi"
+                    fill
+                    className="object-cover object-top filter grayscale contrast-110 hover:grayscale-0 transition-all duration-500"
+                  />
+                </div>
+
+                <div className="border border-surface-border bg-background p-6 space-y-3">
+                  <h3 className="text-2xl font-display font-bold text-text-primary">
+                    {FOUNDER_CONTENT.name}
+                  </h3>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-brand-orange">
+                    {FOUNDER_CONTENT.role}
+                  </p>
+                  <div className="pt-2">
+                    <Link
+                      href="/contact"
+                      className="inline-flex items-center gap-2 bg-brand-orange px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-background hover:bg-brand-amber transition-colors"
+                    >
+                      <span>{FOUNDER_CONTENT.cta}</span>
+                      <ArrowUpRight className="h-4 w-4" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+
+              {/* Narrative & Competencies */}
+              <div className="lg:col-span-7 space-y-8">
+                <div className="space-y-4 text-base sm:text-lg text-text-secondary leading-relaxed">
+                  <p>{FOUNDER_CONTENT.p1}</p>
+                  <p>{FOUNDER_CONTENT.p2}</p>
+                  <p>{FOUNDER_CONTENT.p3}</p>
+                </div>
+
+                <div className="border border-surface-border bg-background p-6 space-y-2 relative">
+                  <div className="absolute top-0 left-0 w-1.5 h-full bg-brand-orange" />
+                  <div className="flex items-center gap-2 text-brand-orange font-semibold text-xs uppercase tracking-wider">
+                    <Quote className="h-4 w-4" />
+                    <span>Founding Philosophy</span>
+                  </div>
+                  <p className="text-base sm:text-lg font-display font-semibold text-text-primary italic">
+                    &ldquo;His philosophy is simple:{" "}
+                    <span className="text-brand-orange">
+                      {FOUNDER_CONTENT.philosophy}
+                    </span>{" "}
+                    That philosophy is the foundation of Entrpryz.&rdquo;
+                  </p>
+                </div>
+
+                <div className="space-y-4 pt-4 border-t border-surface-border">
+                  <h4 className="text-xs font-semibold uppercase tracking-wider text-brand-amber">
+                    Core Executive Competencies
+                  </h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                    {FOUNDER_CONTENT.competencies.map((comp, idx) => (
+                      <div key={idx} className="flex items-start gap-2.5 text-sm text-text-secondary">
+                        <CheckCircle2 className="h-4 w-4 text-brand-orange shrink-0 mt-0.5" />
+                        <span>{comp}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* About Core Areas */}
+      <section className="border-b border-surface-border bg-background relative overflow-hidden py-16 md:py-24">
+        <SectionBackground src="/images/bg-strategy.jpg" />
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {ABOUT_ENTRPRYZ.coreAreas.map((area, idx) => (
+              <div
+                key={idx}
+                className="border border-surface-border bg-background/85 backdrop-blur-md p-8 space-y-3"
+              >
+                <h3 className="text-lg font-display font-bold text-brand-orange uppercase">
+                  {area.title}
+                </h3>
+                <p className="text-sm text-text-secondary leading-relaxed">
+                  {area.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Certifications & Training */}
+      <section className="border-b border-surface-border bg-background relative overflow-hidden py-16 md:py-24">
+        <SectionBackground src="/images/bg-laptops.jpg" />
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
           <div className="space-y-2">
-            <span className="text-xs uppercase tracking-wider font-semibold text-brand-orange">
-              Executive Leadership
-            </span>
-            <h2 className="text-3xl sm:text-5xl font-display font-bold tracking-tight text-text-primary uppercase">
-              Meet the Founder
+            <div className="inline-flex items-center gap-2 text-xs uppercase tracking-wider font-semibold text-brand-orange">
+              <GraduationCap className="h-4 w-4" />
+              <span>Credentials</span>
+            </div>
+            <h2 className="text-2xl sm:text-4xl font-display font-bold tracking-tight text-text-primary uppercase">
+              Certifications &amp; Professional Training
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-            {/* Founder Image & Contact Box */}
-            <div className="lg:col-span-5 space-y-6">
-              <div className="relative border border-surface-border bg-background p-3 shadow-xl">
-                <Image
-                  src="/images/javed-qureshi.jpg"
-                  alt="Javed Ahmad Qureshi"
-                  fill
-                  className="object-cover object-top filter grayscale contrast-110 hover:grayscale-0 transition-all duration-500"
-                />
-              </div>
-
-              <div className="border border-surface-border bg-background p-6 space-y-3">
-                <h3 className="text-2xl font-display font-bold text-text-primary">
-                  {FOUNDER_CONTENT.name}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {CERTIFICATIONS.map((cert, idx) => (
+              <div
+                key={idx}
+                className="border border-surface-border bg-background/85 backdrop-blur-md p-6 space-y-2"
+              >
+                <h3 className="text-sm font-display font-bold text-brand-orange uppercase">
+                  {cert.title}
                 </h3>
-                <p className="text-xs font-semibold uppercase tracking-wider text-brand-orange">
-                  {FOUNDER_CONTENT.role}
-                </p>
-                <div className="pt-2">
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center gap-2 bg-brand-orange px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-background hover:bg-brand-amber transition-colors"
-                  >
-                    <span>{FOUNDER_CONTENT.cta}</span>
-                    <ArrowUpRight className="h-4 w-4" />
-                  </Link>
-                </div>
-              </div>
-            </div>
-
-            {/* Narrative & Competencies */}
-            <div className="lg:col-span-7 space-y-8">
-              <div className="space-y-4 text-base sm:text-lg text-text-secondary leading-relaxed">
-                <p>{FOUNDER_CONTENT.p1}</p>
-                <p>{FOUNDER_CONTENT.p2}</p>
-                <p>{FOUNDER_CONTENT.p3}</p>
-              </div>
-
-              <div className="border border-surface-border bg-background p-6 space-y-2 relative">
-                <div className="absolute top-0 left-0 w-1.5 h-full bg-brand-orange" />
-                <div className="flex items-center gap-2 text-brand-orange font-semibold text-xs uppercase tracking-wider">
-                  <Quote className="h-4 w-4" />
-                  <span>Founding Philosophy</span>
-                </div>
-                <p className="text-base sm:text-lg font-display font-semibold text-text-primary italic">
-                  &ldquo;His philosophy is simple:{" "}
-                  <span className="text-brand-orange">
-                    {FOUNDER_CONTENT.philosophy}
-                  </span>{" "}
-                  That philosophy is the foundation of Entrpryz.&rdquo;
+                <p className="text-xs text-text-secondary leading-relaxed">
+                  {cert.items}
                 </p>
               </div>
-
-              <div className="space-y-4 pt-4 border-t border-surface-border">
-                <h4 className="text-xs font-semibold uppercase tracking-wider text-brand-amber">
-                  Core Executive Competencies
-                </h4>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {FOUNDER_CONTENT.competencies.map((comp, idx) => (
-                    <div key={idx} className="flex items-start gap-2.5 text-sm text-text-secondary">
-                      <CheckCircle2 className="h-4 w-4 text-brand-orange shrink-0 mt-0.5" />
-                      <span>{comp}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+            ))}
           </div>
         </div>
-      </div>
-
-      {/* About Core Areas */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {ABOUT_ENTRPRYZ.coreAreas.map((area, idx) => (
-            <div
-              key={idx}
-              className="border border-surface-border bg-surface-card p-8 space-y-3"
-            >
-              <h3 className="text-lg font-display font-bold text-brand-orange uppercase">
-                {area.title}
-              </h3>
-              <p className="text-sm text-text-secondary leading-relaxed">
-                {area.description}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Certifications & Training */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="space-y-2">
-          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-wider font-semibold text-brand-orange">
-            <GraduationCap className="h-4 w-4" />
-            <span>Credentials</span>
-          </div>
-          <h2 className="text-2xl sm:text-4xl font-display font-bold tracking-tight text-text-primary uppercase">
-            Certifications &amp; Professional Training
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {CERTIFICATIONS.map((cert, idx) => (
-            <div
-              key={idx}
-              className="border border-surface-border bg-surface-card p-6 space-y-2"
-            >
-              <h3 className="text-sm font-display font-bold text-brand-orange uppercase">
-                {cert.title}
-              </h3>
-              <p className="text-xs text-text-secondary leading-relaxed">
-                {cert.items}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
+      </section>
 
       {/* Team Section */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
-        <div className="space-y-2">
-          <div className="inline-flex items-center gap-2 text-xs uppercase tracking-wider font-semibold text-brand-orange">
-            <Users className="h-4 w-4" />
-            <span>Leadership Team</span>
-          </div>
-          <h2 className="text-2xl sm:text-4xl font-display font-bold tracking-tight text-text-primary uppercase">
-            The Team Behind Entrpryz
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {TEAM.map((member, idx) => (
-            <div
-              key={idx}
-              className="border border-surface-border bg-surface-card p-8 space-y-3"
-            >
-              <h3 className="text-xl font-display font-bold text-text-primary">
-                {member.name}
-              </h3>
-              <p className="text-xs font-semibold uppercase tracking-wider text-brand-orange">
-                {member.role}
-              </p>
+      <section className="bg-background relative overflow-hidden py-16 md:py-24">
+        <SectionBackground src="/images/bg-meeting.jpg" />
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-8">
+          <div className="space-y-2">
+            <div className="inline-flex items-center gap-2 text-xs uppercase tracking-wider font-semibold text-brand-orange">
+              <Users className="h-4 w-4" />
+              <span>Leadership Team</span>
             </div>
-          ))}
+            <h2 className="text-2xl sm:text-4xl font-display font-bold tracking-tight text-text-primary uppercase">
+              The Team Behind Entrpryz
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {TEAM.map((member, idx) => (
+              <div
+                key={idx}
+                className="border border-surface-border bg-background/85 backdrop-blur-md p-8 space-y-3"
+              >
+                <h3 className="text-xl font-display font-bold text-text-primary">
+                  {member.name}
+                </h3>
+                <p className="text-xs font-semibold uppercase tracking-wider text-brand-orange">
+                  {member.role}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 }
