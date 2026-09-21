@@ -19,8 +19,20 @@ export function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-surface-border bg-background/95 backdrop-blur-md">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+    <header className="sticky top-0 z-50 w-full border-b border-surface-border bg-background/95 backdrop-blur-md overflow-hidden">
+      {/* Tech background image layer behind nav */}
+      <div className="absolute inset-0 z-0" aria-hidden="true">
+        <Image
+          src="/images/bg-header-tech.jpg"
+          alt=""
+          fill
+          className="object-cover object-center opacity-25"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/85 via-background/80 to-background" />
+      </div>
+
+      <div className="relative z-10 mx-auto flex h-20 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Brand Logo */}
         <Link href="/" className="flex items-center gap-3">
           <div className="relative h-9 w-36 sm:h-10 sm:w-44">

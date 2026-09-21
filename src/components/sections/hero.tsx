@@ -6,7 +6,20 @@ import { HERO_CONTENT } from "@/lib/content";
 export function HeroSection() {
   return (
     <section className="border-b border-surface-border bg-background py-16 md:py-28 relative overflow-hidden">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-16">
+      {/* Full-bleed tech background image layer */}
+      <div className="absolute inset-0 z-0" aria-hidden="true">
+        <Image
+          src="/images/bg-hero-tech.jpg"
+          alt=""
+          fill
+          className="object-cover object-center opacity-30"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-background/50 to-transparent" />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-16">
         {/* Top Hero Layout: Massive Headline & Executive Overview */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left Column: Display Headline & Summary */}

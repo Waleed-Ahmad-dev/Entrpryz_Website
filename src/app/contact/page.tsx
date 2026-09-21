@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import Image from "next/image";
 import { Mail, PhoneCall, Send, CheckCircle2 } from "lucide-react";
 import { CONTACT_CONTENT } from "@/lib/content";
 
@@ -22,8 +23,18 @@ export default function ContactPage() {
   return (
     <div className="space-y-16 pb-20">
       {/* Header */}
-      <section className="border-b border-surface-border bg-background py-16 md:py-24">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-6 text-center">
+      <section className="border-b border-surface-border bg-background py-16 md:py-24 relative overflow-hidden">
+        <div className="absolute inset-0 z-0" aria-hidden="true">
+          <Image
+            src="/images/bg-hero-tech.jpg"
+            alt=""
+            fill
+            className="object-cover object-center opacity-25"
+            priority
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/80 to-background" />
+        </div>
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-6 text-center">
           <div className="inline-flex items-center gap-2 border border-brand-orange/40 bg-surface-card px-4 py-1.5 text-xs uppercase tracking-wider font-semibold text-brand-orange">
             <PhoneCall className="h-4 w-4" />
             <span>Direct Engagement</span>

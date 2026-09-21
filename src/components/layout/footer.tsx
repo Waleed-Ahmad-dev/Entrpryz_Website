@@ -5,8 +5,19 @@ import { CONTACT_CONTENT } from "@/lib/content";
 
 export function Footer() {
   return (
-    <footer className="border-t border-surface-border bg-background text-text-secondary">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <footer className="border-t border-surface-border bg-background text-text-secondary relative overflow-hidden">
+      {/* Subtle tech background image layer */}
+      <div className="absolute inset-0 z-0" aria-hidden="true">
+        <Image
+          src="/images/bg-circuit.jpg"
+          alt=""
+          fill
+          className="object-cover object-center opacity-15"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/85 to-background" />
+      </div>
+
+      <div className="relative z-10 mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
           {/* Brand Info */}
           <div className="space-y-4 lg:col-span-5">
