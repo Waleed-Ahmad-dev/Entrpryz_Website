@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #080A0D;
+  --foreground: #F5F5F5;
+  --brand-orange: #FF7A18;
+  --brand-amber: #FF9D3D;
+  --surface-dark: #080A0D;
+  --surface-card: #15191E;
+  --surface-border: #262D35;
+  --text-muted: #A7ADB5;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-montserrat), system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: #FF7A18;
+  color: #080A0D;
+}
+
+/* Industrial brutalist grid background accents */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+.bg-radial-gradient {
+  background: radial-gradient(circle at 50% 0%, rgba(255, 122, 24, 0.08) 0%, transparent 70%);
+}

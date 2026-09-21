@@ -1,0 +1,61 @@
+export interface CaseStudy {
+  client: string;
+  location?: string;
+  website?: string;
+  status?: string;
+  tagline?: string;
+  description: string;
+  details?: string[];
+  image?: string;
+}
+
+export interface TableEngagement {
+  client: string;
+  scope: string;
+  industry?: string;
+  platform?: string;
+}
+
+export interface PortfolioTier {
+  id: string;
+  title: string;
+  subtitle: string;
+  note?: string;
+  featured: CaseStudy[];
+  additional: TableEngagement[];
+}
+
+export interface ServiceItem {
+  id: string;
+  title: string;
+  subtitle: string;
+  items: string[];
+  ctaText: string;
+  ctaHref: string;
+  image: string;
+}
+
+export interface ProcessStep {
+  number: string;
+  title: string;
+  description: string;
+}
+
+export interface ValueProp {
+  title: string;
+  description: string;
+}
+
+export interface TimelineExperience {
+  company: string;
+  role: string;
+  period: string;
+  location: string;
+  overview: string;
+  highlights: string[];
+}
+
+export interface CertificationGroup {
+  title: string;
+  items: string;
+}
