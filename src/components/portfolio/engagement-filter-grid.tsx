@@ -58,7 +58,7 @@ export function EngagementFilterGrid({
         {/* Platform Selector Buttons */}
         {platforms.length > 2 && (
           <div className="flex flex-wrap items-center gap-1.5">
-            <span className="text-xs uppercase tracking-label font-bold text-text-secondary flex items-center gap-1 mr-2">
+            <span className="text-xs uppercase tracking-wider font-bold text-text-secondary flex items-center gap-1 mr-2">
               <Filter className="h-3.5 w-3.5 text-brand-orange" />
               Platform:
             </span>

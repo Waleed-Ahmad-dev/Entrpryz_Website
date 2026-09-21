@@ -22,13 +22,13 @@ export default function ContactPage() {
   return (
     <div className="space-y-16 pb-20">
       {/* Header */}
-      <section className="border-b border-surface-border bg-background bg-grid-pattern py-16 md:py-24">
+      <section className="border-b border-surface-border bg-background py-16 md:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-6 text-center">
-          <div className="inline-flex items-center gap-2 border border-brand-orange/40 bg-surface-card px-4 py-1.5 text-xs uppercase tracking-label font-semibold text-brand-orange">
+          <div className="inline-flex items-center gap-2 border border-brand-orange/40 bg-surface-card px-4 py-1.5 text-xs uppercase tracking-wider font-semibold text-brand-orange">
             <PhoneCall className="h-4 w-4" />
             <span>Direct Engagement</span>
           </div>
-          <h1 className="text-4xl sm:text-6xl font-bold tracking-h1 text-text-primary uppercase leading-tight max-w-4xl mx-auto">
+          <h1 className="text-4xl sm:text-6xl font-display font-bold tracking-tight text-text-primary uppercase leading-tight max-w-4xl mx-auto">
             {CONTACT_CONTENT.headline}
           </h1>
           <p className="text-base sm:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed">
@@ -43,7 +43,7 @@ export default function ContactPage() {
           {/* Left Column: Direct Emails */}
           <div className="lg:col-span-5 space-y-8">
             <div className="border border-surface-border bg-surface-card p-8 space-y-6">
-              <h2 className="text-xs uppercase tracking-label font-bold text-brand-orange">
+              <h2 className="text-xs uppercase tracking-wider font-bold text-brand-orange">
                 Direct Contact Points
               </h2>
 
@@ -100,7 +100,7 @@ export default function ContactPage() {
           {/* Right Column: Interactive Inquiry Form */}
           <div className="lg:col-span-7">
             <div className="border border-surface-border bg-surface-card p-8 sm:p-10 space-y-6">
-              <h2 className="text-xl font-bold text-text-primary uppercase">
+              <h2 className="text-xl font-display font-bold text-text-primary uppercase">
                 Send Us A Message
               </h2>
 
