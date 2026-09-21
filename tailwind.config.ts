@@ -36,13 +36,25 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-montserrat)", "sans-serif"],
+        display: ["var(--font-space-grotesk)", "sans-serif"],
+        mono: ["monospace"],
       },
       letterSpacing: {
-        h1: "-0.02em",
-        h2: "-0.01em",
+        h1: "-0.03em",
+        h2: "-0.02em",
         nav: "0.02em",
-        label: "0.05em",
-        cta: "0.02em",
+        label: "0.08em",
+        cta: "0.04em",
+      },
+      animation: {
+        "pulse-slow": "pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+        "scan-line": "scanline 8s linear infinite",
+      },
+      keyframes: {
+        scanline: {
+          "0%": { transform: "translateY(-100%)" },
+          "100%": { transform: "translateY(1000%)" },
+        },
       },
     },
   },
