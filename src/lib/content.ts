@@ -11,16 +11,16 @@ export const SITE_TAGLINE = "Technology. Simplified.";
 export const HERO_CONTENT = {
   headline: "Technology. Simplified.",
   subheadline:
-    "25+ Years of Technology & Digital Transformation Experience — Now Focused on Your Business.",
-  body: "Entrpryz helps businesses modernize their technology, improve operations, and build practical digital solutions — with experienced leadership behind every engagement.",
+    "25+ Years of Enterprise ERP, Systems Architecture & Advisory — Focused Directly on Your Business.",
+  body: "Entrpryz modernizes enterprise technology, streamlines operations, and engineers reliable business applications — driven by proven leadership behind every single engagement.",
   ctaPrimary: "Talk to Us",
   ctaSecondary: "Explore Our Services",
 };
 
 export const BEHIND_ENTRPRYZ = {
-  headline: "25+ Years of Experience Behind Entrpryz",
+  headline: "25+ Years of Field-Tested Enterprise Leadership",
   subheadline:
-    "Led by Javed Ahmad Qureshi — CIO, Digital Transformation Leader & ERP Strategist",
+    "Led by Javed Ahmad Qureshi — CIO, ERP Strategist & Systems Architecture Leader",
   stats: [
     { value: "25+ Years", label: "Total Experience" },
     { value: "65+", label: "ERP Programs Led" },
@@ -32,39 +32,39 @@ export const BEHIND_ENTRPRYZ = {
 };
 
 export const EXPERIENCE_BEHIND = {
-  headline: "Built on Experience. Focused on What Works.",
-  p1: "Technology is easy to sell. Knowing what technology a business actually needs is much harder.",
-  p2: "Entrpryz brings together technology expertise, business understanding, and more than 25 years of professional experience across ERP, digital transformation, software, IT leadership, and business systems.",
-  p3: "At the center of this experience is Javed Ahmad Qureshi, a global IT executive who has built and delivered 65+ ERP programs across retail, manufacturing, pharmaceuticals, financial services, insurance, utilities, and non-profit sectors — including mission-critical billing modernization for national electricity utilities.",
+  headline: "Built on Field Experience. Focused on Commercial Value.",
+  p1: "Technology is easy to sell. Knowing what systems a business actually needs is much harder.",
+  p2: "Entrpryz combines deep technical skill, business operational knowledge, and 25+ years of hands-on leadership across ERP implementation, custom software engineering, and enterprise IT governance.",
+  p3: "At the core of Entrpryz is Javed Ahmad Qureshi, an executive who has led 65+ ERP programs across manufacturing, pharmaceuticals, retail, insurance, utilities, and non-profits — including national power grid billing modernization.",
   stats: [
     { value: "25+ Years", label: "Professional Experience" },
-    { value: "18+ Years", label: "Digital Transformation & ERP" },
-    { value: "14+ Years", label: "IT Leadership" },
-    { value: "10+ Years", label: "Project & Program Management" },
+    { value: "18+ Years", label: "ERP & Systems Strategy" },
+    { value: "14+ Years", label: "IT Leadership (CIO/VP)" },
+    { value: "10+ Years", label: "Program Governance" },
   ],
-  footer: "Business first. Technology second. Results always.",
+  footer: "Business requirements first. Technology second. Measureable execution always.",
 };
 
 export const ABOUT_ENTRPRYZ = {
-  headline: "A Technology Company With Enterprise Thinking.",
-  p1: "Entrpryz was created with a simple objective: make good technology more practical and accessible for businesses.",
-  p2: "We help organizations understand their technology challenges, select the right solutions, implement them properly, and continuously improve their digital capabilities.",
-  coreAreasIntro: "Our work spans three core areas:",
+  headline: "A Technology Advisory Built With Enterprise Rigor.",
+  p1: "Entrpryz was founded with a single mandate: make high-grade enterprise technology practical, transparent, and aligned with financial goals.",
+  p2: "We audit existing technology stacks, select the right ERP/software platforms, execute precise rollouts, and ensure continuous system adoption.",
+  coreAreasIntro: "Our practice covers three core disciplines:",
   coreAreas: [
     {
-      title: "Digital Transformation",
+      title: "ERP & Systems Optimization",
       description:
-        "ERP, CRM, automation, integration, business applications, and technology modernization.",
+        "NetSuite, SAP Business One, custom ERP audits, CRM deployment, process automation, and system integrations.",
     },
     {
-      title: "Software Development",
+      title: "Software Engineering",
       description:
-        "Custom applications, SaaS, mobile and web solutions, APIs, and AI-enabled business applications.",
+        "Custom enterprise web apps, SaaS platforms, portals, APIs, workflow automation engines, and data pipelines.",
     },
     {
-      title: "Technology & IT Services",
+      title: "Technology & IT Advisory",
       description:
-        "Infrastructure, cloud, cybersecurity, systems, and ongoing technology support.",
+        "Infrastructure assessment, cloud migrations, cybersecurity governance, IT audit remediation, and system maintenance.",
     },
   ],
 };
@@ -72,52 +72,52 @@ export const ABOUT_ENTRPRYZ = {
 export const SERVICES: ServiceItem[] = [
   {
     id: "digital-transformation",
-    title: "Digital Transformation",
-    subtitle: "Transform the way your business operates.",
+    title: "ERP & Systems Advisory",
+    subtitle: "Modernize operational workflows and system controls.",
     items: [
       "ERP Implementation & Optimization",
-      "CRM & Customer Experience",
+      "CRM & Sales Operations Platforms",
       "Business Process Automation",
-      "System Integration",
-      "Cloud Solutions",
+      "System Integration & Middleware",
+      "Cloud ERP Migrations (NetSuite / SAP)",
       "Business Intelligence & Reporting",
-      "Digital Transformation Strategy",
-      "Technology Assessment & Roadmaps",
+      "Systems Audit & Technology Strategy",
+      "Post-Implementation Reviews (PIR)",
     ],
-    ctaText: "Discuss Your Transformation →",
+    ctaText: "Discuss Your Systems Strategy →",
     ctaHref: "/contact",
     image: "/images/services-digital-transformation.jpg",
   },
   {
     id: "software-development",
-    title: "Software Development",
-    subtitle: "Turn business requirements into working technology.",
+    title: "Software Engineering",
+    subtitle: "Turn complex requirements into reliable code.",
     items: [
-      "Custom Business Applications",
-      "Web Applications",
-      "Mobile Applications",
-      "SaaS Solutions",
-      "Business Portals",
-      "APIs & Integrations",
-      "Workflow Automation",
-      "AI-Enabled Applications",
+      "Custom Enterprise Applications",
+      "Web & Cloud Applications",
+      "Mobile Operations Apps",
+      "SaaS Product Engineering",
+      "Customer & Supplier Portals",
+      "APIs & System Connectors",
+      "Workflow Automation Tools",
+      "AI-Assisted Operations Apps",
     ],
-    ctaText: "Build Your Solution →",
+    ctaText: "Build Your Application →",
     ctaHref: "/contact",
     image: "/images/services-software-dev.jpg",
   },
   {
     id: "technology-it-services",
-    title: "Technology & IT Services",
-    subtitle: "Build a reliable technology foundation.",
+    title: "IT Infrastructure & Security",
+    subtitle: "Build a stable, compliant technology foundation.",
     items: [
-      "IT Infrastructure",
-      "Cloud & Server Solutions",
-      "Network Solutions",
-      "Cybersecurity",
-      "Backup & Business Continuity",
-      "Technology Reviews",
-      "Systems Support & Maintenance",
+      "Enterprise IT Infrastructure",
+      "Cloud & Server Governance",
+      "Network Architecture & Security",
+      "Cybersecurity Audit & Risk Control",
+      "Disaster Recovery & Continuity",
+      "Vendor & Budget Evaluations",
+      "Ongoing Systems Maintenance",
     ],
     ctaText: "Talk to Us →",
     ctaHref: "/contact",
@@ -126,88 +126,88 @@ export const SERVICES: ServiceItem[] = [
 ];
 
 export const HOW_WE_WORK = {
-  headline: "We Don't Start With a Product. We Start With Your Problem.",
+  headline: "We Don't Start With a Vendor License. We Start With Your Operating Bottlenecks.",
   steps: [
     {
       number: "01",
       title: "Understand",
       description:
-        "We listen to the business before recommending technology.",
+        "We evaluate business workflows and constraints before recommending any technical platform.",
     },
     {
       number: "02",
       title: "Analyze",
       description:
-        "We examine processes, systems, challenges, and opportunities.",
+        "We audit existing data flows, legacy systems, operational pain points, and commercial risks.",
     },
     {
       number: "03",
-      title: "Design",
+      title: "Architect",
       description:
-        "We develop a practical solution aligned with your business and budget.",
+        "We model a realistic technical architecture aligned directly with your target operating model and budget.",
     },
     {
       number: "04",
-      title: "Implement",
-      description: "We configure, develop, integrate, and deploy.",
+      title: "Execute",
+      description: "We configure, engineer, integrate, test, and deploy with structured program control.",
     },
     {
       number: "05",
-      title: "Improve",
+      title: "Govern",
       description:
-        "We stay focused on adoption, performance, and continuous improvement.",
+        "We measure user adoption, verify reporting accuracy, and optimize system performance over time.",
     },
   ] as ProcessStep[],
 };
 
 export const WHY_ENTRPRYZ = {
-  headline: "Senior Experience Without Enterprise Complexity.",
+  headline: "Senior Leadership Without Enterprise Overhead.",
   reasons: [
     {
-      title: "Experience",
+      title: "Decades of Field Experience",
       description:
-        "Decades of exposure to ERP, IT leadership, digital transformation, software, and business processes.",
+        "25+ years directly running enterprise ERP rollouts, IT departments, and complex technical projects.",
     },
     {
-      title: "Business Understanding",
+      title: "Commercial & Business First",
       description:
-        "We understand that technology is an enabler, not the objective.",
+        "We view technology as a tool for financial accuracy, speed, and margin improvement — not as an end in itself.",
     },
     {
-      title: "Practical Solutions",
+      title: "Practical & Usable Solutions",
       description:
-        "We focus on solutions that people can actually use and businesses can actually afford.",
+        "We deploy software that operational teams actually adopt and management can reliably trust.",
     },
     {
       title: "Technology Agnostic",
       description:
-        "We recommend technology based on your requirements, not on what we happen to sell.",
+        "We recommend software solutions based purely on your operating requirements, not vendor sales kickbacks.",
     },
     {
-      title: "Long-Term Partnership",
+      title: "Direct Executive Accountability",
       description:
-        "Our objective is to build lasting relationships rather than simply complete projects.",
+        "You deal directly with senior architects and decision-makers on every phase of engagement.",
     },
   ] as ValueProp[],
 };
 
 export const FOUNDER_CONTENT = {
   name: "Javed Ahmad Qureshi",
-  role: "Founder | Chief Information Officer | Digital Transformation & ERP Strategy Leader",
-  p1: "Global IT executive with 25+ years of experience across digital transformation, ERP-driven optimization, and enterprise innovation — including 18+ years in ERP/digital transformation and 14+ years in IT leadership (CIO, VP, Senior Manager).",
-  p2: "Currently CIO at a leading real estate development and hospitality group, leading a cross-border Enterprise Technology function across Pakistan and UAE. Over his career, he has built and delivered 65+ ERP programs spanning retail, manufacturing, pharmaceuticals, financial services, insurance, utilities, and non-profit sectors — including mission-critical billing modernization for national electricity utilities.",
-  p3: "Known for aligning technology investment with commercial outcomes — governance, cybersecurity, and cloud strategy that hold up to audit and board scrutiny, not technology for its own sake.",
+  role: "Founder | Chief Information Officer | Enterprise ERP & Systems Leader",
+  p1: "Global IT executive with 25+ years of experience across enterprise systems optimization, ERP program delivery, and IT governance — including 18+ years leading ERP programs and 14+ years in senior executive roles (CIO, Vice President, Senior Manager).",
+  p2: "Currently serving as CIO for a prominent real estate development and hospitality group across Pakistan and the UAE. Over his career, he has directed 65+ ERP implementations spanning manufacturing, pharmaceuticals, retail, insurance, utilities, and non-profits — including major power utility billing modernizations.",
+  p3: "Known for aligning IT expenditure directly with financial and audit requirements — establishing cloud infrastructure, cybersecurity controls, and ERP workflows that hold up to board and external audit scrutiny.",
   competencies: [
-    "Digital Transformation Leadership",
     "Enterprise IT Strategy & Governance",
-    "ERP, CRM & HCM Integration",
-    "AI-Driven Business Optimization & GenAI Strategy",
-    "Cybersecurity & Risk Management",
-    "Cloud Strategy & Shared Services Optimization",
-    "P&L-Aligned IT Budgeting",
-    "Post-Implementation Reviews & ERP Turnarounds",
-    "Cross-Border & Multicultural Team Leadership",
-    "Project & Program Leadership (Agile & Hybrid)",
+    "Oracle NetSuite & SAP B1 Architecture",
+    "ERP, CRM & HCM Systems Integration",
+    "AI-Assisted Operations & Data Strategy",
+    "Cybersecurity & Regulatory Audit Risk",
+    "Cloud Strategy & Shared Services",
+    "P&L-Aligned IT Budgeting & Cost Control",
+    "Post-Implementation Reviews (PIR) & ERP Turnarounds",
+    "Cross-Border Technology Team Management",
+    "Program Leadership & RFP Ownership",
   ],
   philosophy:
     "technology should make business simpler, faster, and better — not more complicated.",
@@ -217,31 +217,31 @@ export const FOUNDER_CONTENT = {
 export const CAREER_TIMELINE: TimelineExperience[] = [
   {
     company: "Premier Choice International",
-    location: "Pakistan/UAE",
+    location: "Pakistan / UAE",
     role: "Chief Information Officer",
     period: "2024–Present",
     overview:
-      "Leading a cross-border Enterprise Technology department of 8–10 staff, owning an ~$80,000+ annual IT budget and supporting 150+ IT users across ~200 employees in Pakistan and Dubai.",
+      "Directing a cross-border Enterprise Technology department of 8–10 engineers and specialists, owning an ~$80,000+ annual IT operational budget and supporting 150+ IT users across ~200 employees in Pakistan and Dubai.",
     highlights: [
-      "Driving enterprise-wide digital transformation across ERP, CRM, and HCM platforms",
-      "Launched AI-driven customer engagement and integrated CRM for personalized, omnichannel experience across a real-estate development and hospitality portfolio",
-      "Spearheading cloud-first and AI-enabled initiatives across Finance, Engineering, Planning, Procurement, HR, and Customer Engagement",
-      "Established IT governance frameworks and scalable shared services unifying operations across two countries; strengthened cybersecurity resilience and compliance posture",
-      "Stood up a formal Enterprise Technology Office (ETO) and authored a multi-year Enterprise Technology Vision spanning ERP expansion, customer experience platforms, data & analytics, AI adoption, integration, and cybersecurity",
-      "Delivered NetSuite Procure-to-Pay enhancements (BOQ-driven budget control, contract & procurement management, vendor payment controls) and is leading a 7-workstream Order-to-Cash redesign",
-      "Directed CRM (Bitrix24) rollout across Pakistan and UAE and led end-to-end HCM (FlowHCM) implementation",
+      "Architecting enterprise-wide technology modernization across ERP, CRM, and HCM systems",
+      "Deployed integrated CRM and automated customer engagement channels across real-estate and hospitality portfolios",
+      "Executing cloud-first and analytics initiatives across Finance, Engineering, Procurement, and Operations",
+      "Established multi-country IT governance frameworks and unified shared services; upgraded cybersecurity compliance posture",
+      "Created the Enterprise Technology Office (ETO) and multi-year technology roadmap covering ERP expansion and data analytics",
+      "Delivered NetSuite Procure-to-Pay budget controls, contract management, and vendor payment verification workflows",
+      "Directed regional Bitrix24 CRM deployment and completed end-to-end FlowHCM implementation",
     ],
   },
   {
-    company: "Independent ERP & Digital Transformation Consultant",
+    company: "Independent ERP & Technology Advisory",
     location: "Islamabad",
-    role: "Independent Consultant",
+    role: "Independent Principal Consultant",
     period: "2022–2024",
     overview:
-      "Led ERP implementation programs and post-implementation reviews (PIR) for clients across manufacturing and public-sector environments.",
+      "Led ERP turnaround projects, systems audits, and post-implementation reviews for mid-market industrial and public sector clients.",
     highlights: [
-      "ERP Governance & PIR (Microsoft & Oracle Ecosystems), Feb–Mar 2024 — Audited custom-built ERP applications, diagnosed performance bottlenecks and data-integrity gaps, delivered an executive remediation roadmap to maximize system ROI and align with corporate governance standards.",
-      "Oracle EBS Turnaround & PIR, Oct–Nov 2023 (Textile Manufacturing) — Identified critical workflow misalignments within Oracle EBS, engineered gap-closure strategies, and established scalable IT governance protocols to stabilize operations.",
+      "ERP Governance & PIR (Microsoft & Oracle Platforms), 2024 — Audited custom ERP software, eliminated database integrity gaps, and delivered an executive remediation roadmap to recover ROI.",
+      "Oracle EBS Turnaround & Audit, 2023 (Textile Manufacturing) — Resolved operational bottlenecks in Oracle EBS, engineered workflow corrections, and stabilized production tracking.",
     ],
   },
   {
@@ -250,74 +250,74 @@ export const CAREER_TIMELINE: TimelineExperience[] = [
     role: "Vice President, Mid-Market Cloud Services",
     period: "2018–2022",
     overview:
-      "Recruited as Keystone's founding NetSuite hire and Oracle Partner Enablement-trained, establishing Pakistan's first Oracle NetSuite practice; hired and trained a 10–15 person delivery team that went on to complete 15+ full-cycle implementations supporting up to 100+ users per deployment, with an estimated $225K–$900K in aggregate first-year subscription value across the portfolio.",
+      "Recruited as Keystone's founding NetSuite lead, building Pakistan's first Oracle NetSuite practice from scratch. Hired and trained a 10–15 person delivery team that executed 15+ full-cycle implementations supporting up to 100+ users per account.",
     highlights: [
-      "Pharmaceutical Distribution (2020–2022) — Directed a supply chain and financial transformation on Oracle NetSuite, integrating custom Payroll and Asset Maintenance SuiteApps.",
-      "Utility Sector — Electricity Distribution (2021–2022) — Steered core financials and procurement plus a bespoke e-Tendering solution digitizing public procurement and audit compliance.",
-      "Life Insurance (2018–2022) — Architected a direct integration between NetSuite Financials and a bespoke .NET-based legacy insurance system, replacing manual reconciliation with real-time financial reconciliation.",
-      "Industrial Manufacturing (2018–2022) — Migrated a client off in-house custom software onto NetSuite (>$50K annual subscription) despite change-management resistance; deployed scanner-based shop-floor terminals for real-time production tracking plus Work Order/Assembly, WIP & Routing, and custom SuiteApps for Core HR and Asset Maintenance.",
-      "Industrial Distribution — Supply Chain (2019–2022) — Delivered high-volume procurement and advanced inventory management with real-time order-to-cash visibility.",
-      "Surgical Equipment Manufacturing (2021–2022) — Aligned financial and supply chain configuration to regulatory quality standards.",
-      "Non-Profit Sector (2020–2021) — Configured Grants and Donations Management with fund-accounting compliance and stakeholder reporting.",
-      "Plastic Packaging — NetSuite OneWorld (2019–2020) & Chemical Manufacturing (2019) — Delivered multi-entity financials, advanced inventory, and CRM consolidation.",
-      "Directed the technical development team architecting and launching custom SuiteApps for NetSuite Cloud ERP, overseeing technical governance and security standards for native cloud integrations.",
+      "Pharmaceutical Distribution — Directed Oracle NetSuite supply chain and financial rollout with custom SuiteApps.",
+      "Electricity Utility Sector — Steered NetSuite financials, procurement, and an e-Tendering platform for audit compliance.",
+      "Life Insurance — Built real-time integration between NetSuite Financials and custom .NET policy engine, eliminating manual data entry.",
+      "Industrial Manufacturing — Migrated legacy software to NetSuite with shop-floor barcode tracking and assembly WIP routing.",
+      "Industrial Distribution — Deployed high-volume procurement and real-time inventory management.",
+      "Surgical Equipment Manufacturing — Configured financial and supply chain workflows to meet international quality standards.",
+      "Non-Profit Sector — Configured Grants and Fund Management accounting with donor reporting compliance.",
+      "Plastic Packaging & Chemical Manufacturing — Deployed NetSuite OneWorld multi-entity consolidation.",
+      "Directed technical team building custom SuiteApps on NetSuite Cloud ERP platform.",
     ],
   },
   {
     company: "Crowe Hussain Chaudhury & Co.",
     location: "Pakistan",
-    role: "Senior Manager (ERP)",
+    role: "Senior Manager (ERP Advisory)",
     period: "2014–2018",
     overview:
-      "Directed SAP Business One implementations and custom add-on development for 50+ enterprises spanning multiple industries and cities; led mission-critical ERP and billing transformation programs for national electricity distribution companies with a combined program value of approximately PKR 600 million.",
+      "Directed SAP Business One implementations and custom add-on engineering for 50+ enterprises. Managed major utility ERP programs with combined project value of ~PKR 600 Million.",
     highlights: [
-      "IESCO — ERP Program (2015–2018) — Built the program from inception as the strategic conduit between government stakeholders and technical teams: authored the RFP, led vendor evaluation and selection, onboarded the implementation partner, and managed the SAP S/4HANA delivery for regulatory compliance.",
-      "IESCO — Data Center Build-Out — Separately scoped and delivered an in-house data center program, including RFP authorship, vendor onboarding, and execution/deliverable validation.",
-      "PESCO — USAID-Funded ERP & Billing Modernization (2014–2015) — Engaged as Project Manager on behalf of the donor-funded program, managing the implementation partner and ensuring delivery quality across large-scale data migration and financial-transparency objectives.",
-      "SAP Business One Add-On Architecture (2014–2018) — Governed end-to-end custom add-on development, translating client requirements into scalable technical architectures.",
+      "IESCO ERP Program — Managed SAP S/4HANA program from inception: authored RFP, led vendor selection, and oversaw delivery compliance.",
+      "IESCO Data Center — Scoped and managed turnkey data center build-out and acceptance testing.",
+      "PESCO USAID Modernization — Served as PM for donor-funded power utility ERP and billing modernization program.",
+      "SAP B1 Add-On Architecture — Architected custom industry add-ons and led delivery teams.",
     ],
   },
   {
     company: "Shaigan Pharma & Al-Aziz Packages",
     location: "Pakistan",
-    role: "ERP/IT Leadership Roles",
+    role: "ERP & IT Leadership Roles",
     period: "2006–2014",
     overview:
-      "Spearheaded core manufacturing and pharmaceutical ERP transformations.",
+      "Led in-house ERP deployments and software engineering across pharmaceutical and packaging manufacturing.",
     highlights: [
-      "Al-Aziz Packages (Packaging Manufacturing) — Designed and built a custom CPQ (configure-price-quote) tool for complex corrugated and rotogravure packaging pricing, replacing manual estimation with a systematic process; later migrated the business onto SAP Business One.",
-      "Shaigan Pharma — Migrated SAP Business One from v2007 to v8.2 fully in-house without an external implementation partner; directed development of a Distribution Management System capturing secondary sales data, and a Performance Management System tracking doctors, hospitals, and institutions as sales/marketing targets.",
+      "Al-Aziz Packages — Built custom CPQ estimation software for packaging pricing, later migrating operations onto SAP Business One.",
+      "Shaigan Pharma — Migrated SAP Business One from v2007 to v8.2 completely in-house without external implementation partner costs; built custom Distribution and Sales DMS.",
     ],
   },
 ];
 
 export const NOTABLE_ACHIEVEMENTS = [
-  "Pioneered Oracle NetSuite in Pakistan — recruited as Keystone's founding NetSuite hire, Oracle Partner Enablement-trained, then built and trained the 10–15 person delivery team behind Pakistan's first Oracle NetSuite practice.",
-  "Oracle NetSuite — led 15+ end-to-end deployments across retail, manufacturing, pharma, financial services, insurance, and non-profit sectors, each supporting up to 100+ users, representing an estimated $225K–$900K in aggregate first-year subscription value.",
-  "SAP Business One — designed and delivered tailored ERP solutions for 50+ enterprises, improving scalability, reporting accuracy, and process automation.",
-  "Utility Sector Program Ownership — built the IESCO ERP program from inception through delivery plus a separate in-house data center build-out; managed the implementation partner on the USAID-funded PESCO program — combined program value ~PKR 600 million.",
-  "Self-Delivered ERP Migration — migrated Shaigan Pharma's SAP Business One from v2007 to v8.2 fully in-house, avoiding external implementation-partner cost.",
-  "Post-Implementation Reviews — recurring engagements recovering ROI and correcting governance gaps on stalled or under-performing ERP programs.",
+  "Pioneered Oracle NetSuite Practice in Pakistan — recruited as founding NetSuite lead, built and trained the country's first 10-15 person NetSuite delivery team.",
+  "15+ NetSuite Enterprise Rollouts — led end-to-end deployments supporting up to 100+ users per deployment across manufacturing, pharma, insurance, and retail.",
+  "50+ SAP Business One Implementations — designed and delivered custom ERP solutions across 50+ enterprises, including Pakistan's fastest recorded SAP B1 go-live.",
+  "~PKR 600M Utility ERP Governance — authored RFPs and governed national utility ERP rollout (IESCO) and USAID billing modernization (PESCO).",
+  "In-House SAP B1 Upgrade — successfully migrated Shaigan Pharma's SAP system fully in-house without external vendor fees.",
+  "ERP Turnaround & Recovery — recurring advisory engagements recovering stalled ERP programs and fixing data integrity gaps.",
 ];
 
 export const CERTIFICATIONS: CertificationGroup[] = [
   {
-    title: "Generative AI & Digital Strategy",
+    title: "AI & Digital Strategy",
     items:
-      "LinkedIn: Integrating GenAI into Business Strategy, GenAI for Business Leaders (2025); Google Cloud Skills Boost: Introduction to Generative AI (2025); PMI: GenAI Overview for Project Managers (2024)",
+      "LinkedIn: Integrating GenAI into Business Strategy (2025); Google Cloud Skills Boost: Introduction to Generative AI (2025); PMI: GenAI for Project Leaders (2024)",
   },
   {
-    title: "ERP & Cloud Platforms",
+    title: "ERP & Enterprise Platforms",
     items:
-      "Microsoft: Dynamics 365 Solution Architect & Power Platform (2024); Odoo Enterprise & Studio (2023); NetSuite Partner Enablement Program (2018); SAP Business One (2009/2013)",
+      "Microsoft: Dynamics 365 Solution Architect & Power Platform (2024); Odoo Enterprise & Studio (2023); NetSuite Partner Enablement (2018); SAP Business One (2009/2013)",
   },
   {
-    title: "Agile & Project Leadership",
+    title: "Project Leadership",
     items:
-      "IBM: Project Management, Agile Explorer (2025); PMP Training, PMI (2015)",
+      "IBM: Project Management & Agile Explorer (2025); PMP Training, PMI (2015)",
   },
   {
-    title: "Cybersecurity & Governance",
+    title: "Cybersecurity & Audit",
     items:
       "ISC² Candidate (2024–2025); CISA Training (2012); ISACA Training (2013)",
   },
@@ -326,30 +326,25 @@ export const CERTIFICATIONS: CertificationGroup[] = [
     items: "CBAP Training (2014); Tableau, Simplilearn (2024)",
   },
   {
-    title: "Leadership",
+    title: "Leadership & Education",
     items:
-      "Total Quality Management & Leadership, NPO, Government of Pakistan (2010)",
-  },
-  {
-    title: "Education",
-    items:
-      "MBA (MIS), University of Management & Technology, Lahore, 1999 | B.Com, Hailey College of Commerce, University of the Punjab, Lahore, 1996",
+      "Total Quality Management, NPO Govt of Pakistan (2010); MBA (MIS), UMT Lahore (1999); B.Com, Hailey College of Commerce (1996)",
   },
 ];
 
 export const PRODUCT_JOURNEY = {
-  headline: "From Solving Problems to Building Products.",
-  p1: "Our client work exposes us to real business problems every day. Some problems deserve a customized solution. Others can be solved better through a simple, affordable software product.",
-  p2: "Entrpryz is building its own technology products around that idea:",
-  motto: "Solve real problems. Build simple solutions. Make them accessible.",
-  status: "Our products are currently under development.",
-  cta: "Explore Our Products →",
+  headline: "From Solving Client Problems to Building Software Products.",
+  p1: "Our advisory work puts us on the front lines of operational problems every day. When we spot recurring gaps across businesses, we build focused, lightweight software products to solve them.",
+  p2: "Entrpryz product principles are straightforward:",
+  motto: "Solve real operational problems. Build clean software. Keep it accessible.",
+  status: "Software products currently in active development.",
+  cta: "Talk to Us →",
 };
 
 export const TEAM = [
   {
     name: "Javed Ahmad Qureshi",
-    role: "Founder | Chief Information Officer, Digital Transformation & ERP Strategy Leader",
+    role: "Founder | Chief Information Officer | Enterprise ERP Leader",
   },
   {
     name: "Waleed Ahmad",
@@ -358,10 +353,10 @@ export const TEAM = [
 ];
 
 export const CONTACT_CONTENT = {
-  headline: "Let's Build Something That Works.",
-  body: "Whether you need to modernize your ERP, improve your business processes, integrate systems, automate operations, build a custom application — or simply understand where technology can create value for your business — start with a conversation.",
+  headline: "Let's Discuss Your Technology Strategy.",
+  body: "Whether you are evaluating a new ERP rollout, auditing a stalled implementation, building custom business software, or improving system security — start with a direct conversation.",
   tagline: "Entrpryz — Technology. Simplified.",
-  cta: "Talk to Us →",
+  cta: "Schedule A Call →",
   contacts: {
     general: "connect@entrpryz.com",
     javed: "javed@entrpryz.com",
