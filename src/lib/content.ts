@@ -11,16 +11,16 @@ export const SITE_TAGLINE = "Technology. Simplified.";
 export const HERO_CONTENT = {
   headline: "Technology. Simplified.",
   subheadline:
-    "25+ Years of Enterprise ERP, Systems Architecture & Advisory — Focused Directly on Your Business.",
-  body: "Entrpryz modernizes enterprise technology, streamlines operations, and engineers reliable business applications — driven by proven leadership behind every single engagement.",
+    "25+ years of hands-on ERP, software and IT experience — put to work on your business.",
+  body: "We help businesses fix, build and modernize the systems they run on — no jargon, no overhead, no handoffs.",
   ctaPrimary: "Talk to Us",
   ctaSecondary: "Explore Our Services",
 };
 
 export const BEHIND_ENTRPRYZ = {
-  headline: "25+ Years of Field-Tested Enterprise Leadership",
+  headline: "25+ Years of Real-World Technology Experience",
   subheadline:
-    "Led by Javed Ahmad Qureshi — CIO, ERP Strategist & Systems Architecture Leader",
+    "Led by Javed Ahmad Qureshi — 25+ years building and fixing the systems businesses run on.",
   stats: [
     { value: "25+ Years", label: "Total Experience" },
     { value: "65+", label: "ERP Programs Led" },
@@ -46,9 +46,9 @@ export const EXPERIENCE_BEHIND = {
 };
 
 export const ABOUT_ENTRPRYZ = {
-  headline: "A Technology Advisory Built With Enterprise Rigor.",
-  p1: "Entrpryz was founded with a single mandate: make high-grade enterprise technology practical, transparent, and aligned with financial goals.",
-  p2: "We audit existing technology stacks, select the right ERP/software platforms, execute precise rollouts, and ensure continuous system adoption.",
+  headline: "Technology That Works the Way Your Business Actually Runs.",
+  p1: "Entrpryz was founded on one idea: technology should make business simpler, not more complicated. We help businesses fix, build and modernize the systems they run on — without the jargon or the overhead.",
+  p2: "We start from how your business actually works — then select the right platforms, roll them out properly, and make sure your team actually uses them.",
   coreAreasIntro: "Our practice covers three core disciplines:",
   coreAreas: [
     {
@@ -72,8 +72,9 @@ export const ABOUT_ENTRPRYZ = {
 export const SERVICES: ServiceItem[] = [
   {
     id: "digital-transformation",
-    title: "ERP & Systems Advisory",
-    subtitle: "Modernize operational workflows and system controls.",
+    title: "Digital Transformation",
+    subtitle:
+      "ERP & Systems Optimization, CRM & Sales Operations, Process Automation, BI & Reporting",
     items: [
       "ERP Implementation & Optimization",
       "CRM & Sales Operations Platforms",
@@ -90,8 +91,9 @@ export const SERVICES: ServiceItem[] = [
   },
   {
     id: "software-development",
-    title: "Software Engineering",
-    subtitle: "Turn complex requirements into reliable code.",
+    title: "Software Development",
+    subtitle:
+      "Custom Enterprise Applications, Web & Cloud Apps, SaaS Products, APIs & Workflow Tools",
     items: [
       "Custom Enterprise Applications",
       "Web & Cloud Applications",
@@ -108,8 +110,9 @@ export const SERVICES: ServiceItem[] = [
   },
   {
     id: "technology-it-services",
-    title: "IT Infrastructure & Security",
-    subtitle: "Build a stable, compliant technology foundation.",
+    title: "Technology & IT Services",
+    subtitle:
+      "Infrastructure, Cloud & Security, Data & Network, Systems Maintenance & Support",
     items: [
       "Enterprise IT Infrastructure",
       "Cloud & Server Governance",
@@ -126,42 +129,43 @@ export const SERVICES: ServiceItem[] = [
 ];
 
 export const HOW_WE_WORK = {
-  headline: "We Don't Start With a Vendor License. We Start With Your Operating Bottlenecks.",
+  headline: "We Don't Start With a Product. We Start With Your Problem.",
   steps: [
     {
       number: "01",
       title: "Understand",
       description:
-        "We evaluate business workflows and constraints before recommending any technical platform.",
+        "We start with your business, your goals, and where things are actually breaking down — not a product pitch.",
     },
     {
       number: "02",
       title: "Analyze",
       description:
-        "We audit existing data flows, legacy systems, operational pain points, and commercial risks.",
+        "We look at your data, your systems, and your day-to-day workflow to find where the real opportunity is.",
     },
     {
       number: "03",
-      title: "Architect",
+      title: "Design",
       description:
-        "We model a realistic technical architecture aligned directly with your target operating model and budget.",
+        "We design a solution that fits your business and your budget — not the most complicated option available.",
     },
     {
       number: "04",
-      title: "Execute",
-      description: "We configure, engineer, integrate, test, and deploy with structured program control.",
+      title: "Implement",
+      description:
+        "We build, integrate, test and roll it out — and make sure your team actually adopts it.",
     },
     {
       number: "05",
-      title: "Govern",
+      title: "Evolve",
       description:
-        "We measure user adoption, verify reporting accuracy, and optimize system performance over time.",
+        "We keep improving the system as your business grows, instead of walking away at go-live.",
     },
   ] as ProcessStep[],
 };
 
 export const WHY_ENTRPRYZ = {
-  headline: "Senior Leadership Without Enterprise Overhead.",
+  headline: "Why Businesses Work With Entrpryz.",
   reasons: [
     {
       title: "Decades of Field Experience",
@@ -184,19 +188,19 @@ export const WHY_ENTRPRYZ = {
         "We recommend software solutions based purely on your operating requirements, not vendor sales kickbacks.",
     },
     {
-      title: "Direct Executive Accountability",
+      title: "Direct, No-Nonsense Delivery",
       description:
-        "You deal directly with senior architects and decision-makers on every phase of engagement.",
+        "You deal directly with the people doing the work, from first conversation to go-live.",
     },
   ] as ValueProp[],
 };
 
 export const FOUNDER_CONTENT = {
   name: "Javed Ahmad Qureshi",
-  role: "Founder | Chief Information Officer | Enterprise ERP & Systems Leader",
-  p1: "Global IT executive with 25+ years of experience across enterprise systems optimization, ERP program delivery, and IT governance — including 18+ years leading ERP programs and 14+ years in senior executive roles (CIO, Vice President, Senior Manager).",
-  p2: "Currently serving as CIO for a prominent real estate development and hospitality group across Pakistan and the UAE. Over his career, he has directed 65+ ERP implementations spanning manufacturing, pharmaceuticals, retail, insurance, utilities, and non-profits — including major power utility billing modernizations.",
-  p3: "Known for aligning IT expenditure directly with financial and audit requirements — establishing cloud infrastructure, cybersecurity controls, and ERP workflows that hold up to board and external audit scrutiny.",
+  role: "Founder, Entrpryz",
+  p1: "25+ years of hands-on experience across enterprise systems, ERP delivery, and IT leadership — including 18+ years leading ERP programs and 14+ years in senior technology roles (CIO, Vice President, Senior Manager).",
+  p2: "Currently serving as CIO for a real estate development and hospitality group across Pakistan and the UAE. Over his career, he has directed 65+ ERP implementations across manufacturing, pharmaceuticals, retail, insurance, utilities, and non-profits — including major power utility billing modernizations.",
+  p3: "Known for keeping IT spending tightly aligned with business and audit needs — building the cloud, security controls, and ERP workflows that hold up under real management and external audit scrutiny.",
   competencies: [
     "Enterprise IT Strategy & Governance",
     "Oracle NetSuite & SAP B1 Architecture",
@@ -250,7 +254,7 @@ export const CAREER_TIMELINE: TimelineExperience[] = [
     role: "Vice President, Mid-Market Cloud Services",
     period: "2018–2022",
     overview:
-      "Recruited as Keystone's founding NetSuite lead, building Pakistan's first Oracle NetSuite practice from scratch. Hired and trained a 10–15 person delivery team that executed 15+ full-cycle implementations supporting up to 100+ users per account.",
+      "Recruited as Keystone's founding NetSuite lead, building Pakistan's first Oracle NetSuite practice from scratch. Hired and trained a 10–15 person delivery team that executed 15+ full-cycle implementations for clients of varying scale.",
     highlights: [
       "Pharmaceutical Distribution — Directed Oracle NetSuite supply chain and financial rollout with custom SuiteApps.",
       "Electricity Utility Sector — Steered NetSuite financials, procurement, and an e-Tendering platform for audit compliance.",
@@ -293,7 +297,7 @@ export const CAREER_TIMELINE: TimelineExperience[] = [
 
 export const NOTABLE_ACHIEVEMENTS = [
   "Pioneered Oracle NetSuite Practice in Pakistan — recruited as founding NetSuite lead, built and trained the country's first 10-15 person NetSuite delivery team.",
-  "15+ NetSuite Enterprise Rollouts — led end-to-end deployments supporting up to 100+ users per deployment across manufacturing, pharma, insurance, and retail.",
+  "15+ NetSuite Enterprise Rollouts — led end-to-end implementations supporting deployments of varying scale across manufacturing, pharma, insurance, and retail.",
   "50+ SAP Business One Implementations — designed and delivered custom ERP solutions across 50+ enterprises, including Pakistan's fastest recorded SAP B1 go-live.",
   "~PKR 600M Utility ERP Governance — authored RFPs and governed national utility ERP rollout (IESCO) and USAID billing modernization (PESCO).",
   "In-House SAP B1 Upgrade — successfully migrated Shaigan Pharma's SAP system fully in-house without external vendor fees.",
@@ -344,7 +348,7 @@ export const PRODUCT_JOURNEY = {
 export const TEAM = [
   {
     name: "Javed Ahmad Qureshi",
-    role: "Founder | Chief Information Officer | Enterprise ERP Leader",
+    role: "Founder | Chief Information Officer",
   },
   {
     name: "Waleed Ahmad",
@@ -353,8 +357,8 @@ export const TEAM = [
 ];
 
 export const CONTACT_CONTENT = {
-  headline: "Let's Discuss Your Technology Strategy.",
-  body: "Whether you are evaluating a new ERP rollout, auditing a stalled implementation, building custom business software, or improving system security — start with a direct conversation.",
+  headline: "Let's Talk About Your Systems.",
+  body: "New ERP rollout, a stalled implementation, custom business software, or system security — start with a direct conversation with the people who'll actually do the work.",
   tagline: "Entrpryz — Technology. Simplified.",
   cta: "Schedule A Call →",
   contacts: {
