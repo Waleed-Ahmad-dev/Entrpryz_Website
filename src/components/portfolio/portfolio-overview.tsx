@@ -8,6 +8,7 @@ import {
   PORTFOLIO_CTA,
 } from "@/lib/portfolio-data";
 import { SectionContainer } from "@/components/layout/section-container";
+import { EngagementFilterGrid } from "./engagement-filter-grid";
 
 export function PortfolioOverviewSection() {
   return (
@@ -88,6 +89,10 @@ export function PortfolioOverviewSection() {
                 </div>
               ))}
             </div>
+
+            {tier.additional.length > 0 && (
+              <EngagementFilterGrid engagements={tier.additional} />
+            )}
           </div>
         ))}
 
