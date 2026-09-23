@@ -10,33 +10,28 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "#080A0D",
-        foreground: "#F5F5F5",
+        background: "rgb(var(--background) / <alpha-value>)",
+        foreground: "rgb(var(--foreground) / <alpha-value>)",
         brand: {
-          DEFAULT: "#FF7A18",
-          orange: "#FF7A18",
-          amber: "#FF9D3D",
-          hover: "#E56800",
+          DEFAULT: "rgb(var(--brand-orange) / <alpha-value>)",
+          orange: "rgb(var(--brand-orange) / <alpha-value>)",
+          amber: "rgb(var(--brand-amber) / <alpha-value>)",
+          hover: "rgb(var(--brand-hover) / <alpha-value>)",
         },
         surface: {
-          DEFAULT: "#12161B",
-          dark: "#080A0D",
-          card: "#12161B",
-          border: "#222830",
+          dark: "rgb(var(--surface-dark) / <alpha-value>)",
+          card: "rgb(var(--surface-card) / <alpha-value>)",
+          border: "rgb(var(--surface-border) / <alpha-value>)",
         },
         text: {
-          primary: "#F5F5F5",
-          secondary: "#9BA2AD",
+          primary: "rgb(var(--text-primary) / <alpha-value>)",
+          secondary: "rgb(var(--text-secondary) / <alpha-value>)",
         },
       },
       fontFamily: {
         sans: ["var(--font-montserrat)", "sans-serif"],
         display: ["var(--font-space-grotesk)", "sans-serif"],
         mono: ["monospace"],
-      },
-      letterSpacing: {
-        h1: "-0.03em",
-        h2: "-0.02em",
       },
     },
   },

@@ -3,14 +3,16 @@
 @tailwind utilities;
 
 :root {
-  --background: #080A0D;
-  --foreground: #F5F5F5;
-  --brand-orange: #FF7A18;
-  --brand-amber: #FF9D3D;
-  --surface-dark: #080A0D;
-  --surface-card: #12161B;
-  --surface-border: #222830;
-  --text-muted: #9BA2AD;
+  --background: 8 10 13;
+  --foreground: 245 245 245;
+  --brand-orange: 255 122 24;
+  --brand-amber: 255 157 61;
+  --brand-hover: 229 104 0;
+  --surface-dark: 8 10 13;
+  --surface-card: 18 22 27;
+  --surface-border: 34 40 48;
+  --text-primary: 245 245 245;
+  --text-secondary: 155 162 173;
 }
 
 html {
@@ -18,16 +20,16 @@ html {
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+  color: rgb(var(--foreground));
+  background: rgb(var(--background));
   font-family: var(--font-montserrat), system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
 
 ::selection {
-  background-color: #FF7A18;
-  color: #080A0D;
+  background-color: rgb(var(--brand-orange));
+  color: rgb(var(--background));
 }
 
 /* Premium technical grid — fades out so it never competes with copy */
