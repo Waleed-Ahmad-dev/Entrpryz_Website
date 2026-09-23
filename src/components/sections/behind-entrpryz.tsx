@@ -23,13 +23,13 @@ export function BehindEntrpryzSection() {
                 
                 <div className="absolute bottom-4 left-4 right-4 bg-background/95 p-3 border border-surface-border">
                   <span className="inline-block bg-brand-orange text-background px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider">
-                    FOUNDER &amp; LEAD ARCHITECT
+                    FOUNDER &amp; CIO
                   </span>
                   <p className="mt-1 text-base font-bold text-text-primary">
                     Javed Ahmad Qureshi
                   </p>
                   <p className="text-xs text-text-secondary">
-                    CIO &amp; Systems Architecture Leader
+                    Founder, Entrpryz
                   </p>
                 </div>
               </div>
@@ -40,7 +40,7 @@ export function BehindEntrpryzSection() {
           <div className="lg:col-span-8 space-y-6">
             <div className="inline-flex items-center gap-2 border border-brand-orange/40 bg-background px-3.5 py-1 rounded-sm text-xs uppercase tracking-wider font-semibold text-brand-orange">
               <Award className="h-3.5 w-3.5" />
-              <span>Proven Enterprise Leadership</span>
+              <span>Who We Are</span>
             </div>
 
             <h2 className="text-3xl sm:text-5xl font-display font-bold tracking-tight text-text-primary uppercase leading-tight">
@@ -52,12 +52,12 @@ export function BehindEntrpryzSection() {
             </p>
 
             <p className="text-sm sm:text-base text-text-secondary leading-relaxed">
-              Entrpryz provides direct access to senior executive experience — eliminating layers of intermediary management to deliver enterprise-grade strategy and implementation directly to your leadership team.
+              When you work with Entrpryz, you work directly with the people who understand your business and build the solution — no account layers, no handoffs, no jargon.
             </p>
 
             <div className="pt-2">
               <Link
-                href="/about"
+                href="#contact"
                 className="inline-flex items-center gap-2 border border-brand-orange bg-brand-orange/10 px-6 py-3 rounded-md text-xs font-bold uppercase tracking-widest text-brand-orange transition-colors hover:bg-brand-orange hover:text-background"
               >
                 <span>{BEHIND_ENTRPRYZ.cta}</span>

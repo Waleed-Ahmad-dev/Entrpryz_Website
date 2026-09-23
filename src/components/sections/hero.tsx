@@ -36,7 +36,7 @@ export function HeroSection() {
             {/* Action Buttons */}
             <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
               <Link
-                href="/contact"
+                href="#contact"
                 className="inline-flex items-center justify-center gap-2 bg-brand-orange px-8 py-4 rounded-md text-xs font-bold uppercase tracking-widest text-background transition-colors hover:bg-brand-amber active:scale-95"
               >
                 <span>{HERO_CONTENT.ctaPrimary}</span>
@@ -44,7 +44,7 @@ export function HeroSection() {
               </Link>
 
               <Link
-                href="/services"
+                href="#services"
                 className="inline-flex items-center justify-center gap-2 border border-surface-border bg-surface-card px-8 py-4 rounded-md text-xs font-semibold uppercase tracking-widest text-text-primary transition-colors hover:border-brand-orange hover:text-brand-orange active:scale-95"
               >
                 <span>{HERO_CONTENT.ctaSecondary}</span>
