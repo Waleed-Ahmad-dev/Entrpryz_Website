@@ -15,7 +15,7 @@ export function AboutSummarySection() {
       <div className="space-y-16">
         <div className="max-w-3xl space-y-4">
           <span className="text-xs uppercase tracking-wider font-semibold text-brand-orange border border-brand-orange/40 bg-background px-3 py-1 inline-block">
-            Enterprise Thinking &bull; Practical Execution
+            Business-First Thinking &bull; Practical Execution
           </span>
 
           <h2 className="text-3xl sm:text-5xl font-display font-bold tracking-tight text-text-primary uppercase leading-tight">

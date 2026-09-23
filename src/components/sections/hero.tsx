@@ -94,7 +94,7 @@ export function HeroSection() {
           <div className="relative aspect-[21/9] w-full bg-surface-dark overflow-hidden">
             <Image
               src="/images/hero-tech-bg.jpg"
-              alt="Enterprise Technology Architecture"
+              alt="Entrpryz — ERP, Software & IT Services"
               fill
               className="object-cover opacity-60"
               priority
