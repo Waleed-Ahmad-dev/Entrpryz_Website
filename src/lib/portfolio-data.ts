@@ -1,8 +1,7 @@
 import { PortfolioTier } from "@/types";
 
 export const PORTFOLIO_HEADER = {
-  headline:
-    "25 Years of Delivery. 39+ Organizations. Three Continents' Worth of Lessons.",
+  headline: "25 Years of Delivery. 40+ Organizations Across Pakistan, the UAE & Beyond.",
   subheadline:
     "Every recommendation Entrpryz makes is grounded in work we've actually delivered — not theory. Below is the real track record behind the company: engagements delivered directly as Entrpryz, and the enterprise programs our founder built and led before Entrpryz existed.",
 };
@@ -211,14 +210,15 @@ export const PORTFOLIO_TIERS: PortfolioTier[] = [
           "Led a full Post-Implementation Review of the client's Oracle EBS environment, resolving critical workflow misalignments for one of Pakistan's largest textile groups.",
         image: "/images/portfolio-netsuite-mfg.jpg",
       },
+      {
+        client: "Ops Food & Beverages",
+        location: "Islamabad",
+        description:
+          "Led the Post-Implementation Review of the client's ERP environment, identifying process and reporting gaps and delivering a remediation plan.",
+        image: "/images/product-journey.jpg",
+      },
     ],
     additional: [
-      {
-        client: "Ops Food & Beverages, Islamabad",
-        scope: "Post-Implementation Review, Microsoft/Oracle platform",
-        industry: "Food & Beverage",
-        platform: "Microsoft / Oracle",
-      },
       {
         client: "Khatoon Soap Ind., Gujranwala",
         scope: "SAP B1 implementation with custom HR/Payroll add-on",
