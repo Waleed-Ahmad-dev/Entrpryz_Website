@@ -31,3 +31,9 @@ next-env.d.ts
 # OS files
 .DS_Store
 *.pem
+
+# local business/docs source assets
+/docs/branding/*.xlsx
+/docs/branding/*.png
+/docs/branding/*.jpg
+/docs/branding/*.jpeg
