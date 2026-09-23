@@ -6,8 +6,6 @@ import {
   CertificationGroup,
 } from "@/types";
 
-export const SITE_TAGLINE = "Technology. Simplified.";
-
 export const HERO_CONTENT = {
   headline: "Technology. Simplified.",
   subheadline:
@@ -29,20 +27,6 @@ export const BEHIND_ENTRPRYZ = {
     { value: "PK / UAE", label: "Multi-Country Ops" },
   ],
   cta: "Connect With Javed →",
-};
-
-export const EXPERIENCE_BEHIND = {
-  headline: "Built on Field Experience. Focused on Commercial Value.",
-  p1: "Technology is easy to sell. Knowing what systems a business actually needs is much harder.",
-  p2: "Entrpryz combines deep technical skill, business operational knowledge, and 25+ years of hands-on leadership across ERP implementation, custom software engineering, and enterprise IT governance.",
-  p3: "At the core of Entrpryz is Javed Ahmad Qureshi, an executive who has led 65+ ERP programs across manufacturing, pharmaceuticals, retail, insurance, utilities, and non-profits — including national power grid billing modernization.",
-  stats: [
-    { value: "25+ Years", label: "Professional Experience" },
-    { value: "18+ Years", label: "ERP & Systems Strategy" },
-    { value: "14+ Years", label: "IT Leadership (CIO/VP)" },
-    { value: "10+ Years", label: "Program Governance" },
-  ],
-  footer: "Business requirements first. Technology second. Measureable execution always.",
 };
 
 export const ABOUT_ENTRPRYZ = {
@@ -226,15 +210,6 @@ export const CAREER_TIMELINE: TimelineExperience[] = [
     period: "2024–Present",
     overview:
       "Directing a cross-border Enterprise Technology department of 8–10 engineers and specialists, owning an ~$80,000+ annual IT operational budget and supporting 150+ IT users across ~200 employees in Pakistan and Dubai.",
-    highlights: [
-      "Architecting enterprise-wide technology modernization across ERP, CRM, and HCM systems",
-      "Deployed integrated CRM and automated customer engagement channels across real-estate and hospitality portfolios",
-      "Executing cloud-first and analytics initiatives across Finance, Engineering, Procurement, and Operations",
-      "Established multi-country IT governance frameworks and unified shared services; upgraded cybersecurity compliance posture",
-      "Created the Enterprise Technology Office (ETO) and multi-year technology roadmap covering ERP expansion and data analytics",
-      "Delivered NetSuite Procure-to-Pay budget controls, contract management, and vendor payment verification workflows",
-      "Directed regional Bitrix24 CRM deployment and completed end-to-end FlowHCM implementation",
-    ],
   },
   {
     company: "Independent ERP & Technology Advisory",
@@ -243,10 +218,6 @@ export const CAREER_TIMELINE: TimelineExperience[] = [
     period: "2022–2024",
     overview:
       "Led ERP turnaround projects, systems audits, and post-implementation reviews for mid-market industrial and public sector clients.",
-    highlights: [
-      "ERP Governance & PIR (Microsoft & Oracle Platforms), 2024 — Audited custom ERP software, eliminated database integrity gaps, and delivered an executive remediation roadmap to recover ROI.",
-      "Oracle EBS Turnaround & Audit, 2023 (Textile Manufacturing) — Resolved operational bottlenecks in Oracle EBS, engineered workflow corrections, and stabilized production tracking.",
-    ],
   },
   {
     company: "Keystone Consulting (Pvt.) Limited",
@@ -255,17 +226,6 @@ export const CAREER_TIMELINE: TimelineExperience[] = [
     period: "2018–2022",
     overview:
       "Recruited as Keystone's founding NetSuite lead, building Pakistan's first Oracle NetSuite practice from scratch. Hired and trained a 10–15 person delivery team that executed 15+ full-cycle implementations for clients of varying scale.",
-    highlights: [
-      "Pharmaceutical Distribution — Directed Oracle NetSuite supply chain and financial rollout with custom SuiteApps.",
-      "Electricity Utility Sector — Steered NetSuite financials, procurement, and an e-Tendering platform for audit compliance.",
-      "Life Insurance — Built real-time integration between NetSuite Financials and custom .NET policy engine, eliminating manual data entry.",
-      "Industrial Manufacturing — Migrated legacy software to NetSuite with shop-floor barcode tracking and assembly WIP routing.",
-      "Industrial Distribution — Deployed high-volume procurement and real-time inventory management.",
-      "Surgical Equipment Manufacturing — Configured financial and supply chain workflows to meet international quality standards.",
-      "Non-Profit Sector — Configured Grants and Fund Management accounting with donor reporting compliance.",
-      "Plastic Packaging & Chemical Manufacturing — Deployed NetSuite OneWorld multi-entity consolidation.",
-      "Directed technical team building custom SuiteApps on NetSuite Cloud ERP platform.",
-    ],
   },
   {
     company: "Crowe Hussain Chaudhury & Co.",
@@ -274,12 +234,6 @@ export const CAREER_TIMELINE: TimelineExperience[] = [
     period: "2014–2018",
     overview:
       "Directed SAP Business One implementations and custom add-on engineering for 50+ enterprises. Managed major utility ERP programs with combined project value of ~PKR 600 Million.",
-    highlights: [
-      "IESCO ERP Program — Managed SAP S/4HANA program from inception: authored RFP, led vendor selection, and oversaw delivery compliance.",
-      "IESCO Data Center — Scoped and managed turnkey data center build-out and acceptance testing.",
-      "PESCO USAID Modernization — Served as PM for donor-funded power utility ERP and billing modernization program.",
-      "SAP B1 Add-On Architecture — Architected custom industry add-ons and led delivery teams.",
-    ],
   },
   {
     company: "Shaigan Pharma & Al-Aziz Packages",
@@ -287,21 +241,8 @@ export const CAREER_TIMELINE: TimelineExperience[] = [
     role: "ERP & IT Leadership Roles",
     period: "2006–2014",
     overview:
-      "Led in-house ERP deployments and software engineering across pharmaceutical and packaging manufacturing.",
-    highlights: [
-      "Al-Aziz Packages — Built custom CPQ estimation software for packaging pricing, later migrating operations onto SAP Business One.",
-      "Shaigan Pharma — Migrated SAP Business One from v2007 to v8.2 completely in-house without external implementation partner costs; built custom Distribution and Sales DMS.",
-    ],
+      "Led in-house ERP deployments and software engineering across pharmaceutical and packaging manufacturing, including a fully in-house SAP Business One migration and custom DMS build.",
   },
-];
-
-export const NOTABLE_ACHIEVEMENTS = [
-  "Pioneered Oracle NetSuite Practice in Pakistan — recruited as founding NetSuite lead, built and trained the country's first 10-15 person NetSuite delivery team.",
-  "15+ NetSuite Enterprise Rollouts — led end-to-end implementations supporting deployments of varying scale across manufacturing, pharma, insurance, and retail.",
-  "50+ SAP Business One Implementations — designed and delivered custom ERP solutions across 50+ enterprises, including Pakistan's fastest recorded SAP B1 go-live.",
-  "~PKR 600M Utility ERP Governance — authored RFPs and governed national utility ERP rollout (IESCO) and USAID billing modernization (PESCO).",
-  "In-House SAP B1 Upgrade — successfully migrated Shaigan Pharma's SAP system fully in-house without external vendor fees.",
-  "ERP Turnaround & Recovery — recurring advisory engagements recovering stalled ERP programs and fixing data integrity gaps.",
 ];
 
 export const CERTIFICATIONS: CertificationGroup[] = [
@@ -344,17 +285,6 @@ export const PRODUCT_JOURNEY = {
   status: "Software products currently in active development.",
   cta: "Talk to Us →",
 };
-
-export const TEAM = [
-  {
-    name: "Javed Ahmad Qureshi",
-    role: "Founder | Chief Information Officer",
-  },
-  {
-    name: "Waleed Ahmad",
-    role: "Co-Founder | Product Engineering & Technical Delivery",
-  },
-];
 
 export const CONTACT_CONTENT = {
   headline: "Let's Talk About Your Systems.",

@@ -25,7 +25,7 @@ export function Footer() {
               </div>
             </Link>
             <p className="text-xs sm:text-sm text-text-secondary max-w-md leading-relaxed">
-              ERP Strategy &bull; Software Engineering &bull; Systems Advisory
+              Digital Transformation &bull; Software Development &bull; Technology &amp; IT Services
             </p>
             <p className="text-xs font-semibold uppercase tracking-widest text-brand-orange">
               {CONTACT_CONTENT.tagline}

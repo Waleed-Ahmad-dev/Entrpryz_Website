@@ -297,7 +297,7 @@ export const PORTFOLIO_TIERS: PortfolioTier[] = [
 
 export const PORTFOLIO_ACHIEVEMENTS = [
   "Pioneered Oracle NetSuite in Pakistan — recruited as Keystone's founding NetSuite hire, built and trained the country's first NetSuite delivery practice",
-  "15+ NetSuite deployments, each supporting up to 100+ users, ~$225K–$900K in aggregate first-year subscription value",
+  "15+ NetSuite implementations across manufacturing, pharma, insurance, and retail, supporting deployments of varying scale",
   "50+ SAP Business One implementations, including Pakistan's fastest recorded SAP B1 go-live",
   "~PKR 600 million combined program value across national utility ERP and billing modernization work",
   "First-ever online inventory/sales platform delivered for an international client (Yuasa Investments, Uganda)",

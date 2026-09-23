@@ -3,9 +3,7 @@ export interface CaseStudy {
   location?: string;
   website?: string;
   status?: string;
-  tagline?: string;
   description: string;
-  details?: string[];
   image?: string;
 }
 
@@ -20,7 +18,6 @@ export interface PortfolioTier {
   id: string;
   title: string;
   subtitle: string;
-  note?: string;
   featured: CaseStudy[];
   additional: TableEngagement[];
 }
@@ -52,7 +49,6 @@ export interface TimelineExperience {
   period: string;
   location: string;
   overview: string;
-  highlights: string[];
 }
 
 export interface CertificationGroup {

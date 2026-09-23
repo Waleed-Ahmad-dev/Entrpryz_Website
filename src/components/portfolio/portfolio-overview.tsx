@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ExternalLink, Award, ArrowUpRight } from "lucide-react";
 import {
+  PORTFOLIO_HEADER,
   PORTFOLIO_TIERS,
   PORTFOLIO_ACHIEVEMENTS,
   PORTFOLIO_CTA,
@@ -14,10 +15,10 @@ export function PortfolioOverviewSection() {
       <div className="space-y-20">
         <div className="space-y-4 max-w-3xl">
           <h2 className="text-3xl sm:text-5xl font-display font-bold tracking-tight text-text-primary uppercase leading-tight">
-            25 Years of Delivery. 40+ Organizations.
+            {PORTFOLIO_HEADER.headline}
           </h2>
           <p className="text-base sm:text-lg text-text-secondary">
-            Every recommendation Entrpryz makes is grounded in work we have actually delivered — not theory. Below is the real track record behind the company.
+            {PORTFOLIO_HEADER.subheadline}
           </p>
         </div>
 
