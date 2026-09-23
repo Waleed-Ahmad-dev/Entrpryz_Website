@@ -4,10 +4,13 @@ import React, { useState } from "react";
 import { Mail, Send, CheckCircle2 } from "lucide-react";
 import { CONTACT_CONTENT } from "@/lib/content";
 import { SectionContainer } from "@/components/layout/section-container";
+import { Button } from "@/components/ui/button";
+import { submitInquiry } from "@/services/contact";
+import type { ContactFormData } from "@/types";
 
 export function ContactSection() {
   const [submitted, setSubmitted] = useState(false);
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     email: "",
     organization: "",
@@ -15,9 +18,10 @@ export function ContactSection() {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    const result = await submitInquiry(formData);
+    if (result.ok) setSubmitted(true);
   };
 
   return (
@@ -209,13 +213,10 @@ export function ContactSection() {
                     />
                   </div>
 
-                  <button
-                    type="submit"
-                    className="w-full inline-flex items-center justify-center gap-2 bg-brand-orange px-8 py-4 rounded-md text-xs font-semibold uppercase tracking-widest text-background hover:bg-brand-amber transition-all shadow-md active:scale-95"
-                  >
+                  <Button type="submit" size="lg" fullWidth className="shadow-md">
                     <span>Submit Consultation Request</span>
                     <Send className="h-4 w-4" />
-                  </button>
+                  </Button>
                 </form>
               )}
             </div>

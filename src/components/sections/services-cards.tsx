@@ -1,8 +1,8 @@
 import Image from "next/image";
-import Link from "next/link";
 import { ArrowUpRight, Check, Cpu, Code2, Server } from "lucide-react";
 import { SERVICES } from "@/lib/content";
 import { SectionContainer } from "@/components/layout/section-container";
+import { ButtonLink } from "@/components/ui/button";
 
 const SERVICE_ICONS = [
   <Cpu key="cpu" className="h-6 w-6 text-brand-orange" />,
@@ -76,13 +76,10 @@ export function ServicesCardsSection() {
               </div>
 
               <div className="p-6 sm:p-8 pt-0">
-                <Link
-                  href={service.ctaHref}
-                  className="inline-flex w-full items-center justify-center gap-2 border border-brand-orange bg-brand-orange/10 px-5 py-3 rounded-md text-xs font-bold uppercase tracking-wider text-brand-orange transition-colors hover:bg-brand-orange hover:text-background"
-                >
+                <ButtonLink href={service.ctaHref} variant="brandOutline" size="md" fullWidth>
                   <span>{service.ctaText}</span>
                   <ArrowUpRight className="h-4 w-4" />
-                </Link>
+                </ButtonLink>
               </div>
             </div>
           ))}

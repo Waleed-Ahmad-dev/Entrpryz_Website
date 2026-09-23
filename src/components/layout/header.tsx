@@ -1,10 +1,12 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { SectionBackground } from "@/components/ui/section-background";
+import { ButtonLink } from "@/components/ui/button";
+import { useActiveSection } from "@/hooks/use-active-section";
 
 const NAV_LINKS = [
   { name: "Home", href: "#home" },
@@ -16,26 +18,10 @@ const NAV_LINKS = [
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("#home");
-
-  useEffect(() => {
-    const ids = NAV_LINKS.map((link) => link.href.slice(1));
-    const sections = ids
-      .map((id) => document.getElementById(id))
-      .filter((el): el is HTMLElement => Boolean(el));
-    if (sections.length === 0) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) setActiveSection(`#${entry.target.id}`);
-        }
-      },
-      { rootMargin: "-40% 0px -55% 0px" }
-    );
-    sections.forEach((section) => observer.observe(section));
-    return () => observer.disconnect();
-  }, []);
+  const activeSection = useActiveSection(
+    NAV_LINKS.map((link) => link.href.slice(1)),
+    "#home"
+  );
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-surface-border bg-background/95 backdrop-blur-md overflow-hidden">
@@ -77,13 +63,10 @@ export function Header() {
 
         {/* Primary Executive Call to Action */}
         <div className="hidden md:flex items-center gap-4">
-          <Link
-            href="#contact"
-            className="inline-flex items-center justify-center gap-2 bg-brand-orange px-6 py-3 rounded-md text-xs font-bold uppercase tracking-widest text-background transition-colors hover:bg-brand-amber active:scale-95"
-          >
+          <ButtonLink href="#contact" size="md">
             <span>Talk to Us</span>
             <ArrowUpRight className="h-4 w-4" />
-          </Link>
+          </ButtonLink>
         </div>
 
         {/* Mobile Toggle Button */}
@@ -123,14 +106,15 @@ export function Header() {
               </Link>
             ))}
             <div className="pt-4">
-              <Link
+              <ButtonLink
                 href="#contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex w-full items-center justify-center gap-2 bg-brand-orange px-6 py-3.5 rounded-md text-xs font-bold uppercase tracking-widest text-background"
+                size="lg"
+                fullWidth
               >
                 <span>Talk to Us</span>
                 <ArrowUpRight className="h-4 w-4" />
-              </Link>
+              </ButtonLink>
             </div>
           </div>
         </div>

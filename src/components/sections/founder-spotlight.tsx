@@ -1,8 +1,8 @@
 import Image from "next/image";
-import Link from "next/link";
 import { ArrowUpRight, CheckCircle2, Quote, UserCheck } from "lucide-react";
 import { FOUNDER_CONTENT } from "@/lib/content";
 import { SectionContainer } from "@/components/layout/section-container";
+import { ButtonLink } from "@/components/ui/button";
 
 export function FounderSpotlightSection() {
   return (
@@ -40,13 +40,10 @@ export function FounderSpotlightSection() {
                 {FOUNDER_CONTENT.role}
               </p>
               <div className="pt-2">
-                <Link
-                  href="#contact"
-                  className="inline-flex items-center gap-2 bg-brand-orange px-5 py-2.5 rounded-md text-xs font-bold uppercase tracking-widest text-background hover:bg-brand-amber transition-colors"
-                >
+                <ButtonLink href="#contact" size="sm">
                   <span>{FOUNDER_CONTENT.cta}</span>
                   <ArrowUpRight className="h-4 w-4" />
-                </Link>
+                </ButtonLink>
               </div>
             </div>
           </div>

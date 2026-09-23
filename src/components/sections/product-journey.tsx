@@ -1,8 +1,8 @@
 import Image from "next/image";
-import Link from "next/link";
 import { ArrowUpRight, Box, Sparkles } from "lucide-react";
 import { PRODUCT_JOURNEY } from "@/lib/content";
 import { SectionContainer } from "@/components/layout/section-container";
+import { ButtonLink } from "@/components/ui/button";
 
 export function ProductJourneySection() {
   return (
@@ -35,13 +35,10 @@ export function ProductJourneySection() {
               <Box className="h-4 w-4" />
               {PRODUCT_JOURNEY.status}
             </span>
-            <Link
-              href="#contact"
-              className="inline-flex items-center gap-2 bg-brand-orange px-6 py-3 rounded-md text-xs font-bold uppercase tracking-widest text-background hover:bg-brand-amber transition-colors"
-            >
+            <ButtonLink href="#contact" size="md">
               <span>{PRODUCT_JOURNEY.cta}</span>
               <ArrowUpRight className="h-4 w-4" />
-            </Link>
+            </ButtonLink>
           </div>
         </div>
 

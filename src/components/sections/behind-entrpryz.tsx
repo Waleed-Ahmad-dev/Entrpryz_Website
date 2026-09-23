@@ -1,8 +1,8 @@
 import Image from "next/image";
-import Link from "next/link";
 import { ArrowUpRight, Award } from "lucide-react";
 import { BEHIND_ENTRPRYZ } from "@/lib/content";
 import { SectionContainer } from "@/components/layout/section-container";
+import { ButtonLink } from "@/components/ui/button";
 
 export function BehindEntrpryzSection() {
   return (
@@ -56,13 +56,10 @@ export function BehindEntrpryzSection() {
             </p>
 
             <div className="pt-2">
-              <Link
-                href="#contact"
-                className="inline-flex items-center gap-2 border border-brand-orange bg-brand-orange/10 px-6 py-3 rounded-md text-xs font-bold uppercase tracking-widest text-brand-orange transition-colors hover:bg-brand-orange hover:text-background"
-              >
-                <span>{BEHIND_ENTRPRYZ.cta}</span>
-                <ArrowUpRight className="h-4 w-4" />
-              </Link>
+              <ButtonLink href="#contact" variant="brandOutline" size="md">
+              <span>{BEHIND_ENTRPRYZ.cta}</span>
+              <ArrowUpRight className="h-4 w-4" />
+            </ButtonLink>
             </div>
           </div>
         </div>

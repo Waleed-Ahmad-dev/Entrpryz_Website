@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { ExternalLink, Award, ArrowUpRight } from "lucide-react";
 import {
   PORTFOLIO_HEADER,
@@ -8,6 +7,7 @@ import {
   PORTFOLIO_CTA,
 } from "@/lib/portfolio-data";
 import { SectionContainer } from "@/components/layout/section-container";
+import { ButtonLink } from "@/components/ui/button";
 import { EngagementFilterGrid } from "./engagement-filter-grid";
 
 export function PortfolioOverviewSection() {
@@ -125,13 +125,10 @@ export function PortfolioOverviewSection() {
           <p className="text-lg sm:text-xl font-display font-bold text-text-primary uppercase">
             {PORTFOLIO_CTA.headline}
           </p>
-          <Link
-            href={PORTFOLIO_CTA.buttonHref}
-            className="inline-flex items-center gap-2 bg-brand-orange px-8 py-4 rounded-md text-xs font-bold uppercase tracking-widest text-background hover:bg-brand-amber transition-colors active:scale-95"
-          >
+          <ButtonLink href={PORTFOLIO_CTA.buttonHref} size="lg">
             <span>{PORTFOLIO_CTA.buttonText}</span>
             <ArrowUpRight className="h-4 w-4" />
-          </Link>
+          </ButtonLink>
         </div>
       </div>
     </SectionContainer>

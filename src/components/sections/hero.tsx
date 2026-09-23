@@ -1,8 +1,8 @@
-import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, ChevronRight, Shield } from "lucide-react";
 import { HERO_CONTENT } from "@/lib/content";
 import { SectionBackground } from "@/components/ui/section-background";
+import { ButtonLink } from "@/components/ui/button";
 
 export function HeroSection() {
   return (
@@ -35,21 +35,15 @@ export function HeroSection() {
 
             {/* Action Buttons */}
             <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-              <Link
-                href="#contact"
-                className="inline-flex items-center justify-center gap-2 bg-brand-orange px-8 py-4 rounded-md text-xs font-bold uppercase tracking-widest text-background transition-colors hover:bg-brand-amber active:scale-95"
-              >
+              <ButtonLink href="#contact" size="lg">
                 <span>{HERO_CONTENT.ctaPrimary}</span>
                 <ArrowUpRight className="h-4 w-4" />
-              </Link>
+              </ButtonLink>
 
-              <Link
-                href="#services"
-                className="inline-flex items-center justify-center gap-2 border border-surface-border bg-surface-card px-8 py-4 rounded-md text-xs font-semibold uppercase tracking-widest text-text-primary transition-colors hover:border-brand-orange hover:text-brand-orange active:scale-95"
-              >
+              <ButtonLink href="#services" variant="outline" size="lg">
                 <span>{HERO_CONTENT.ctaSecondary}</span>
                 <ChevronRight className="h-4 w-4" />
-              </Link>
+              </ButtonLink>
             </div>
           </div>
 
