@@ -16,7 +16,7 @@ export function HeroSection() {
           <div className="lg:col-span-8 space-y-6">
             <div className="inline-flex items-center gap-2 border border-brand-orange/40 bg-surface-card px-3.5 py-1 rounded-sm text-xs uppercase tracking-wider font-semibold text-brand-orange">
               <Shield className="h-3.5 w-3.5" />
-              <span>25+ Years Enterprise Technology Leadership</span>
+              <span>25+ Years of Real-World Technology Experience</span>
             </div>
 
             <h1 className="text-4xl sm:text-6xl lg:text-7xl font-display font-extrabold tracking-tight text-text-primary uppercase leading-[0.95]">
@@ -57,10 +57,10 @@ export function HeroSection() {
           <div className="lg:col-span-4 border border-surface-border bg-surface-card p-6 space-y-6">
             <div className="border-b border-surface-border pb-3 flex items-center justify-between">
               <h3 className="text-xs uppercase tracking-wider font-bold text-text-primary">
-                Leadership Track Record
+                The Team Behind the Work
               </h3>
               <span className="text-[10px] font-mono text-brand-orange uppercase">
-                Direct Oversight
+                Direct Access
               </span>
             </div>
 
@@ -104,7 +104,7 @@ export function HeroSection() {
             <div className="absolute bottom-6 left-6 right-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-background/90 backdrop-blur-md p-4 border border-surface-border">
               <div>
                 <p className="text-xs uppercase tracking-wider font-bold text-brand-orange">
-                  Enterprise Systems &amp; Technical Governance
+                  Technology That Works With Your Business
                 </p>
                 <p className="text-xs text-text-secondary font-medium">
                   ERP Rollouts &bull; Software Engineering &bull; IT Modernization
