@@ -20,7 +20,7 @@ export default function HomePage() {
       </div>
 
       {/* About */}
-      <div id="about">
+      <div id="about" className="scroll-mt-20">
         <BehindEntrpryzSection />
         <AboutSummarySection />
         <FounderSpotlightSection />
@@ -28,7 +28,7 @@ export default function HomePage() {
       </div>
 
       {/* Services */}
-      <div id="services">
+      <div id="services" className="scroll-mt-20">
         <ServicesCardsSection />
         <WorkflowStepsSection />
         <WhyEntrpryzSection />
@@ -36,13 +36,13 @@ export default function HomePage() {
       </div>
 
       {/* Portfolio */}
-      <div id="portfolio">
+      <div id="portfolio" className="scroll-mt-20">
         <CareerTimelineSection />
         <PortfolioOverviewSection />
       </div>
 
       {/* Contact */}
-      <div id="contact">
+      <div id="contact" className="scroll-mt-20">
         <ContactSection />
       </div>
     </>
