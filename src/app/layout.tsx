@@ -19,14 +19,14 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "Entrpryz — Enterprise Technology & Advisory",
+  title: "Entrpryz — Technology. Simplified.",
   description:
-    "25+ Years of ERP, Systems Architecture, and Enterprise Leadership — Grounded in Execution.",
+    "ERP, software development, and IT services — 25+ years of real-world technology experience put to work on your business.",
   keywords: [
     "Enterprise Technology",
-    "ERP Architecture",
-    "Systems Optimization",
-    "IT Leadership",
+    "ERP Optimization",
+    "Software Development",
+    "IT Services",
     "Oracle NetSuite",
     "SAP Business One",
     "Entrpryz",

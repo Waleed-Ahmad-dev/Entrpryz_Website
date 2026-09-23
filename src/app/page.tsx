@@ -13,7 +13,7 @@ import { ContactSection } from "@/components/sections/contact-section";
 
 export default function HomePage() {
   return (
-    <main>
+    <>
       {/* Hero */}
       <div id="home">
         <HeroSection />
@@ -45,6 +45,6 @@ export default function HomePage() {
       <div id="contact">
         <ContactSection />
       </div>
-    </main>
+    </>
   );
 }
