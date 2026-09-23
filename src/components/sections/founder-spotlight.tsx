@@ -11,10 +11,10 @@ export function FounderSpotlightSection() {
         <div className="space-y-3">
           <div className="inline-flex items-center gap-2 border border-brand-orange/40 bg-background px-3.5 py-1 rounded-sm text-xs uppercase tracking-wider font-semibold text-brand-orange">
             <UserCheck className="h-3.5 w-3.5" />
-            <span>Executive Leadership</span>
+            <span>Meet the Founder</span>
           </div>
           <h2 className="text-3xl sm:text-5xl font-display font-bold tracking-tight text-text-primary uppercase">
-            Meet the Founder
+            {FOUNDER_CONTENT.name}
           </h2>
         </div>
 
@@ -41,7 +41,7 @@ export function FounderSpotlightSection() {
               </p>
               <div className="pt-2">
                 <Link
-                  href="/contact"
+                  href="#contact"
                   className="inline-flex items-center gap-2 bg-brand-orange px-5 py-2.5 rounded-md text-xs font-bold uppercase tracking-widest text-background hover:bg-brand-amber transition-colors"
                 >
                   <span>{FOUNDER_CONTENT.cta}</span>
@@ -78,7 +78,7 @@ export function FounderSpotlightSection() {
             {/* Core Competencies */}
             <div className="space-y-4 pt-4 border-t border-surface-border">
               <h4 className="text-xs font-semibold uppercase tracking-wider text-brand-amber">
-                Core Executive Competencies
+                Core Competencies
               </h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {FOUNDER_CONTENT.competencies.map((comp, idx) => (

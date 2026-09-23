@@ -306,5 +306,5 @@ export const PORTFOLIO_ACHIEVEMENTS = [
 export const PORTFOLIO_CTA = {
   headline: "Want to See What This Looks Like for Your Business?",
   buttonText: "Talk to Us →",
-  buttonHref: "/contact",
+  buttonHref: "#contact",
 };

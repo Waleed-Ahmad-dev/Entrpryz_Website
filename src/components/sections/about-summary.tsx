@@ -60,7 +60,7 @@ export function AboutSummarySection() {
 
                 <div className="pt-4 border-t border-surface-border">
                   <Link
-                    href="/services"
+                    href="#services"
                     className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-brand-orange hover:text-brand-amber transition-colors"
                   >
                     <span>Explore Scope</span>
