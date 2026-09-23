@@ -7,14 +7,7 @@ import { Menu, X, ArrowUpRight } from "lucide-react";
 import { SectionBackground } from "@/components/ui/section-background";
 import { ButtonLink } from "@/components/ui/button";
 import { useActiveSection } from "@/hooks/use-active-section";
-
-const NAV_LINKS = [
-  { name: "Home", href: "#home" },
-  { name: "About", href: "#about" },
-  { name: "Services", href: "#services" },
-  { name: "Portfolio", href: "#portfolio" },
-  { name: "Contact", href: "#contact" },
-];
+import { NAV_LINKS } from "@/lib/navigation";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

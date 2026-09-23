@@ -10,6 +10,8 @@ import type { ContactFormData } from "@/types";
 
 export function ContactSection() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     email: "",
@@ -20,8 +22,18 @@ export function ContactSection() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (submitting) return;
+    setSubmitting(true);
+    setSubmitError(null);
     const result = await submitInquiry(formData);
-    if (result.ok) setSubmitted(true);
+    if (result.ok) {
+      setSubmitted(true);
+    } else if (result.reason === "failed") {
+      setSubmitError(
+        "Something went wrong sending your message. Please email us directly or try again."
+      );
+    }
+    setSubmitting(false);
   };
 
   return (
@@ -213,8 +225,22 @@ export function ContactSection() {
                     />
                   </div>
 
-                  <Button type="submit" size="lg" fullWidth className="shadow-md">
-                    <span>Submit Consultation Request</span>
+                  {submitError && (
+                    <p className="border border-brand-orange/40 bg-surface-card px-4 py-3 text-xs text-brand-orange">
+                      {submitError}
+                    </p>
+                  )}
+
+                  <Button
+                    type="submit"
+                    size="lg"
+                    fullWidth
+                    className="shadow-md"
+                    disabled={submitting}
+                  >
+                    <span>
+                      {submitting ? "Sending..." : "Submit Consultation Request"}
+                    </span>
                     <Send className="h-4 w-4" />
                   </Button>
                 </form>

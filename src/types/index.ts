@@ -51,6 +51,11 @@ export interface TimelineExperience {
   overview: string;
 }
 
+export interface WebsiteNavSection {
+  name: string;
+  href: string;
+}
+
 export interface ContactFormData {
   name: string;
   email: string;
