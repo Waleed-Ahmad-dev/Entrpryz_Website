@@ -36,7 +36,7 @@ export function ProductJourneySection() {
               {PRODUCT_JOURNEY.status}
             </span>
             <Link
-              href="/contact"
+              href="#contact"
               className="inline-flex items-center gap-2 bg-brand-orange px-6 py-3 rounded-md text-xs font-bold uppercase tracking-widest text-background hover:bg-brand-amber transition-colors"
             >
               <span>{PRODUCT_JOURNEY.cta}</span>

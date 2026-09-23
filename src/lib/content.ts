@@ -86,7 +86,7 @@ export const SERVICES: ServiceItem[] = [
       "Post-Implementation Reviews (PIR)",
     ],
     ctaText: "Discuss Your Systems Strategy →",
-    ctaHref: "/contact",
+    ctaHref: "#contact",
     image: "/images/services-digital-transformation.jpg",
   },
   {
@@ -105,7 +105,7 @@ export const SERVICES: ServiceItem[] = [
       "AI-Assisted Operations Apps",
     ],
     ctaText: "Build Your Application →",
-    ctaHref: "/contact",
+    ctaHref: "#contact",
     image: "/images/services-software-dev.jpg",
   },
   {
@@ -123,7 +123,7 @@ export const SERVICES: ServiceItem[] = [
       "Ongoing Systems Maintenance",
     ],
     ctaText: "Talk to Us →",
-    ctaHref: "/contact",
+    ctaHref: "#contact",
     image: "/images/services-it-infrastructure.jpg",
   },
 ];

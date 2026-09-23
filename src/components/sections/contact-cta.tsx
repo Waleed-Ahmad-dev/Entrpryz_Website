@@ -25,7 +25,7 @@ export function ContactCTASection() {
 
         <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
-            href="/contact"
+            href="#contact"
             className="inline-flex items-center justify-center gap-2 bg-brand-orange px-8 py-4 rounded-md text-xs font-bold uppercase tracking-widest text-background hover:bg-brand-amber transition-colors active:scale-95"
           >
             <span>{CONTACT_CONTENT.cta}</span>
