@@ -1,23 +1,41 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 import { SectionBackground } from "@/components/ui/section-background";
 
 const NAV_LINKS = [
-  { name: "Home", href: "/" },
-  { name: "About", href: "/about" },
-  { name: "Services", href: "/services" },
-  { name: "Portfolio", href: "/portfolio" },
-  { name: "Contact", href: "/contact" },
+  { name: "Home", href: "#home" },
+  { name: "About", href: "#about" },
+  { name: "Services", href: "#services" },
+  { name: "Portfolio", href: "#portfolio" },
+  { name: "Contact", href: "#contact" },
 ];
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const pathname = usePathname();
+  const [activeSection, setActiveSection] = useState("#home");
+
+  useEffect(() => {
+    const ids = NAV_LINKS.map((link) => link.href.slice(1));
+    const sections = ids
+      .map((id) => document.getElementById(id))
+      .filter((el): el is HTMLElement => Boolean(el));
+    if (sections.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) setActiveSection(`#${entry.target.id}`);
+        }
+      },
+      { rootMargin: "-40% 0px -55% 0px" }
+    );
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-surface-border bg-background/95 backdrop-blur-md overflow-hidden">
@@ -40,7 +58,7 @@ export function Header() {
         {/* Executive Desktop Navigation */}
         <nav className="hidden items-center gap-8 md:flex">
           {NAV_LINKS.map((link) => {
-            const isActive = pathname === link.href;
+            const isActive = activeSection === link.href;
             return (
               <Link
                 key={link.href}
@@ -60,7 +78,7 @@ export function Header() {
         {/* Primary Executive Call to Action */}
         <div className="hidden md:flex items-center gap-4">
           <Link
-            href="/contact"
+            href="#contact"
             className="inline-flex items-center justify-center gap-2 bg-brand-orange px-6 py-3 rounded-md text-xs font-bold uppercase tracking-widest text-background transition-colors hover:bg-brand-amber active:scale-95"
           >
             <span>Talk to Us</span>
@@ -96,7 +114,7 @@ export function Header() {
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
                 className={`block py-2 text-base font-bold uppercase tracking-wider ${
-                  pathname === link.href
+                  activeSection === link.href
                     ? "text-brand-orange border-l-2 border-brand-orange pl-3"
                     : "text-text-secondary hover:text-text-primary"
                 }`}
@@ -106,7 +124,7 @@ export function Header() {
             ))}
             <div className="pt-4">
               <Link
-                href="/contact"
+                href="#contact"
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex w-full items-center justify-center gap-2 bg-brand-orange px-6 py-3.5 rounded-md text-xs font-bold uppercase tracking-widest text-background"
               >

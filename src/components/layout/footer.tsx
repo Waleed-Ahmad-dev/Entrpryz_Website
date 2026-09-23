@@ -39,27 +39,27 @@ export function Footer() {
             </h4>
             <ul className="space-y-2 text-xs font-medium">
               <li>
-                <Link href="/" className="hover:text-brand-orange transition-colors">
+                <Link href="#home" className="hover:text-brand-orange transition-colors">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/about" className="hover:text-brand-orange transition-colors">
+                <Link href="#about" className="hover:text-brand-orange transition-colors">
                   About Entrpryz &amp; Leadership
                 </Link>
               </li>
               <li>
-                <Link href="/services" className="hover:text-brand-orange transition-colors">
+                <Link href="#services" className="hover:text-brand-orange transition-colors">
                   Services &amp; Solutions
                 </Link>
               </li>
               <li>
-                <Link href="/portfolio" className="hover:text-brand-orange transition-colors">
+                <Link href="#portfolio" className="hover:text-brand-orange transition-colors">
                   Track Record &amp; Portfolio
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-brand-orange transition-colors">
+                <Link href="#contact" className="hover:text-brand-orange transition-colors">
                   Contact Us
                 </Link>
               </li>
@@ -69,7 +69,7 @@ export function Footer() {
           {/* Direct Email Contacts */}
           <div className="space-y-3 lg:col-span-4">
             <h4 className="text-xs font-semibold uppercase tracking-wider text-text-primary">
-              Direct Executive Contact
+              Direct Contact
             </h4>
             <ul className="space-y-2.5 text-xs">
               <li className="flex items-center gap-2">
@@ -84,7 +84,7 @@ export function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-brand-orange shrink-0" />
-                <span className="text-text-secondary">Javed A. Qureshi (Founder):</span>
+                <span className="text-text-secondary">Javed Ahmad Qureshi (Founder):</span>
                 <a
                   href={`mailto:${CONTACT_CONTENT.contacts.javed}`}
                   className="text-text-primary hover:text-brand-orange transition-colors font-medium"
