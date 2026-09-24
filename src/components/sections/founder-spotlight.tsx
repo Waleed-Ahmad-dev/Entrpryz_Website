@@ -6,7 +6,7 @@ import { ButtonLink } from "@/components/ui/button";
 
 export function FounderSpotlightSection() {
   return (
-    <SectionContainer darkSurface={true}>
+    <SectionContainer id="founder" className="scroll-mt-20" darkSurface={true}>
       <div className="space-y-16">
         <div className="space-y-3">
           <div className="inline-flex items-center gap-2 border border-brand-orange/40 bg-background px-3.5 py-1 rounded-sm text-xs uppercase tracking-wider font-semibold text-brand-orange">

@@ -19,14 +19,14 @@ export const BEHIND_ENTRPRYZ = {
   headline: "25+ Years of Real-World Technology Experience",
   subheadline:
     "Led by Javed Ahmad Qureshi — 25+ years building and fixing the systems businesses run on.",
-  stats: [
+stats: [
     { value: "25+ Years", label: "Total Experience" },
     { value: "65+", label: "ERP Programs Led" },
-    { value: "Up to 40", label: "Team Size Managed" },
+    { value: "Up to 40+", label: "Team Size Managed" },
     { value: "150+", label: "IT Users Supported" },
     { value: "PK / UAE", label: "Multi-Country Ops" },
   ],
-  cta: "Connect With Javed →",
+  cta: "Meet the Founder →",
 };
 
 export const ABOUT_ENTRPRYZ = {
