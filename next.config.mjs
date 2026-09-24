@@ -1,10 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  assetPrefix: './', // Forces Next.js to use relative paths for assets
+  assetPrefix: './',
   images: {
     unoptimized: true,
-  },
-};
+  },};
 
-module.exports = nextConfig;
+export default nextConfig;
