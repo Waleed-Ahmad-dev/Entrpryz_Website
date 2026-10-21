@@ -15,7 +15,7 @@ Official website for [Entrpryz](https://entrpryz.com) — ERP, software developm
 npm install          # install dependencies
 npm run dev          # start dev server on localhost:3000
 npm run typecheck    # tsc --noEmit
-npm run build        # production build (static export of /)
+npm run build        # production build
 npm run start        # serve the production build
 ```
 
@@ -24,6 +24,7 @@ npm run start        # serve the production build
 ```
 src/
   app/               layout + one-pager (`page.tsx`), robots/sitemap, icons, globals.css
+    api/contact/     POST endpoint: validates inquiries and emails them over SMTP
   components/
     layout/          header (scroll-spy nav), footer, section-container
     sections/        one section per page block (hero … contact-section)
@@ -35,7 +36,7 @@ src/
     portfolio-data.ts track-record / engagements source
     site.ts          URL + meta constants (overridable via NEXT_PUBLIC_SITE_URL)
     utils.ts         cn()
-  services/          submitInquiry (contact form boundary; swap in a mail API later)
+  services/          submitInquiry (client side of the contact form)
   types/             shared interfaces
 docs/
   content/           source-of-truth copy briefs (v3 content, portfolio page)
@@ -51,3 +52,9 @@ Deploy domain is `https://entrpryz.com` by default; override via `NEXT_PUBLIC_SI
 ## One-pager anchors
 
 `#home` · `#about` · `#services` · `#portfolio` · `#contact` — matches the header nav and the scroll-spy observer.
+
+## Contact form
+
+The form posts to `/api/contact`, which validates input (shared rules in `src/lib/contact-validation.ts`), applies a same-origin check, honeypot, fill-time check and per-IP rate limit, then sends the inquiry via SMTP (`nodemailer`) with the visitor as `Reply-To`.
+
+Configure SMTP in Vercel environment variables — see `.env.example`. For local testing copy it to `.env.local`. Inquiries go to `CONTACT_TO_EMAIL` (default `entrpryz.digital@gmail.com`).

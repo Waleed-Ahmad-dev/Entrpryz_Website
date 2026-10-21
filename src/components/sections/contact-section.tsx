@@ -1,17 +1,23 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Mail, Send, CheckCircle2 } from "lucide-react";
 import { CONTACT_CONTENT } from "@/lib/content";
 import { SectionContainer } from "@/components/layout/section-container";
 import { Button } from "@/components/ui/button";
 import { submitInquiry } from "@/services/contact";
+import { FIELD_LIMITS, SERVICE_OPTIONS } from "@/lib/contact-validation";
 import type { ContactFormData } from "@/types";
 
 export function ContactSection() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<
+    Partial<Record<keyof ContactFormData, string>>
+  >({});
+  const [honeypot, setHoneypot] = useState("");
+  const startedAt = useRef(Date.now());
   const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     email: "",
@@ -25,10 +31,21 @@ export function ContactSection() {
     if (submitting) return;
     setSubmitting(true);
     setSubmitError(null);
-    const result = await submitInquiry(formData);
+    setFieldErrors({});
+    const result = await submitInquiry(formData, {
+      website: honeypot,
+      startedAt: startedAt.current,
+    });
     if (result.ok) {
       setSubmitted(true);
-    } else if (result.reason === "failed") {
+    } else if (result.reason === "invalid") {
+      setFieldErrors(result.fields ?? {});
+      setSubmitError("Please check the highlighted fields and try again.");
+    } else if (result.reason === "rate_limited") {
+      setSubmitError(
+        "Too many messages sent from your connection. Please wait a few minutes or email us directly."
+      );
+    } else {
       setSubmitError(
         "Something went wrong sending your message. Please email us directly or try again."
       );
@@ -125,48 +142,79 @@ export function ContactSection() {
                   </p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="relative space-y-6" noValidate>
+                  {/* Honeypot: hidden from people, filled by bots */}
+                  <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
+                    <label htmlFor="contact-website">Website</label>
+                    <input
+                      id="contact-website"
+                      type="text"
+                      name="website"
+                      tabIndex={-1}
+                      autoComplete="off"
+                      value={honeypot}
+                      onChange={(e) => setHoneypot(e.target.value)}
+                    />
+                  </div>
+
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label className="text-xs font-semibold uppercase tracking-wider text-text-secondary">
+                      <label htmlFor="contact-name" className="text-xs font-semibold uppercase tracking-wider text-text-secondary">
                         Your Name *
                       </label>
                       <input
+                        id="contact-name"
+                        name="name"
                         type="text"
                         required
+                        autoComplete="name"
+                        maxLength={FIELD_LIMITS.name}
+                        aria-invalid={!!fieldErrors.name}
                         value={formData.name}
                         onChange={(e) =>
                           setFormData({ ...formData, name: e.target.value })
                         }
-                        className="w-full bg-surface-card border border-surface-border px-4 py-3 text-sm rounded-md text-text-primary focus:border-brand-orange focus:outline-none"
+                        className="w-full bg-surface-card border border-surface-border px-4 py-3 text-sm rounded-md text-text-primary focus:border-brand-orange focus:outline-none aria-[invalid=true]:border-brand-orange"
                         placeholder="John Doe"
                       />
+                      <FieldError message={fieldErrors.name} />
                     </div>
 
                     <div className="space-y-2">
-                      <label className="text-xs font-semibold uppercase tracking-wider text-text-secondary">
+                      <label htmlFor="contact-email" className="text-xs font-semibold uppercase tracking-wider text-text-secondary">
                         Email Address *
                       </label>
                       <input
+                        id="contact-email"
+                        name="email"
                         type="email"
                         required
+                        autoComplete="email"
+                        maxLength={FIELD_LIMITS.email}
+                        aria-invalid={!!fieldErrors.email}
                         value={formData.email}
                         onChange={(e) =>
                           setFormData({ ...formData, email: e.target.value })
                         }
-                        className="w-full bg-surface-card border border-surface-border px-4 py-3 text-sm rounded-md text-text-primary focus:border-brand-orange focus:outline-none"
+                        className="w-full bg-surface-card border border-surface-border px-4 py-3 text-sm rounded-md text-text-primary focus:border-brand-orange focus:outline-none aria-[invalid=true]:border-brand-orange"
                         placeholder="john@company.com"
                       />
+                      <FieldError message={fieldErrors.email} />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div className="space-y-2">
-                      <label className="text-xs font-semibold uppercase tracking-wider text-text-secondary">
+                      <label htmlFor="contact-organization" className="text-xs font-semibold uppercase tracking-wider text-text-secondary">
                         Organization / Company
                       </label>
                       <input
+                        id="contact-organization"
+                        name="organization"
                         type="text"
+                        autoComplete="organization"
+                        maxLength={FIELD_LIMITS.organization}
+                        aria-invalid={!!fieldErrors.organization}
                         value={formData.organization}
                         onChange={(e) =>
                           setFormData({
@@ -174,55 +222,54 @@ export function ContactSection() {
                             organization: e.target.value,
                           })
                         }
-                        className="w-full bg-surface-card border border-surface-border px-4 py-3 text-sm rounded-md text-text-primary focus:border-brand-orange focus:outline-none"
+                        className="w-full bg-surface-card border border-surface-border px-4 py-3 text-sm rounded-md text-text-primary focus:border-brand-orange focus:outline-none aria-[invalid=true]:border-brand-orange"
                         placeholder="Company Name"
                       />
+                      <FieldError message={fieldErrors.organization} />
                     </div>
 
                     <div className="space-y-2">
-                      <label className="text-xs font-semibold uppercase tracking-wider text-text-secondary">
+                      <label htmlFor="contact-service" className="text-xs font-semibold uppercase tracking-wider text-text-secondary">
                         Area of Interest
                       </label>
                       <select
+                        id="contact-service"
+                        name="service"
                         value={formData.service}
                         onChange={(e) =>
                           setFormData({ ...formData, service: e.target.value })
                         }
                         className="w-full bg-surface-card border border-surface-border px-4 py-3 text-sm rounded-md text-text-primary focus:border-brand-orange focus:outline-none"
                       >
-                        <option value="Digital Transformation">
-                          Digital Transformation (ERP/CRM)
-                        </option>
-                        <option value="Software Development">
-                          Software Development &amp; Custom Apps
-                        </option>
-                        <option value="Technology & IT Services">
-                          Technology &amp; IT Services / Infra
-                        </option>
-                        <option value="ERP Turnaround / PIR">
-                          ERP Post-Implementation Review / Turnaround
-                        </option>
-                        <option value="General Consultation">
-                          General Technology Consultation
-                        </option>
+                        {SERVICE_OPTIONS.map((option) => (
+                          <option key={option.value} value={option.value}>
+                            {option.label}
+                          </option>
+                        ))}
                       </select>
+                      <FieldError message={fieldErrors.service} />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-xs font-semibold uppercase tracking-wider text-text-secondary">
+                    <label htmlFor="contact-message" className="text-xs font-semibold uppercase tracking-wider text-text-secondary">
                       Message / Project Details *
                     </label>
                     <textarea
+                      id="contact-message"
+                      name="message"
                       required
                       rows={5}
+                      maxLength={FIELD_LIMITS.message}
+                      aria-invalid={!!fieldErrors.message}
                       value={formData.message}
                       onChange={(e) =>
                         setFormData({ ...formData, message: e.target.value })
                       }
-                      className="w-full bg-surface-card border border-surface-border px-4 py-3 text-sm rounded-md text-text-primary focus:border-brand-orange focus:outline-none"
+                      className="w-full bg-surface-card border border-surface-border px-4 py-3 text-sm rounded-md text-text-primary focus:border-brand-orange focus:outline-none aria-[invalid=true]:border-brand-orange"
                       placeholder="Briefly describe your business requirements..."
                     />
+                    <FieldError message={fieldErrors.message} />
                   </div>
 
                   {submitError && (
@@ -250,5 +297,14 @@ export function ContactSection() {
         </div>
       </div>
     </SectionContainer>
+  );
+}
+
+function FieldError({ message }: { message?: string }) {
+  if (!message) return null;
+  return (
+    <p role="alert" className="text-xs text-brand-orange">
+      {message}
+    </p>
   );
 }

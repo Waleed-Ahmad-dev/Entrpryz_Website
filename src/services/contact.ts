@@ -1,60 +1,41 @@
 import { ContactFormData } from "@/types";
-import { CONTACT_CONTENT } from "@/lib/content";
-
-const ENDPOINT = process.env.NEXT_PUBLIC_CONTACT_ENDPOINT;
-const RECIPIENT = CONTACT_CONTENT.contacts.general;
+import { validateContact } from "@/lib/contact-validation";
 
 export type InquiryResult =
   | { ok: true }
-  | { ok: false; reason: "invalid" | "unconfigured" | "failed" };
-
-function buildMailto(data: ContactFormData): string {
-  const subject = encodeURIComponent(`Website inquiry — ${data.service}`);
-  const body = encodeURIComponent(
-    [
-      `Name: ${data.name}`,
-      `Email: ${data.email}`,
-      `Organization: ${data.organization || "—"}`,
-      `Area of interest: ${data.service}`,
-      "",
-      data.message,
-    ].join("\n")
-  );
-  return `mailto:${RECIPIENT}?subject=${subject}&body=${body}`;
-}
+  | {
+      ok: false;
+      reason: "invalid" | "rate_limited" | "failed";
+      fields?: Partial<Record<keyof ContactFormData, string>>;
+    };
 
 /**
  * Contact form submission boundary.
  *
- * Production path: set `NEXT_PUBLIC_CONTACT_ENDPOINT` to your inbox API and
- * this will POST the JSON payload. Without an endpoint configured it falls
- * back to opening the visitor's mail client with the inquiry pre-filled —
- * it never reports a "sent" state without the message actually going out.
+ * Validates on the client for fast feedback, then POSTs to `/api/contact`,
+ * which re-validates and sends the email over SMTP. It never reports a
+ * "sent" state unless the server confirms delivery to the mail server.
  */
 export async function submitInquiry(
-  data: ContactFormData
+  data: ContactFormData,
+  meta: { website: string; startedAt: number }
 ): Promise<InquiryResult> {
-  if (!data.name || !data.email || !data.message) {
-    return { ok: false, reason: "invalid" };
-  }
-
-  if (!ENDPOINT) {
-    if (typeof window !== "undefined") {
-      window.location.href = buildMailto(data);
-      return { ok: true };
-    }
-    return { ok: false, reason: "unconfigured" };
-  }
+  const checked = validateContact(data);
+  if (!checked.ok) return { ok: false, reason: "invalid", fields: checked.errors };
 
   try {
-    const res = await fetch(ENDPOINT, {
+    const res = await fetch("/api/contact", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
+      body: JSON.stringify({ ...checked.data, ...meta }),
     });
-    return res.ok
-      ? { ok: true }
-      : { ok: false, reason: "failed" as const };
+    if (res.ok) return { ok: true };
+    if (res.status === 429) return { ok: false, reason: "rate_limited" };
+    if (res.status === 400) {
+      const body = await res.json().catch(() => ({}));
+      return { ok: false, reason: "invalid", fields: body.fields };
+    }
+    return { ok: false, reason: "failed" };
   } catch {
     return { ok: false, reason: "failed" };
   }
