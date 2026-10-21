@@ -1,9 +1,8 @@
-import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import Image from "next/image";
 import { LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { ADMIN_COOKIE, verifySessionToken } from "@/lib/admin-session";
+import { getAdminSession } from "@/lib/admin-auth";
 import { logout } from "./actions";
 
 export const dynamic = "force-dynamic";
@@ -11,7 +10,7 @@ export const metadata = { title: "Dashboard" };
 
 export default async function AdminDashboardPage() {
   // Middleware already guards /admin; re-check here in case it is bypassed.
-  const session = await verifySessionToken(cookies().get(ADMIN_COOKIE)?.value);
+  const session = await getAdminSession();
   if (!session) redirect("/admin/login");
 
   return (
