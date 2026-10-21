@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { saveContent } from "@/app/admin/content/actions";
+import { saveContent, uploadImage as uploadImageAction } from "@/app/admin/content/actions";
 import {
   OPTIONAL_KEYS,
   SECTIONS,
@@ -39,8 +39,25 @@ interface ContentEditorProps {
   initialContent: Doc;
   initialSha: string | null;
   canSave: boolean;
-  uploadImage?: ImageUploader;
 }
+
+const MAX_UPLOAD_BYTES = 4 * 1024 * 1024;
+
+const uploadViaAction: ImageUploader = async (file) => {
+  // Fast client-side checks; the server re-checks everything.
+  if (!["image/jpeg", "image/png", "image/webp"].includes(file.type)) {
+    return { error: "Only JPG, PNG or WebP images are allowed." };
+  }
+  if (file.size > MAX_UPLOAD_BYTES) return { error: "Image must be 4 MB or smaller." };
+  const form = new FormData();
+  form.append("file", file);
+  try {
+    const result = await uploadImageAction(form);
+    return result.ok ? { path: result.path } : { error: result.error };
+  } catch {
+    return { error: "Upload failed. Please try again." };
+  }
+};
 
 // ---------- immutable path helpers ----------
 
@@ -130,7 +147,8 @@ const KIND_FILTERS: { value: FieldKind | "all"; label: string }[] = [
   { value: "email", label: "Emails" },
 ];
 
-export function ContentEditor({ initialContent, initialSha, canSave, uploadImage }: ContentEditorProps) {
+export function ContentEditor({ initialContent, initialSha, canSave }: ContentEditorProps) {
+  const uploadImage = canSave ? uploadViaAction : undefined;
   const [doc, setDoc] = useState<Doc>(initialContent);
   const [saved, setSaved] = useState<Doc>(initialContent);
   const [sha, setSha] = useState(initialSha);
