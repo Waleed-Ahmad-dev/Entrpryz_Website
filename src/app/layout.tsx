@@ -7,6 +7,10 @@ import {
   SITE_TITLE,
   SITE_DESCRIPTION,
 } from "@/lib/site";
+import { SITE_CONTENT } from "@/lib/site-content";
+import { assertValidSiteContent } from "@/lib/content-schema";
+
+assertValidSiteContent(SITE_CONTENT);
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -39,8 +43,8 @@ export const metadata: Metadata = {
     "Entrpryz",
   ],
   icons: {
-    icon: "/images/logo-transparent.png",
-    apple: "/images/logo-main.png",
+    icon: SITE_CONTENT.images.logo,
+    apple: SITE_CONTENT.images.logoSquare,
   },
   alternates: {
     canonical: "/",
@@ -54,7 +58,7 @@ export const metadata: Metadata = {
     url: SITE_URL,
     images: [
       {
-        url: "/images/logo-main.png",
+        url: SITE_CONTENT.images.logoSquare,
         width: 512,
         height: 512,
         alt: SITE_NAME,
@@ -65,7 +69,7 @@ export const metadata: Metadata = {
     card: "summary",
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
-    images: ["/images/logo-main.png"],
+    images: [SITE_CONTENT.images.logoSquare],
   },
   robots: {
     index: true,
@@ -79,14 +83,14 @@ const jsonLd = {
   "@type": "Organization",
   name: SITE_NAME,
   url: SITE_URL,
-  logo: `${SITE_URL}/images/logo-main.png`,
+  logo: `${SITE_URL}${SITE_CONTENT.images.logoSquare}`,
   description: SITE_DESCRIPTION,
   founder: {
     "@type": "Person",
     name: "Javed Ahmad Qureshi",
     jobTitle: "Founder & CIO",
   },
-  email: "connect@entrpryz.com",
+  email: SITE_CONTENT.contact.contacts.general,
   areaServed: ["Pakistan", "United Arab Emirates"],
 };
 
@@ -103,7 +107,10 @@ export default function RootLayout({
       <body className="min-h-screen bg-background text-text-primary antialiased flex flex-col relative selection:bg-brand-orange selection:text-background">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+          dangerouslySetInnerHTML={{
+            // Escape "<" so editable content can never close the script tag.
+            __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+          }}
         />
         {children}
       </body>

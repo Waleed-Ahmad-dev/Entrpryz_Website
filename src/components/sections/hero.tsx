@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { ArrowUpRight, ChevronRight, Shield } from "lucide-react";
-import { HERO_CONTENT } from "@/lib/content";
+import { HERO_CONTENT, SITE_IMAGES } from "@/lib/content";
 import { SectionBackground } from "@/components/ui/section-background";
 import { ButtonLink } from "@/components/ui/button";
 
@@ -87,7 +87,7 @@ export function HeroSection() {
         <div className="border border-surface-border bg-surface-card p-3 overflow-hidden">
           <div className="relative aspect-[21/9] w-full bg-surface-dark overflow-hidden">
             <Image
-              src="/images/hero-tech-bg.jpg"
+              src={SITE_IMAGES.heroBackground}
               alt="Entrpryz — ERP, Software & IT Services"
               fill
               className="object-cover opacity-60"

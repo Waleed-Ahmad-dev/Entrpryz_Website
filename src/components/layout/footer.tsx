@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Mail } from "lucide-react";
-import { CONTACT_CONTENT } from "@/lib/content";
+import { CONTACT_CONTENT, SITE_IMAGES } from "@/lib/content";
 import { SectionBackground } from "@/components/ui/section-background";
 
 export function Footer() {
@@ -17,7 +17,7 @@ export function Footer() {
             <Link href="/" className="inline-block">
               <div className="relative h-10 w-44">
                 <Image
-                  src="/images/logo-transparent.png"
+                  src={SITE_IMAGES.logo}
                   alt="Entrpryz — Technology. Simplified."
                   fill
                   className="object-contain object-left"

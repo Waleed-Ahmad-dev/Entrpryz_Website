@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { ArrowUpRight, CheckCircle2, Quote, UserCheck } from "lucide-react";
-import { FOUNDER_CONTENT } from "@/lib/content";
+import { FOUNDER_CONTENT, SITE_IMAGES } from "@/lib/content";
 import { SectionContainer } from "@/components/layout/section-container";
 import { ButtonLink } from "@/components/ui/button";
 
@@ -24,8 +24,8 @@ export function FounderSpotlightSection() {
             <div className="relative border border-surface-border bg-background p-3 shadow-md">
               <div className="relative aspect-[4/5] w-full overflow-hidden bg-surface-dark">
                 <Image
-                  src="/images/javed-qureshi.jpg"
-                  alt="Javed Ahmad Qureshi"
+                  src={SITE_IMAGES.founderPhoto}
+                  alt={FOUNDER_CONTENT.name}
                   fill
                   className="object-cover object-top filter grayscale contrast-110 hover:grayscale-0 transition-all duration-500"
                 />

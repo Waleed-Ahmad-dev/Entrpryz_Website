@@ -8,6 +8,7 @@ import { SectionBackground } from "@/components/ui/section-background";
 import { ButtonLink } from "@/components/ui/button";
 import { useActiveSection } from "@/hooks/use-active-section";
 import { NAV_LINKS } from "@/lib/navigation";
+import { SITE_IMAGES } from "@/lib/content";
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -25,7 +26,7 @@ export function Header() {
         <Link href="/" className="flex items-center gap-3">
           <div className="relative h-9 w-36 sm:h-10 sm:w-44">
             <Image
-              src="/images/logo-transparent.png"
+              src={SITE_IMAGES.logo}
               alt="Entrpryz — Technology. Simplified."
               fill
               className="object-contain object-left"

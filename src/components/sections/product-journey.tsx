@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { ArrowUpRight, Box, Sparkles } from "lucide-react";
-import { PRODUCT_JOURNEY } from "@/lib/content";
+import { PRODUCT_JOURNEY, SITE_IMAGES } from "@/lib/content";
 import { SectionContainer } from "@/components/layout/section-container";
 import { ButtonLink } from "@/components/ui/button";
 
@@ -47,7 +47,7 @@ export function ProductJourneySection() {
           <div className="border border-surface-border bg-background p-3">
             <div className="relative aspect-square w-full overflow-hidden bg-surface-dark">
               <Image
-                src="/images/product-journey.jpg"
+                src={SITE_IMAGES.productJourney}
                 alt="Entrpryz Software Products"
                 fill
                 className="object-cover opacity-70 filter grayscale contrast-110 hover:grayscale-0 transition-all duration-500"
