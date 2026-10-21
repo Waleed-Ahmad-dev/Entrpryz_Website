@@ -21,24 +21,42 @@ export default function HomePage() {
 
       {/* About */}
       <div id="about" className="scroll-mt-20">
-        <BehindEntrpryzSection />
-        <AboutSummarySection />
+        <div id="behind-entrpryz" className="scroll-mt-20">
+          <BehindEntrpryzSection />
+        </div>
+        <div id="about-entrpryz" className="scroll-mt-20">
+          <AboutSummarySection />
+        </div>
         <FounderSpotlightSection />
-        <CertificationsGridSection />
+        <div id="certifications" className="scroll-mt-20">
+          <CertificationsGridSection />
+        </div>
       </div>
 
       {/* Services */}
       <div id="services" className="scroll-mt-20">
-        <ServicesCardsSection />
-        <WorkflowStepsSection />
-        <WhyEntrpryzSection />
-        <ProductJourneySection />
+        <div id="services-list" className="scroll-mt-20">
+          <ServicesCardsSection />
+        </div>
+        <div id="how-we-work" className="scroll-mt-20">
+          <WorkflowStepsSection />
+        </div>
+        <div id="why-entrpryz" className="scroll-mt-20">
+          <WhyEntrpryzSection />
+        </div>
+        <div id="product-journey" className="scroll-mt-20">
+          <ProductJourneySection />
+        </div>
       </div>
 
       {/* Portfolio */}
       <div id="portfolio" className="scroll-mt-20">
-        <CareerTimelineSection />
-        <PortfolioOverviewSection />
+        <div id="career" className="scroll-mt-20">
+          <CareerTimelineSection />
+        </div>
+        <div id="track-record" className="scroll-mt-20">
+          <PortfolioOverviewSection />
+        </div>
       </div>
 
       {/* Contact */}

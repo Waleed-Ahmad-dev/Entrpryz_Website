@@ -1,9 +1,8 @@
+import Link from "next/link";
 import { redirect } from "next/navigation";
-import Image from "next/image";
-import { LogOut } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { ArrowRight, FileText } from "lucide-react";
+import { AdminShell } from "@/components/admin/admin-shell";
 import { getAdminSession } from "@/lib/admin-auth";
-import { logout } from "./actions";
 
 export const dynamic = "force-dynamic";
 export const metadata = { title: "Dashboard" };
@@ -14,32 +13,32 @@ export default async function AdminDashboardPage() {
   if (!session) redirect("/admin/login");
 
   return (
-    <div className="flex-1 flex flex-col">
-      <header className="border-b border-surface-border bg-surface-card">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <Image src="/images/logo-transparent.png" alt="Entrpryz" width={32} height={32} />
-            <span className="text-sm font-display font-bold uppercase tracking-wider text-text-primary">
-              Entrpryz Admin
-            </span>
-          </div>
-          <form action={logout}>
-            <Button type="submit" variant="ghost" size="sm">
-              <LogOut className="h-4 w-4" />
-              <span>Sign Out</span>
-            </Button>
-          </form>
+    <AdminShell username={session.sub}>
+      <div className="space-y-8">
+        <div className="space-y-2">
+          <h1 className="text-3xl font-display font-bold uppercase tracking-tight text-text-primary">
+            Dashboard
+          </h1>
+          <p className="text-sm text-text-secondary">
+            Signed in as <span className="font-mono text-brand-orange">{session.sub}</span>.
+          </p>
         </div>
-      </header>
-
-      <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 py-12 space-y-2">
-        <h1 className="text-3xl font-display font-bold uppercase tracking-tight text-text-primary">
-          Dashboard
-        </h1>
-        <p className="text-sm text-text-secondary">
-          Signed in as <span className="font-mono text-brand-orange">{session.sub}</span>.
-        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <Link
+            href="/admin/content"
+            className="group border border-surface-border bg-surface-card p-6 space-y-3 hover:border-brand-orange transition-colors"
+          >
+            <FileText className="h-6 w-6 text-brand-orange" />
+            <h2 className="text-lg font-display font-bold uppercase text-text-primary">Website Content</h2>
+            <p className="text-sm text-text-secondary">
+              Edit headlines, paragraphs, services, portfolio projects and images across the site.
+            </p>
+            <span className="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-widest text-brand-orange">
+              Open editor <ArrowRight className="h-3.5 w-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </span>
+          </Link>
+        </div>
       </div>
-    </div>
+    </AdminShell>
   );
 }
