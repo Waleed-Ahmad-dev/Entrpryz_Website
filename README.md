@@ -58,3 +58,9 @@ Deploy domain is `https://entrpryz.com` by default; override via `NEXT_PUBLIC_SI
 The form posts to `/api/contact`, which validates input (shared rules in `src/lib/contact-validation.ts`), applies a same-origin check, honeypot, fill-time check and per-IP rate limit, then sends the inquiry via SMTP (`nodemailer`) with the visitor as `Reply-To`.
 
 Configure SMTP in Vercel environment variables — see `.env.example`. For local testing copy it to `.env.local`. Inquiries go to `CONTACT_TO_EMAIL` (default `entrpryz.digital@gmail.com`).
+
+## Admin panel
+
+`/admin` is protected by a username/password login (`/admin/login`). Credentials come from `ADMIN_USERNAME` / `ADMIN_PASSWORD`, and sessions are signed with `ADMIN_SESSION_SECRET` (8-hour, httpOnly, SameSite=Strict cookie). `src/middleware.ts` guards every `/admin` route and the page re-checks the session server-side. Failed logins are throttled per IP.
+
+Set all three variables in Vercel (see `.env.example`); locally they live in the git-ignored `.env`.
