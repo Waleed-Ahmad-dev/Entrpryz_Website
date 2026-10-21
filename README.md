@@ -45,7 +45,7 @@ docs/
 
 ## Content
 
-All editorial copy lives in `src/lib/` (content.ts, portfolio-data.ts), never in JSX. Update copy there and components render it. Source briefs are preserved in `docs/content/`.
+All editorial copy, images, links and portfolio data live in `content/site.json`, never in JSX. Edit it from the admin panel (`/admin/content`) or by hand; `src/lib/content.ts` and `portfolio-data.ts` expose it to components. The schema in `src/lib/content-schema.ts` is enforced at build time, so invalid content fails the build instead of shipping. Source briefs are preserved in `docs/content/`.
 
 Deploy domain is `https://entrpryz.com` by default; override via `NEXT_PUBLIC_SITE_URL`.
 
@@ -64,3 +64,11 @@ Configure SMTP in Vercel environment variables — see `.env.example`. For local
 `/admin` is protected by a username/password login (`/admin/login`). Credentials come from `ADMIN_USERNAME` / `ADMIN_PASSWORD`, and sessions are signed with `ADMIN_SESSION_SECRET` (8-hour, httpOnly, SameSite=Strict cookie). `src/middleware.ts` guards every `/admin` route and the page re-checks the session server-side. Failed logins are throttled per IP.
 
 Set all three variables in Vercel (see `.env.example`); locally they live in the git-ignored `.env`.
+
+### Content editor
+
+`/admin/content` lists every piece of site content by section, with full-text search, a field-type filter (text, paragraphs, images, links, emails), a "changed only" view, and "View on site" links to each section.
+
+Publishing commits `content/site.json` to GitHub, and Vercel redeploys (live in ~1–2 minutes). Uploaded images (JPG/PNG/WebP, max 4 MB, checked by file signature) are committed to `public/images/uploads/` under a content-hash filename. Saves are validated server-side against the schema and rejected if the file changed since it was loaded.
+
+Requires `GITHUB_TOKEN` (fine-grained, this repo only, Contents read/write), `GITHUB_REPO` (`owner/name`) and optionally `GITHUB_BRANCH`. Without them the editor is read-only.
