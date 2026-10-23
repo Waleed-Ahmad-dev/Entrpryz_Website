@@ -17,8 +17,9 @@ export function HashScroll() {
   const pathname = usePathname();
 
   useEffect(() => {
-    const frame = requestAnimationFrame(() => scrollToHash("instant"));
-    return () => cancelAnimationFrame(frame);
+    // A timer (not requestAnimationFrame) so it also runs in background tabs.
+    const timer = window.setTimeout(() => scrollToHash("instant"), 0);
+    return () => window.clearTimeout(timer);
   }, [pathname]);
 
   useEffect(() => {
