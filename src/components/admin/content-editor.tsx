@@ -18,13 +18,18 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { saveContent, uploadImage as uploadImageAction } from "@/app/admin/content/actions";
 import {
+  CHOICES,
   OPTIONAL_KEYS,
   SECTIONS,
   SECTION_BY_KEY,
   fieldKind,
   fieldLabel,
+  isBlockList,
+  isReadOnly,
   itemTitle,
+  newItemTemplate,
   pathKey,
+  siteHref,
   templateKeys,
   type FieldKind,
   type Path,
@@ -114,7 +119,7 @@ function collectLeaves(doc: Doc): Leaf[] {
     if (value && typeof value === "object") {
       const keys = new Set(Object.keys(value));
       const parent = path.slice(0, -1);
-      if (typeof path[path.length - 1] === "number") templateKeys(parent)?.forEach((k) => keys.add(k));
+      if (typeof path[path.length - 1] === "number") templateKeys(parent, value)?.forEach((k) => keys.add(k));
       for (const k of keys) {
         walk((value as Record<string, Json>)[k] ?? "", [...path, k], [...crumbs, fieldLabel(k)]);
       }
@@ -407,7 +412,7 @@ export function ContentEditor({ initialContent, initialSha, canSave }: ContentEd
               <div key={leaf.key} className="border border-surface-border bg-surface-card p-4 space-y-2">
                 <div className="flex items-center gap-2 text-[11px] text-text-secondary">
                   <span className="truncate">{leaf.crumbs.join(" › ")}</span>
-                  <ViewOnSite anchor={SECTION_BY_KEY[leaf.section]?.anchor} />
+                  <ViewOnSite href={siteHref(doc, leaf.path)} />
                 </div>
                 <FieldEditor path={leaf.path} {...fieldProps} hideLabel />
               </div>
@@ -444,7 +449,7 @@ export function ContentEditor({ initialContent, initialSha, canSave }: ContentEd
                     </span>
                   )}
                 </button>
-                <ViewOnSite anchor={s.anchor} />
+                <ViewOnSite href={s.href} />
               </header>
               {!collapsed[s.key] && (
                 <div className="p-5">
@@ -492,11 +497,10 @@ function SidebarButton({
   );
 }
 
-function ViewOnSite({ anchor }: { anchor?: string }) {
-  if (anchor === undefined) return null;
+function ViewOnSite({ href }: { href: string }) {
   return (
     <a
-      href={`/${anchor}`}
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
       className="inline-flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wider text-text-secondary hover:text-brand-orange whitespace-nowrap"
@@ -528,7 +532,7 @@ function NodeEditor(props: FieldProps) {
   if (value && typeof value === "object") {
     const keys = new Set(Object.keys(value));
     const parent = props.path.slice(0, -1);
-    if (typeof props.path[props.path.length - 1] === "number") templateKeys(parent)?.forEach((k) => keys.add(k));
+    if (typeof props.path[props.path.length - 1] === "number") templateKeys(parent, value)?.forEach((k) => keys.add(k));
     return (
       <div className="space-y-5">
         {Array.from(keys).map((k) => {
@@ -555,8 +559,8 @@ function NodeEditor(props: FieldProps) {
 function ArrayEditor(props: FieldProps & { items: Json[] }) {
   const { path, items, update } = props;
   const isStrings = items.every((i) => typeof i === "string");
-  // Nav anchors are fixed by the schema; only labels are editable.
-  const fixedLength = path[0] === "navigation";
+  // A page's section layout is fixed; the content inside each section is editable.
+  const fixedLength = isBlockList(path);
 
   const move = (from: number, to: number) => {
     const next = [...items];
@@ -570,7 +574,7 @@ function ArrayEditor(props: FieldProps & { items: Json[] }) {
   };
   const add = () => {
     const template = items[0];
-    update(path, [...items, template === undefined ? "" : blankLike(template)]);
+    update(path, [...items, template === undefined ? newItemTemplate(path) : blankLike(template)]);
   };
 
   const controls = (index: number) =>
@@ -582,7 +586,7 @@ function ArrayEditor(props: FieldProps & { items: Json[] }) {
         <IconButton label="Move down" disabled={index === items.length - 1} onClick={() => move(index, index + 1)}>
           <ArrowDown className="h-3.5 w-3.5" />
         </IconButton>
-        <IconButton label="Remove" disabled={items.length <= 1} onClick={() => remove(index)}>
+        <IconButton label="Remove" onClick={() => remove(index)}>
           <Trash2 className="h-3.5 w-3.5" />
         </IconButton>
       </div>
@@ -662,7 +666,7 @@ function FieldEditor({ path, doc, saved, errors, changed, update, hideLabel, ...
   const error = errors[key];
   const isChanged = changed.has(key);
   const optional = typeof last === "string" && OPTIONAL_KEYS.has(last);
-  const readOnly = path[0] === "navigation" && last === "href";
+  const readOnly = isReadOnly(path);
   const id = `field-${key}`;
 
   const onChange = (next: string) => update(path, optional && next === "" ? undefined : next);
@@ -690,7 +694,22 @@ function FieldEditor({ path, doc, saved, errors, changed, update, hideLabel, ...
         </div>
       )}
 
-      {kind === "image" ? (
+      {kind === "choice" ? (
+        <select
+          id={id}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          aria-invalid={!!error}
+          className={cn(inputClass, error && "border-brand-orange")}
+        >
+          {!value && <option value="">Choose…</option>}
+          {CHOICES[String(last)].map((c) => (
+            <option key={c} value={c}>
+              {c}
+            </option>
+          ))}
+        </select>
+      ) : kind === "image" ? (
         <ImageField id={id} path={path} value={value} onChange={onChange} {...rest} />
       ) : kind === "longtext" ? (
         <textarea

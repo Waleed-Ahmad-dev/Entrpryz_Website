@@ -5,115 +5,184 @@
  */
 
 export type Path = (string | number)[];
-export type FieldKind = "text" | "longtext" | "image" | "link" | "email";
+export type FieldKind = "text" | "longtext" | "image" | "link" | "email" | "choice";
 
 export interface SectionMeta {
   key: string;
   label: string;
   group: string;
-  /** Anchor on the public page where this content renders. */
-  anchor: string;
+  /** Public path where this content appears. */
+  href: string;
 }
 
 export const SECTIONS: SectionMeta[] = [
-  { key: "site", label: "SEO & Site Info", group: "Global", anchor: "" },
-  { key: "images", label: "Site Images", group: "Global", anchor: "#home" },
-  { key: "navigation", label: "Navigation Menu", group: "Global", anchor: "#home" },
-  { key: "hero", label: "Hero", group: "Home", anchor: "#home" },
-  { key: "behindEntrpryz", label: "Behind Entrpryz (Stats)", group: "About", anchor: "#behind-entrpryz" },
-  { key: "about", label: "About Entrpryz", group: "About", anchor: "#about-entrpryz" },
-  { key: "founder", label: "Founder Spotlight", group: "About", anchor: "#founder" },
-  { key: "certifications", label: "Certifications", group: "About", anchor: "#certifications" },
-  { key: "services", label: "Services", group: "Services", anchor: "#services-list" },
-  { key: "howWeWork", label: "How We Work", group: "Services", anchor: "#how-we-work" },
-  { key: "whyEntrpryz", label: "Why Entrpryz", group: "Services", anchor: "#why-entrpryz" },
-  { key: "productJourney", label: "Product Journey", group: "Services", anchor: "#product-journey" },
-  { key: "careerTimeline", label: "Career Timeline", group: "Portfolio", anchor: "#career" },
-  { key: "portfolio", label: "Portfolio & Projects", group: "Portfolio", anchor: "#track-record" },
-  { key: "contact", label: "Contact", group: "Contact", anchor: "#contact" },
+  { key: "site", label: "Site-wide Details", group: "Global", href: "/" },
+  { key: "navigation", label: "Header Menu", group: "Global", href: "/" },
+  { key: "images", label: "Logos & Images", group: "Global", href: "/" },
+  { key: "contact", label: "Email & Contact Form", group: "Global", href: "/contact" },
+  { key: "homePage", label: "Home", group: "Pages", href: "/" },
+  { key: "aboutPage", label: "About", group: "Pages", href: "/about" },
+  { key: "servicesPage", label: "Services", group: "Pages", href: "/services" },
+  { key: "aiAgentsPage", label: "AI Agents", group: "Service Pages", href: "/services/ai-agents" },
+  { key: "sapHealthCheckPage", label: "SAP B1 Health Check", group: "Service Pages", href: "/services/sap-business-one-health-check" },
+  { key: "misAssessmentPage", label: "MIS Assessment", group: "Service Pages", href: "/services/mis-assessment-development-roadmap" },
+  { key: "portfolioPage", label: "Portfolio", group: "Pages", href: "/portfolio" },
+  { key: "contactPage", label: "Contact", group: "Pages", href: "/contact" },
+  { key: "privacyPage", label: "Privacy Policy", group: "Pages", href: "/privacy-policy" },
 ];
 
 export const SECTION_BY_KEY = Object.fromEntries(SECTIONS.map((s) => [s.key, s]));
 
+const BLOCK_LABELS: Record<string, string> = {
+  hero: "Page Header",
+  stats: "Stats",
+  cards: "Cards",
+  steps: "Steps",
+  checklist: "List",
+  faq: "FAQ",
+  cta: "Call to Action",
+  profile: "Profile",
+  text: "Text",
+  tags: "Tags",
+  group: "Portfolio Group",
+  prose: "Policy Section",
+  contact: "Contact Details",
+};
+
+/** Optional text fields each block type supports, shown even when currently empty. */
+const BLOCK_FIELDS: Record<string, string[]> = {
+  hero: ["eyebrow", "heading", "body", "image"],
+  cards: ["id", "eyebrow", "heading", "intro"],
+  steps: ["id", "eyebrow", "heading", "intro"],
+  checklist: ["id", "eyebrow", "heading", "intro"],
+  faq: ["id", "eyebrow", "heading", "intro"],
+  cta: ["heading", "body"],
+  profile: ["id", "eyebrow", "name", "quote", "image"],
+  text: ["id", "eyebrow", "heading", "intro"],
+  tags: ["id", "eyebrow", "heading", "intro"],
+  group: ["id", "eyebrow", "heading", "intro"],
+  prose: ["id", "eyebrow", "heading", "intro"],
+  contact: ["eyebrow", "heading", "body", "emailLabel", "locationLabel", "location", "note", "formHeading"],
+};
+
 const LABELS: Record<string, string> = {
-  p1: "Paragraph 1",
-  p2: "Paragraph 2",
-  p3: "Paragraph 3",
-  cta: "Button Text",
-  ctaText: "Button Text",
-  ctaHref: "Button Link",
-  ctaPrimary: "Primary Button",
-  ctaSecondary: "Secondary Button",
-  buttonText: "Button Text",
-  buttonHref: "Button Link",
-  subheadline: "Sub-headline",
-  coreAreasIntro: "Core Areas Intro",
-  coreAreas: "Core Areas",
-  id: "ID (URL slug)",
+  seo: "Search Engine (SEO)",
+  blocks: "Page Sections",
+  eyebrow: "Small Label Above Heading",
+  intro: "Intro Text",
+  id: "Anchor ID (for #links)",
+  href: "Link",
+  cta: "Header Button",
+  links: "Buttons",
+  buttons: "Buttons",
+  button: "Button",
+  meta: "Details",
+  aside: "Side Panel",
+  paragraphs: "Paragraphs",
+  bullets: "Bullet Points",
   logo: "Logo (transparent)",
   logoSquare: "Logo (square, for sharing)",
-  heroBackground: "Hero Background",
+  heroBackground: "Home Header Image",
   founderPhoto: "Founder Photo",
-  productJourney: "Product Journey Image",
-  general: "General Inquiries Email",
-  javed: "Javed's Email",
-  waleed: "Waleed's Email",
-  items: "Items",
-  featured: "Featured Projects",
-  additional: "Additional Engagements",
+  footerServices: "Footer Service Links",
+  whatsapp: "WhatsApp Button",
+  number: "WhatsApp Number",
+  message: "Pre-filled Message",
+  social: "Social Links",
+  areas: "Area of Interest Options",
+  privacyNote: "Privacy Note",
 };
 
 export function fieldLabel(key: string | number): string {
   if (typeof key === "number") return `#${key + 1}`;
   if (LABELS[key]) return LABELS[key];
-  return key
-    .replace(/([a-z])([A-Z])/g, "$1 $2")
-    .replace(/^./, (c) => c.toUpperCase());
+  return key.replace(/([a-z])([A-Z])/g, "$1 $2").replace(/^./, (c) => c.toUpperCase());
 }
 
 const LONG_KEYS = new Set([
-  "p1", "p2", "p3", "body", "description", "overview", "subheadline", "subtitle", "scope", "philosophy", "motto",
+  "body", "description", "intro", "answer", "text", "quote", "privacyNote", "successBody", "location",
 ]);
+
+export const CHOICES: Record<string, string[]> = {
+  kind: ["paragraph", "bullet"],
+  platform: ["linkedin", "facebook", "instagram", "x", "youtube"],
+};
 
 export function fieldKind(path: Path, value: string): FieldKind {
   const key = path[path.length - 1];
+  const parent = path[path.length - 2];
+  if (typeof key === "string" && CHOICES[key]) return "choice";
   if (path[0] === "images" || key === "image") return "image";
-  if (key === "ctaHref" || key === "buttonHref") return "link";
-  if (path[0] === "contact" && path[1] === "contacts") return "email";
+  if (key === "href" || key === "url") return "link";
+  if (key === "email") return "email";
+  if (parent === "paragraphs") return "longtext";
   if ((typeof key === "string" && LONG_KEYS.has(key)) || value.length > 140) return "longtext";
-  if (path[0] === "certifications" && key === "items") return "longtext";
   return "text";
 }
 
-/** Keys an array item may have even when the current value omits them (optional fields). */
-const ITEM_TEMPLATES: { match: (p: Path) => boolean; keys: string[] }[] = [
-  {
-    match: (p) => p[0] === "portfolio" && p[1] === "tiers" && p[3] === "featured",
-    keys: ["client", "location", "website", "status", "description", "image"],
-  },
-  {
-    match: (p) => p[0] === "portfolio" && p[1] === "tiers" && p[3] === "additional",
-    keys: ["client", "scope", "industry", "platform"],
-  },
-];
-
-export function templateKeys(arrayPath: Path): string[] | null {
-  return ITEM_TEMPLATES.find((t) => t.match(arrayPath))?.keys ?? null;
+/** Fields that can't be edited: the block type defines the layout. */
+export function isReadOnly(path: Path): boolean {
+  return path[path.length - 1] === "type";
 }
 
-/** Fields that are optional in the schema — shown, but may be left blank. */
-export const OPTIONAL_KEYS = new Set(["location", "website", "status", "image", "industry", "platform"]);
+/** True for a page's list of sections — its layout is fixed; content inside is editable. */
+export function isBlockList(path: Path): boolean {
+  return path.length === 2 && path[1] === "blocks";
+}
+
+/** Shape for a new item in a list that may be empty, keyed by the list's name. */
+const NEW_ITEM_KEYS: Record<string, string[]> = {
+  meta: ["title", "detail"],
+  links: ["label", "href"],
+  buttons: ["label", "href"],
+  social: ["platform", "url"],
+  footerServices: ["label", "href"],
+};
+
+export function newItemTemplate(arrayPath: Path): Record<string, string> | "" {
+  const keys = NEW_ITEM_KEYS[String(arrayPath[arrayPath.length - 1])];
+  return keys ? Object.fromEntries(keys.map((k) => [k, ""])) : "";
+}
+
+/** Extra keys an object may have even when the current value omits them (optional fields). */
+export function templateKeys(arrayPath: Path, item?: unknown): string[] | null {
+  if (arrayPath[arrayPath.length - 1] === "blocks" && item && typeof item === "object") {
+    return BLOCK_FIELDS[String((item as Record<string, unknown>).type)] ?? null;
+  }
+  return null;
+}
+
+/** Optional in the schema — shown, but may be left blank. */
+export const OPTIONAL_KEYS = new Set([
+  "eyebrow", "intro", "id", "badge", "detail", "location", "image", "quote", "note", "number", "message",
+]);
 
 /** Short title for an array item, taken from its most descriptive field. */
 export function itemTitle(item: unknown, index: number): string {
   if (typeof item === "string") return item || `Item ${index + 1}`;
   if (item && typeof item === "object") {
     const o = item as Record<string, unknown>;
-    for (const k of ["title", "client", "company", "name", "label", "value"]) {
-      if (typeof o[k] === "string" && o[k]) return o[k] as string;
+    const pick = ["heading", "title", "name", "question", "label", "value", "eyebrow", "text"]
+      .map((k) => o[k])
+      .find((v): v is string => typeof v === "string" && v.length > 0);
+    if (typeof o.type === "string" && BLOCK_LABELS[o.type]) {
+      return `${BLOCK_LABELS[o.type]}${pick ? ` — ${pick}` : ""}`;
     }
+    if (pick) return pick.length > 80 ? `${pick.slice(0, 77)}…` : pick;
   }
   return `Item ${index + 1}`;
+}
+
+/** Live-site link for a field: its page, plus the section's #anchor when it has one. */
+export function siteHref(doc: Record<string, unknown>, path: Path): string {
+  const section = SECTION_BY_KEY[String(path[0])];
+  if (!section) return "/";
+  if (path[1] === "blocks" && typeof path[2] === "number") {
+    const blocks = (doc[String(path[0])] as { blocks?: { id?: string }[] })?.blocks;
+    const id = blocks?.[path[2]]?.id;
+    if (id) return `${section.href}#${id}`;
+  }
+  return section.href;
 }
 
 export function pathKey(path: Path): string {
