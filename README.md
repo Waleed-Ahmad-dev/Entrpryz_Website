@@ -27,13 +27,13 @@ src/
     api/contact/     POST endpoint: validates inquiries and emails them over SMTP
   components/
     layout/          header (scroll-spy nav), footer, section-container
-    sections/        one section per page block (hero … contact-section)
-    portfolio/       portfolio-overview + engagement-filter-grid (client filter)
+    blocks/          one component per content block type + page renderer
+    contact/         contact form
+    admin/           admin shell and content editor
     ui/              button (cva), section-background
-  hooks/             use-active-section (IntersectionObserver)
   lib/
-    content.ts       editorial copy source
-    portfolio-data.ts track-record / engagements source
+    content-schema.ts content/site.json schema (validated at build and on save)
+    pages.ts         page routes + per-page SEO metadata
     site.ts          URL + meta constants (overridable via NEXT_PUBLIC_SITE_URL)
     utils.ts         cn()
   services/          submitInquiry (client side of the contact form)
@@ -45,13 +45,15 @@ docs/
 
 ## Content
 
-All editorial copy, images, links and portfolio data live in `content/site.json`, never in JSX. Edit it from the admin panel (`/admin/content`) or by hand; `src/lib/content.ts` and `portfolio-data.ts` expose it to components. The schema in `src/lib/content-schema.ts` is enforced at build time, so invalid content fails the build instead of shipping. Source briefs are preserved in `docs/content/`.
+All editorial copy, images, links, SEO titles and portfolio data live in `content/site.json`, never in JSX. Edit it from the admin panel (`/admin/content`) or by hand. The schema in `src/lib/content-schema.ts` is enforced at build time, so invalid content fails the build instead of shipping. Source briefs are preserved in `docs/content/`.
 
 Deploy domain is `https://entrpryz.com` by default; override via `NEXT_PUBLIC_SITE_URL`.
 
-## One-pager anchors
+## Pages
 
-`#home` · `#about` · `#services` · `#portfolio` · `#contact` — matches the header nav and the scroll-spy observer.
+`/` · `/about` · `/services` · `/services/ai-agents` · `/services/sap-business-one-health-check` · `/services/mis-assessment-development-roadmap` · `/portfolio` · `/contact` · `/privacy-policy`
+
+Each page is a list of content blocks in `content/site.json` (rendered by `src/components/blocks/`); routes live in `src/app/(site)/` and map to content keys in `src/lib/pages.ts`. Copy follows the CEO-approved content in `docs/content/website-content-2026-10-approved.md`.
 
 ## Contact form
 
