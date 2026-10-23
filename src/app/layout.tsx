@@ -40,6 +40,9 @@ export const metadata: Metadata = {
     "IT Services",
     "Oracle NetSuite",
     "SAP Business One",
+    "Odoo",
+    "Microsoft Dynamics 365",
+    "AI Agents",
     "Entrpryz",
   ],
   icons: {
@@ -88,10 +91,10 @@ const jsonLd = {
   founder: {
     "@type": "Person",
     name: "Javed Ahmad Qureshi",
-    jobTitle: "Founder & CIO",
+    jobTitle: "Founder",
   },
-  email: SITE_CONTENT.contact.contacts.general,
-  areaServed: ["Pakistan", "United Arab Emirates"],
+  email: SITE_CONTENT.contact.email,
+  areaServed: ["Pakistan", "United Arab Emirates", "Africa"],
 };
 
 export default function RootLayout({

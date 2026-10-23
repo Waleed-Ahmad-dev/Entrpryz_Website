@@ -1,590 +1,1765 @@
 {
   "site": {
-    "title": "Entrpryz — Technology. Simplified.",
-    "description": "ERP, software development, and IT services — 25+ years of real-world technology experience put to work on your business."
+    "name": "Entrpryz",
+    "tagline": "Technology. Simplified.",
+    "location": "Based in Pakistan. Serving Pakistan, the UAE and Africa.",
+    "footerServices": [
+      {
+        "label": "Digital Transformation",
+        "href": "/services#digital-transformation"
+      },
+      {
+        "label": "Software Development",
+        "href": "/services#software-development"
+      },
+      {
+        "label": "Technology & IT Services",
+        "href": "/services#technology-it-services"
+      }
+    ],
+    "copyright": "Entrpryz. All rights reserved.",
+    "whatsapp": {
+      "message": "Hello Entrpryz, I'd like to talk about my systems."
+    },
+    "social": []
   },
   "images": {
     "logo": "/images/logo-transparent.png",
     "logoSquare": "/images/logo-main.png",
     "heroBackground": "/images/hero-tech-bg.jpg",
-    "founderPhoto": "/images/javed-qureshi.jpg",
-    "productJourney": "/images/product-journey.jpg"
+    "founderPhoto": "/images/javed-qureshi.jpg"
   },
-  "navigation": [
-    {
-      "name": "Home",
-      "href": "#home"
-    },
-    {
-      "name": "About",
-      "href": "#about"
-    },
-    {
-      "name": "Services",
-      "href": "#services"
-    },
-    {
-      "name": "Portfolio",
-      "href": "#portfolio"
-    },
-    {
-      "name": "Contact",
-      "href": "#contact"
-    }
-  ],
-  "hero": {
-    "headline": "Technology. Simplified.",
-    "subheadline": "25+ years of hands-on ERP, software and IT experience — put to work on your business.",
-    "body": "We help businesses fix, build and modernize the systems they run on — no jargon, no overhead, no handoffs.",
-    "ctaPrimary": "Talk to Us",
-    "ctaSecondary": "Explore Our Services"
-  },
-  "behindEntrpryz": {
-    "headline": "25+ Years of Real-World Technology Experience",
-    "subheadline": "Led by Javed Ahmad Qureshi — 25+ years building and fixing the systems businesses run on.",
-    "stats": [
+  "navigation": {
+    "links": [
       {
-        "value": "25+ Years",
-        "label": "Total Experience"
+        "name": "About",
+        "href": "/about"
       },
       {
-        "value": "65+",
-        "label": "ERP Programs Led"
+        "name": "Services",
+        "href": "/services"
       },
       {
-        "value": "Up to 40+",
-        "label": "Team Size Managed"
-      },
-      {
-        "value": "150+",
-        "label": "IT Users Supported"
-      },
-      {
-        "value": "PK / UAE",
-        "label": "Multi-Country Ops"
+        "name": "Portfolio",
+        "href": "/portfolio"
       }
-    ],
-    "cta": "Meet the Founder →"
-  },
-  "about": {
-    "headline": "Technology That Works the Way Your Business Actually Runs.",
-    "p1": "Entrpryz was founded on one idea: technology should make business simpler, not more complicated. We help businesses fix, build and modernize the systems they run on — without the jargon or the overhead.",
-    "p2": "We start from how your business actually works — then select the right platforms, roll them out properly, and make sure your team actually uses them.",
-    "coreAreasIntro": "Our practice covers three core disciplines:",
-    "coreAreas": [
-      {
-        "title": "ERP & Systems Optimization",
-        "description": "NetSuite, SAP Business One, custom ERP audits, CRM deployment, process automation, and system integrations."
-      },
-      {
-        "title": "Software Engineering",
-        "description": "Custom enterprise web apps, SaaS platforms, portals, APIs, workflow automation engines, and data pipelines."
-      },
-      {
-        "title": "Technology & IT Advisory",
-        "description": "Infrastructure assessment, cloud migrations, cybersecurity governance, IT audit remediation, and system maintenance."
-      }
-    ]
-  },
-  "services": [
-    {
-      "id": "digital-transformation",
-      "title": "Digital Transformation",
-      "subtitle": "ERP & Systems Optimization, CRM & Sales Operations, Process Automation, BI & Reporting",
-      "items": [
-        "ERP Implementation & Optimization",
-        "CRM & Sales Operations Platforms",
-        "Business Process Automation",
-        "System Integration & Middleware",
-        "Cloud ERP Migrations (NetSuite / SAP)",
-        "Business Intelligence & Reporting",
-        "Systems Audit & Technology Strategy",
-        "Post-Implementation Reviews (PIR)"
-      ],
-      "ctaText": "Discuss Your Systems Strategy →",
-      "ctaHref": "#contact",
-      "image": "/images/services-digital-transformation.jpg"
-    },
-    {
-      "id": "software-development",
-      "title": "Software Development",
-      "subtitle": "Custom Enterprise Applications, Web & Cloud Apps, SaaS Products, APIs & Workflow Tools",
-      "items": [
-        "Custom Enterprise Applications",
-        "Web & Cloud Applications",
-        "Mobile Operations Apps",
-        "SaaS Product Engineering",
-        "Customer & Supplier Portals",
-        "APIs & System Connectors",
-        "Workflow Automation Tools",
-        "AI-Assisted Operations Apps"
-      ],
-      "ctaText": "Build Your Application →",
-      "ctaHref": "#contact",
-      "image": "/images/services-software-dev.jpg"
-    },
-    {
-      "id": "technology-it-services",
-      "title": "Technology & IT Services",
-      "subtitle": "Infrastructure, Cloud & Security, Data & Network, Systems Maintenance & Support",
-      "items": [
-        "Enterprise IT Infrastructure",
-        "Cloud & Server Governance",
-        "Network Architecture & Security",
-        "Cybersecurity Audit & Risk Control",
-        "Disaster Recovery & Continuity",
-        "Vendor & Budget Evaluations",
-        "Ongoing Systems Maintenance"
-      ],
-      "ctaText": "Talk to Us →",
-      "ctaHref": "#contact",
-      "image": "/images/services-it-infrastructure.jpg"
-    }
-  ],
-  "howWeWork": {
-    "headline": "We Don't Start With a Product. We Start With Your Problem.",
-    "steps": [
-      {
-        "number": "01",
-        "title": "Understand",
-        "description": "We start with your business, your goals, and where things are actually breaking down — not a product pitch."
-      },
-      {
-        "number": "02",
-        "title": "Analyze",
-        "description": "We look at your data, your systems, and your day-to-day workflow to find where the real opportunity is."
-      },
-      {
-        "number": "03",
-        "title": "Design",
-        "description": "We design a solution that fits your business and your budget — not the most complicated option available."
-      },
-      {
-        "number": "04",
-        "title": "Implement",
-        "description": "We build, integrate, test and roll it out — and make sure your team actually adopts it."
-      },
-      {
-        "number": "05",
-        "title": "Evolve",
-        "description": "We keep improving the system as your business grows, instead of walking away at go-live."
-      }
-    ]
-  },
-  "whyEntrpryz": {
-    "headline": "Why Businesses Work With Entrpryz.",
-    "reasons": [
-      {
-        "title": "Decades of Field Experience",
-        "description": "25+ years directly running enterprise ERP rollouts, IT departments, and complex technical projects."
-      },
-      {
-        "title": "Commercial & Business First",
-        "description": "We view technology as a tool for financial accuracy, speed, and margin improvement — not as an end in itself."
-      },
-      {
-        "title": "Practical & Usable Solutions",
-        "description": "We deploy software that operational teams actually adopt and management can reliably trust."
-      },
-      {
-        "title": "Technology Agnostic",
-        "description": "We recommend software solutions based purely on your operating requirements, not vendor sales kickbacks."
-      },
-      {
-        "title": "Direct, No-Nonsense Delivery",
-        "description": "You deal directly with the people doing the work, from first conversation to go-live."
-      }
-    ]
-  },
-  "founder": {
-    "name": "Javed Ahmad Qureshi",
-    "role": "Founder, Entrpryz",
-    "p1": "25+ years of hands-on experience across enterprise systems, ERP delivery, and IT leadership — including 18+ years leading ERP programs and 14+ years in senior technology roles (CIO, Vice President, Senior Manager).",
-    "p2": "Currently serving as CIO for a real estate development and hospitality group across Pakistan and the UAE. Over his career, he has directed 65+ ERP implementations across manufacturing, pharmaceuticals, retail, insurance, utilities, and non-profits — including major power utility billing modernizations.",
-    "p3": "Known for keeping IT spending tightly aligned with business and audit needs — building the cloud, security controls, and ERP workflows that hold up under real management and external audit scrutiny.",
-    "competencies": [
-      "Enterprise IT Strategy & Governance",
-      "Oracle NetSuite & SAP B1 Architecture",
-      "ERP, CRM & HCM Systems Integration",
-      "AI-Assisted Operations & Data Strategy",
-      "Cybersecurity & Regulatory Audit Risk",
-      "Cloud Strategy & Shared Services",
-      "P&L-Aligned IT Budgeting & Cost Control",
-      "Post-Implementation Reviews (PIR) & ERP Turnarounds",
-      "Cross-Border Technology Team Management",
-      "Program Leadership & RFP Ownership"
-    ],
-    "philosophy": "technology should make business simpler, faster, and better — not more complicated.",
-    "cta": "Connect With Javed →"
-  },
-  "careerTimeline": [
-    {
-      "company": "Premier Choice International",
-      "location": "Pakistan / UAE",
-      "role": "Chief Information Officer",
-      "period": "2024–Present",
-      "overview": "Directing a cross-border Enterprise Technology department of 8–10 engineers and specialists, owning an ~$80,000+ annual IT operational budget and supporting 150+ IT users across ~200 employees in Pakistan and Dubai."
-    },
-    {
-      "company": "Independent ERP & Technology Advisory",
-      "location": "Islamabad",
-      "role": "Independent Principal Consultant",
-      "period": "2022–2024",
-      "overview": "Led ERP turnaround projects, systems audits, and post-implementation reviews for mid-market industrial and public sector clients."
-    },
-    {
-      "company": "Keystone Consulting (Pvt.) Limited",
-      "location": "Pakistan",
-      "role": "Vice President, Mid-Market Cloud Services",
-      "period": "2018–2022",
-      "overview": "Recruited as Keystone's founding NetSuite lead, building Pakistan's first Oracle NetSuite practice from scratch. Hired and trained a 10–15 person delivery team that executed 15+ full-cycle implementations for clients of varying scale."
-    },
-    {
-      "company": "Crowe Hussain Chaudhury & Co.",
-      "location": "Pakistan",
-      "role": "Senior Manager (ERP Advisory)",
-      "period": "2014–2018",
-      "overview": "Directed SAP Business One implementations and custom add-on engineering for 50+ enterprises. Managed major utility ERP programs with combined project value of ~PKR 600 Million."
-    },
-    {
-      "company": "Shaigan Pharma & Al-Aziz Packages",
-      "location": "Pakistan",
-      "role": "ERP & IT Leadership Roles",
-      "period": "2006–2014",
-      "overview": "Led in-house ERP deployments and software engineering across pharmaceutical and packaging manufacturing, including a fully in-house SAP Business One migration and custom DMS build."
-    }
-  ],
-  "certifications": [
-    {
-      "title": "AI & Digital Strategy",
-      "items": "LinkedIn: Integrating GenAI into Business Strategy (2025); Google Cloud Skills Boost: Introduction to Generative AI (2025); PMI: GenAI for Project Leaders (2024)"
-    },
-    {
-      "title": "ERP & Enterprise Platforms",
-      "items": "Microsoft: Dynamics 365 Solution Architect & Power Platform (2024); Odoo Enterprise & Studio (2023); NetSuite Partner Enablement (2018); SAP Business One (2009/2013)"
-    },
-    {
-      "title": "Project Leadership",
-      "items": "IBM: Project Management & Agile Explorer (2025); PMP Training, PMI (2015)"
-    },
-    {
-      "title": "Cybersecurity & Audit",
-      "items": "ISC² Candidate (2024–2025); CISA Training (2012); ISACA Training (2013)"
-    },
-    {
-      "title": "Data & Analytics",
-      "items": "CBAP Training (2014); Tableau, Simplilearn (2024)"
-    },
-    {
-      "title": "Leadership & Education",
-      "items": "Total Quality Management, NPO Govt of Pakistan (2010); MBA (MIS), UMT Lahore (1999); B.Com, Hailey College of Commerce (1996)"
-    }
-  ],
-  "productJourney": {
-    "headline": "From Solving Client Problems to Building Software Products.",
-    "p1": "Our advisory work puts us on the front lines of operational problems every day. When we spot recurring gaps across businesses, we build focused, lightweight software products to solve them.",
-    "p2": "Entrpryz product principles are straightforward:",
-    "motto": "Solve real operational problems. Build clean software. Keep it accessible.",
-    "status": "Software products currently in active development.",
-    "cta": "Talk to Us →"
-  },
-  "contact": {
-    "headline": "Let's Talk About Your Systems.",
-    "body": "New ERP rollout, a stalled implementation, custom business software, or system security — start with a direct conversation with the people who'll actually do the work.",
-    "tagline": "Entrpryz — Technology. Simplified.",
-    "cta": "Schedule A Call →",
-    "contacts": {
-      "general": "connect@entrpryz.com",
-      "javed": "javed@entrpryz.com",
-      "waleed": "waleed@entrpryz.com"
-    }
-  },
-  "portfolio": {
-    "header": {
-      "headline": "25 Years of Delivery. 40+ Organizations Across Pakistan, the UAE & Beyond.",
-      "subheadline": "Every recommendation Entrpryz makes is grounded in work we've actually delivered — not theory. Below is the real track record behind the company: engagements delivered directly as Entrpryz, and the enterprise programs our founder built and led before Entrpryz existed."
-    },
-    "tiers": [
-      {
-        "id": "tier-1",
-        "title": "TIER 1 — ENTRPRYZ CLIENT ENGAGEMENTS",
-        "subtitle": "Delivered directly by Entrpryz / by Javed as an independent consultant, now under the Entrpryz brand.",
-        "featured": [
-          {
-            "client": "Digital Arts (Pvt) Ltd.",
-            "location": "Multan",
-            "website": "digitalarts.com.pk",
-            "status": "Current Engagement — Commencing December 2026",
-            "description": "End-to-end ERP and CRM implementation as part of a full digital transformation program — Entrpryz's flagship engagement under the company's own name.",
-            "image": "/images/portfolio-erp-utility.jpg"
-          },
-          {
-            "client": "Yuasa Investments",
-            "location": "Uganda",
-            "description": "Designed and built Yuasa's first-ever online car inventory management and sales operations system — bringing a fully manual dealership operation into a real-time, digital sales and inventory platform.",
-            "image": "/images/portfolio-yuasa.jpg"
-          },
-          {
-            "client": "Telecom Foundation",
-            "location": "Islamabad",
-            "website": "telecomfoundation.org.pk",
-            "description": "Engaged as Program Manager for ERP implementation and technology governance, bringing structured program discipline to a nationally recognized organization's ERP rollout.",
-            "image": "/images/services-digital-transformation.jpg"
-          }
-        ],
-        "additional": [
-          {
-            "client": "Madni Ghee Mills (Pvt) Ltd., Faisalabad",
-            "scope": "Complete MIS including manufacturing management",
-            "industry": "Manufacturing / Process",
-            "platform": "Custom MIS"
-          },
-          {
-            "client": "Al-Farid Fabrics (Pvt) Ltd., Faisalabad",
-            "scope": "Complete trading management software",
-            "industry": "Textile / Trading",
-            "platform": "Custom Software"
-          },
-          {
-            "client": "United Dairy Farms (Pvt) Ltd. (PakPure Desi Ghee)",
-            "scope": "Complete MIS including production management",
-            "industry": "FMCG / Agriculture",
-            "platform": "Custom MIS"
-          },
-          {
-            "client": "GMSA Pakistan (gmsa.com.pk)",
-            "scope": "Complete trading management software",
-            "industry": "Trading & Distribution",
-            "platform": "Custom Software"
-          },
-          {
-            "client": "Al-Aziz Packages and Printing Ltd., Faisalabad (alazizgroup.com)",
-            "scope": "Accounting, Inventory, Supply Chain & Production management software",
-            "industry": "Packaging & Manufacturing",
-            "platform": "Custom ERP / MIS"
-          },
-          {
-            "client": "Multiple small businesses, Faisalabad",
-            "scope": "Standard hire-purchase/leasing management software for installment-based sales",
-            "industry": "Retail / Finance",
-            "platform": "Custom Leasing System"
-          },
-          {
-            "client": "Gaba Traders",
-            "scope": "Trading management software including materials import, inventory & sales",
-            "industry": "Import / Trading",
-            "platform": "Custom Trading MIS"
-          },
-          {
-            "client": "AKY Trading, Yarn Market Faisalabad",
-            "scope": "Specialized yarn-market operations software",
-            "industry": "Textiles / Commodity",
-            "platform": "Custom Operations System"
-          }
-        ]
-      },
-      {
-        "id": "tier-2",
-        "title": "TIER 2 — ENTERPRISE TRACK RECORD: KEYSTONE CONSULTING (2018–2022)",
-        "subtitle": "Delivered by Javed as Vice President, Mid-Market Cloud Services, Keystone Consulting (Pvt.) Ltd. — prior to founding Entrpryz.",
-        "featured": [
-          {
-            "client": "Continental Plastic Industries (Pvt) Ltd.",
-            "location": "Lahore",
-            "website": "continentalplastic.com",
-            "description": "Full-scope NetSuite deployment covering Financials, Inventory, Sales, Purchase, and Advanced Manufacturing — one of the most complete implementations in the portfolio.",
-            "image": "/images/portfolio-netsuite-mfg.jpg"
-          },
-          {
-            "client": "Askari Life Insurance Co. Ltd.",
-            "location": "Karachi",
-            "website": "askarilife.com",
-            "description": "NetSuite Financials integrated directly with a bespoke .NET-based insurance operations system, replacing manual reconciliation with real-time financial data flow between platforms.",
-            "image": "/images/services-software-dev.jpg"
-          },
-          {
-            "client": "NETSOL Technologies Pakistan",
-            "location": "Lahore",
-            "website": "netsolpk.com",
-            "description": "NetSuite OneWorld with Advanced Financials, Advanced Revenue Management, and multiple external system integrations — delivered for one of Pakistan's most established technology companies.",
-            "image": "/images/services-it-infrastructure.jpg"
-          }
-        ],
-        "additional": [
-          {
-            "client": "Vertex Chemicals, Faisalabad",
-            "scope": "NetSuite CRM, Financials base",
-            "industry": "Chemicals",
-            "platform": "Oracle NetSuite"
-          },
-          {
-            "client": "Empire Properties, Karachi",
-            "scope": "NetSuite Financials base",
-            "industry": "Real Estate",
-            "platform": "Oracle NetSuite"
-          },
-          {
-            "client": "Hoora Pharma (Pvt) Ltd., Karachi (hoorapharma.com)",
-            "scope": "NetSuite for medical equipment import/trading",
-            "industry": "Pharmaceutical / Medical",
-            "platform": "Oracle NetSuite"
-          },
-          {
-            "client": "Darson Industries (Pvt) Ltd. (darson-industries.com)",
-            "scope": "NetSuite Advanced Manufacturing (WO/Assembly + WIP & Routing)",
-            "industry": "Manufacturing",
-            "platform": "Oracle NetSuite"
-          },
-          {
-            "client": "Dar ul Sakoon (non-profit)",
-            "scope": "NetSuite implementation",
-            "industry": "Non-Profit",
-            "platform": "Oracle NetSuite"
-          },
-          {
-            "client": "OLX Pakistan, Lahore",
-            "scope": "NetSuite Financials",
-            "industry": "E-Commerce / Tech",
-            "platform": "Oracle NetSuite"
-          },
-          {
-            "client": "ELMED Instruments (Pvt) Ltd., Sialkot (elmedinst.com)",
-            "scope": "NetSuite Financials base, manufacturing",
-            "industry": "Surgical / Manufacturing",
-            "platform": "Oracle NetSuite"
-          },
-          {
-            "client": "Nizam Sons (Pvt) Ltd., Sialkot (nizamsons.com)",
-            "scope": "NetSuite — all modules, Advanced Manufacturing",
-            "industry": "Apparel & Manufacturing",
-            "platform": "Oracle NetSuite"
-          },
-          {
-            "client": "Global Industry Suppliers (Pvt) Ltd., Islamabad",
-            "scope": "NetSuite Financials base",
-            "industry": "Industrial Supply",
-            "platform": "Oracle NetSuite"
-          }
-        ]
-      },
-      {
-        "id": "tier-3",
-        "title": "TIER 3 — ENTERPRISE TRACK RECORD: CROWE HUSSAIN CHAUDHURY & CO. (2014–2018)",
-        "subtitle": "Delivered by Javed as Senior Manager (ERP), Crowe Hussain Chaudhury & Co. — prior to founding Entrpryz.",
-        "featured": [
-          {
-            "client": "Focus & Rulz Pharmaceuticals (Pvt) Ltd.",
-            "location": "Islamabad",
-            "website": "focusandrulz.com",
-            "description": "SAP Business One implementation — set the fastest recorded SAP B1 implementation time in Pakistan.",
-            "image": "/images/services-digital-transformation.jpg"
-          },
-          {
-            "client": "Murree Brewery Company Limited",
-            "location": "Islamabad",
-            "description": "Led the Post-Implementation Review across the company's Microsoft/Oracle ERP environment, diagnosing performance and governance gaps and delivering an executive remediation roadmap.",
-            "image": "/images/product-journey.jpg"
-          },
-          {
-            "client": "Crestex — The Crescent Textile Mills Ltd.",
-            "location": "Faisalabad",
-            "description": "Led a full Post-Implementation Review of the client's Oracle EBS environment, resolving critical workflow misalignments for one of Pakistan's largest textile groups.",
-            "image": "/images/portfolio-netsuite-mfg.jpg"
-          },
-          {
-            "client": "Tops Food & Beverages",
-            "location": "Islamabad",
-            "description": "Led the Post-Implementation Review of the client's ERP environment, identifying process and reporting gaps and delivering a remediation plan.",
-            "image": "/images/product-journey.jpg"
-          }
-        ],
-        "additional": [
-          {
-            "client": "Khatoon Soap Ind., Gujranwala",
-            "scope": "SAP B1 implementation with custom HR/Payroll add-on",
-            "industry": "FMCG",
-            "platform": "SAP Business One"
-          },
-          {
-            "client": "Sublime Wireless, Lahore",
-            "scope": "SAP B1 implementation",
-            "industry": "Telecom / Tech",
-            "platform": "SAP Business One"
-          },
-          {
-            "client": "Stallion Pharmaceutical, Lahore",
-            "scope": "SAP B1 implementation",
-            "industry": "Pharmaceutical",
-            "platform": "SAP Business One"
-          },
-          {
-            "client": "Wimmits Pharmaceutical, Lahore",
-            "scope": "SAP B1 implementation",
-            "industry": "Pharmaceutical",
-            "platform": "SAP Business One"
-          },
-          {
-            "client": "Selmore Pharmaceuticals Limited (selmorepharma.com)",
-            "scope": "SAP B1 implementation",
-            "industry": "Pharmaceutical",
-            "platform": "SAP Business One"
-          },
-          {
-            "client": "Limelight (Maypole Pvt. Ltd.) (limelight.pk)",
-            "scope": "SAP B1 implementation",
-            "industry": "Retail / Apparel",
-            "platform": "SAP Business One"
-          },
-          {
-            "client": "MauSummery, Lahore (mausummery.com)",
-            "scope": "SAP B1 implementation",
-            "industry": "Retail / Apparel",
-            "platform": "SAP Business One"
-          },
-          {
-            "client": "Shibli Electronics Limited, Islamabad (shibli.com)",
-            "scope": "SAP B1 implementation",
-            "industry": "Electronics",
-            "platform": "SAP Business One"
-          },
-          {
-            "client": "Al Hafiz Crystoplast (Pvt) Ltd., Islamabad (ahcp-pet.com)",
-            "scope": "SAP B1 implementation",
-            "industry": "Packaging & Plastics",
-            "platform": "SAP Business One"
-          },
-          {
-            "client": "Fuelers (Pvt) Ltd., Lahore",
-            "scope": "SAP B1 implementation",
-            "industry": "Energy / Distribution",
-            "platform": "SAP Business One"
-          },
-          {
-            "client": "Mohsin Match Factory Pvt Ltd., Peshawar (azizgrp.com)",
-            "scope": "SAP B1 implementation",
-            "industry": "Manufacturing",
-            "platform": "SAP Business One"
-          },
-          {
-            "client": "Toyota Garden Motors, Lahore",
-            "scope": "SAP B1 implementation",
-            "industry": "Automotive",
-            "platform": "SAP Business One"
-          }
-        ]
-      }
-    ],
-    "achievements": [
-      "Pioneered Oracle NetSuite in Pakistan — recruited as Keystone's founding NetSuite hire, built and trained the country's first NetSuite delivery practice",
-      "15+ NetSuite implementations across manufacturing, pharma, insurance, and retail, supporting deployments of varying scale",
-      "50+ SAP Business One implementations, including Pakistan's fastest recorded SAP B1 go-live",
-      "~PKR 600 million combined program value across national utility ERP and billing modernization work",
-      "First-ever online inventory/sales platform delivered for an international client (Yuasa Investments, Uganda)"
     ],
     "cta": {
-      "headline": "Want to See What This Looks Like for Your Business?",
-      "buttonText": "Talk to Us →",
-      "buttonHref": "#contact"
+      "label": "Talk to Us",
+      "href": "/contact"
     }
+  },
+  "contact": {
+    "email": "connect@entrpryz.com",
+    "form": {
+      "nameLabel": "Your name",
+      "emailLabel": "Email address",
+      "companyLabel": "Company",
+      "areaLabel": "Area of interest",
+      "messageLabel": "Message",
+      "areas": [
+        "ERP or CRM implementation",
+        "Software development",
+        "AI Agents",
+        "Technology and IT services",
+        "ERP health check or turnaround",
+        "General consultation"
+      ],
+      "submitLabel": "Send message",
+      "privacyNote": "By sending this form you agree that we may use your details to reply to you. See our Privacy Policy.",
+      "successHeading": "Thank you for reaching out",
+      "successBody": "Your message has been received. We will get back to you shortly."
+    }
+  },
+  "homePage": {
+    "seo": {
+      "title": "Entrpryz | ERP, Software & IT Services in Pakistan & UAE",
+      "description": "25+ years of hands-on ERP, software and IT experience. Entrpryz helps businesses in Pakistan and the UAE fix, build and modernize their systems."
+    },
+    "blocks": [
+      {
+        "type": "hero",
+        "eyebrow": "25+ years of real-world technology experience",
+        "heading": "Technology. Simplified.",
+        "body": "Hands-on ERP, software and IT help for businesses in Pakistan and the UAE. We fix, build and modernize the systems you run on, without the jargon or the overhead.",
+        "buttons": [
+          {
+            "label": "Talk to Us",
+            "href": "/contact"
+          },
+          {
+            "label": "See Our Services",
+            "href": "/services"
+          }
+        ],
+        "aside": {
+          "heading": "Platforms we work with",
+          "items": [
+            {
+              "title": "Oracle NetSuite",
+              "detail": "15+ deployments"
+            },
+            {
+              "title": "SAP Business One",
+              "detail": "50+ implementations"
+            },
+            {
+              "title": "Odoo",
+              "detail": "ERP and CRM"
+            },
+            {
+              "title": "Microsoft Dynamics 365",
+              "detail": "Certified"
+            },
+            {
+              "title": "Custom business apps",
+              "detail": "Web and mobile"
+            }
+          ]
+        },
+        "image": "/images/hero-tech-bg.jpg"
+      },
+      {
+        "type": "stats",
+        "items": [
+          {
+            "value": "25+",
+            "label": "Years of experience"
+          },
+          {
+            "value": "65+",
+            "label": "ERP programs led"
+          },
+          {
+            "value": "40+",
+            "label": "Organizations served"
+          },
+          {
+            "value": "PK + UAE + Africa",
+            "label": "Where we operate"
+          }
+        ]
+      },
+      {
+        "type": "cards",
+        "eyebrow": "What we do",
+        "heading": "Three ways we help businesses move forward",
+        "items": [
+          {
+            "title": "Digital Transformation",
+            "description": "Make the systems you already own work, or choose and roll out the right ones.",
+            "bullets": [
+              "ERP and CRM implementation",
+              "Process automation",
+              "Reporting and BI",
+              "ERP health checks and turnarounds"
+            ],
+            "meta": [],
+            "links": [
+              {
+                "label": "Explore Digital Transformation",
+                "href": "/services#digital-transformation"
+              }
+            ]
+          },
+          {
+            "title": "Software Development",
+            "description": "Custom software built around how your team works, not the other way round.",
+            "bullets": [
+              "AI-enabled applications",
+              "Business apps and portals",
+              "Web and mobile products",
+              "APIs and integrations"
+            ],
+            "meta": [],
+            "links": [
+              {
+                "label": "Explore Software Development",
+                "href": "/services#software-development"
+              }
+            ]
+          },
+          {
+            "title": "Technology & IT Services",
+            "description": "Reliable infrastructure and sensible IT decisions that match your budget.",
+            "bullets": [
+              "Infrastructure and cloud",
+              "Cybersecurity and audit readiness",
+              "Backup and continuity",
+              "IT strategy and roadmaps"
+            ],
+            "meta": [],
+            "links": [
+              {
+                "label": "Explore Technology & IT Services",
+                "href": "/services#technology-it-services"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "steps",
+        "eyebrow": "How we work",
+        "heading": "We don't start with a product. We start with your problem.",
+        "items": [
+          {
+            "title": "Understand",
+            "description": "Your business, your goals and where things break down."
+          },
+          {
+            "title": "Analyze",
+            "description": "Your data, systems and day-to-day workflow."
+          },
+          {
+            "title": "Design",
+            "description": "A solution that fits your business and your budget."
+          },
+          {
+            "title": "Implement",
+            "description": "Build, integrate, roll out and make sure your team uses it."
+          },
+          {
+            "title": "Evolve",
+            "description": "Keep improving as your business grows."
+          }
+        ]
+      },
+      {
+        "type": "checklist",
+        "eyebrow": "Why Entrpryz",
+        "heading": "Approachable expertise, direct delivery",
+        "intro": "Technology should make business simpler, faster and better. That is the only test we apply to our work.",
+        "items": [
+          {
+            "title": "Experience you can check",
+            "description": "25+ years running ERP rollouts, IT departments and complex projects. The portfolio is public."
+          },
+          {
+            "title": "Business first, technology second",
+            "description": "We care about accuracy, speed and margin. The software is the means."
+          },
+          {
+            "title": "Solutions your team will use",
+            "description": "Practical systems that operations adopt and management can trust."
+          },
+          {
+            "title": "Technology agnostic",
+            "description": "We recommend what fits your operation. We are not tied to any vendor."
+          },
+          {
+            "title": "Direct, no-nonsense delivery",
+            "description": "You deal with the people doing the work, from the first call to go-live."
+          }
+        ]
+      },
+      {
+        "type": "cards",
+        "eyebrow": "Not sure where to start?",
+        "heading": "Start with a short, fixed-scope review",
+        "intro": "Before you commit to a rebuild, find out what you already have. Each review has a clear scope, a fixed fee and a written result.",
+        "items": [
+          {
+            "title": "SAP Business One Health Check",
+            "description": "4 to 6 weeks, part-time. Report and executive readout.",
+            "bullets": [],
+            "meta": [],
+            "links": [
+              {
+                "label": "View the health check",
+                "href": "/services/sap-business-one-health-check"
+              }
+            ]
+          },
+          {
+            "title": "MIS Assessment & Development Roadmap",
+            "description": "2 to 3 weeks. Assessment and roadmap for an in-house MIS.",
+            "bullets": [],
+            "meta": [],
+            "links": [
+              {
+                "label": "View the assessment",
+                "href": "/services/mis-assessment-development-roadmap"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "cards",
+        "items": [
+          {
+            "badge": "Starting December 2026",
+            "title": "Digital Arts (Pvt) Ltd., Multan",
+            "description": "End-to-end ERP and CRM implementation as part of a full digital transformation program. Entrpryz's first engagement under its own name.",
+            "bullets": [],
+            "meta": [],
+            "links": [
+              {
+                "label": "View portfolio",
+                "href": "/portfolio"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "eyebrow": "The people",
+        "heading": "Led by Javed Ahmad Qureshi, built with Waleed Ahmad",
+        "paragraphs": [
+          "Javed brings 25+ years across ERP, MIS, software and IT leadership. Waleed leads product engineering and delivery. Together they keep the work practical and hands-on."
+        ],
+        "button": {
+          "label": "Meet the team",
+          "href": "/about"
+        },
+        "aside": {
+          "heading": "The team",
+          "items": [
+            {
+              "title": "Javed Ahmad Qureshi",
+              "detail": "Founder"
+            },
+            {
+              "title": "Waleed Ahmad",
+              "detail": "Co-founder"
+            },
+            {
+              "title": "Based in Pakistan"
+            },
+            {
+              "title": "Serving Pakistan, UAE and Africa"
+            }
+          ]
+        }
+      },
+      {
+        "type": "faq",
+        "eyebrow": "Common questions",
+        "heading": "Before you get in touch",
+        "items": [
+          {
+            "question": "What does Entrpryz do?",
+            "answer": "Entrpryz helps businesses in Pakistan and the UAE implement and fix ERP and CRM systems, build custom software, and run reliable IT. The work is led by a founder with 25+ years of ERP and IT leadership experience."
+          },
+          {
+            "question": "Which platforms do you work with?",
+            "answer": "Oracle NetSuite, SAP Business One, Odoo, Microsoft Dynamics 365 and custom-built systems. We are technology agnostic and recommend what fits your operation."
+          },
+          {
+            "question": "Our ERP rollout is struggling. Can you help?",
+            "answer": "Yes. We review stalled or unsatisfying implementations, find where processes, data and adoption went wrong, and give your leadership a clear plan to fix it."
+          },
+          {
+            "question": "Do you only work on large projects?",
+            "answer": "No. Clients range from small trading and manufacturing businesses to listed companies. We size the approach to your business and budget."
+          },
+          {
+            "question": "How do we get started?",
+            "answer": "Send a short note about your situation. We will set up a call to understand the problem before suggesting any solution."
+          }
+        ]
+      },
+      {
+        "type": "cta",
+        "heading": "Let's build something that works.",
+        "body": "Have a technology or business challenge? Let's talk.",
+        "button": {
+          "label": "Talk to Us",
+          "href": "/contact"
+        }
+      }
+    ]
+  },
+  "aboutPage": {
+    "seo": {
+      "title": "About Entrpryz and Founder Javed Ahmad Qureshi",
+      "description": "Meet the team behind Entrpryz. Javed Ahmad Qureshi brings 25+ years of ERP and IT leadership, with Waleed Ahmad leading product engineering."
+    },
+    "blocks": [
+      {
+        "type": "hero",
+        "eyebrow": "About Entrpryz",
+        "heading": "Technology that works the way your business actually runs.",
+        "body": "Entrpryz was founded on one idea: technology should make business simpler, not more complicated. We start from how your business works, choose the right platforms, roll them out properly and make sure your team uses them.",
+        "buttons": []
+      },
+      {
+        "type": "profile",
+        "id": "founder",
+        "eyebrow": "Founder",
+        "name": "Javed Ahmad Qureshi",
+        "paragraphs": [
+          "25+ years of hands-on work across enterprise systems, ERP delivery and IT leadership, including 18+ years leading ERP programs and 14+ years in senior technology roles as CIO, Vice President and Senior Manager.",
+          "He currently serves as CIO of a real estate development and hospitality group across Pakistan and the UAE. Across his career he has directed 65+ ERP implementations in manufacturing, pharmaceuticals, retail, insurance, utilities and non-profits, including large power utility billing programs.",
+          "He founded Pakistan's first Oracle NetSuite practice at Keystone Consulting, and led 50+ SAP Business One implementations at Crowe Hussain Chaudhury & Co. He is known for keeping IT spending tied to business and audit needs."
+        ],
+        "image": "/images/javed-qureshi.jpg"
+      },
+      {
+        "type": "profile",
+        "id": "co-founder",
+        "eyebrow": "Co-founder",
+        "name": "Waleed Ahmad",
+        "paragraphs": [
+          "Waleed leads product engineering and technical delivery, with a focus on React Native and backend development. He builds the software products and custom applications that grow out of the problems we see in client work."
+        ],
+        "quote": "Technology should make business simpler, faster and better, not more complicated."
+      },
+      {
+        "type": "checklist",
+        "eyebrow": "Core strengths",
+        "heading": "What Javed brings",
+        "items": [
+          {
+            "description": "Enterprise IT strategy and governance"
+          },
+          {
+            "description": "Oracle NetSuite and SAP Business One delivery"
+          },
+          {
+            "description": "ERP, CRM and HCM integration"
+          },
+          {
+            "description": "Post-implementation reviews and ERP turnarounds"
+          },
+          {
+            "description": "Cybersecurity and audit readiness"
+          },
+          {
+            "description": "Cloud strategy and shared services"
+          },
+          {
+            "description": "Cross-border technology team management"
+          },
+          {
+            "description": "Program leadership and RFP ownership"
+          }
+        ]
+      },
+      {
+        "type": "checklist",
+        "eyebrow": "Credentials",
+        "heading": "Certifications and training",
+        "items": [
+          {
+            "title": "ERP and platforms",
+            "description": "Microsoft Dynamics 365 Solution Architect (2024), Odoo Enterprise and Studio (2023), NetSuite Partner Enablement (2018), SAP Business One"
+          },
+          {
+            "title": "AI and digital strategy",
+            "description": "LinkedIn, Google Cloud Skills Boost and PMI courses on generative AI (2024 to 2025)"
+          },
+          {
+            "title": "Project leadership",
+            "description": "IBM Project Management and Agile Explorer (2025), PMP training (2015)"
+          },
+          {
+            "title": "Education",
+            "description": "MBA (MIS), University of Management and Technology, Lahore. B.Com, Hailey College of Commerce."
+          }
+        ]
+      },
+      {
+        "type": "cta",
+        "heading": "Want to talk about your systems?",
+        "body": "Start with a conversation. No pitch, no pressure.",
+        "button": {
+          "label": "Talk to Us",
+          "href": "/contact"
+        }
+      }
+    ]
+  },
+  "servicesPage": {
+    "seo": {
+      "title": "ERP, Software Development & IT Services | Entrpryz",
+      "description": "ERP implementation, custom software and IT services for growing businesses. NetSuite, SAP Business One, Odoo and custom apps."
+    },
+    "blocks": [
+      {
+        "type": "hero",
+        "eyebrow": "Services",
+        "heading": "ERP, software and IT services for growing businesses",
+        "body": "Three practice areas, one team. Pick the one you need, or start with a conversation and we will help you decide.",
+        "buttons": []
+      },
+      {
+        "type": "checklist",
+        "id": "digital-transformation",
+        "eyebrow": "Digital Transformation",
+        "heading": "Make your systems work for the business",
+        "intro": "We implement, optimize and rescue the platforms that run finance, operations and sales.",
+        "link": {
+          "label": "See our fixed-scope reviews",
+          "href": "/services#fixed-scope-reviews"
+        },
+        "items": [
+          {
+            "title": "ERP implementation and optimization",
+            "description": "Oracle NetSuite, SAP Business One, Odoo and Dynamics 365."
+          },
+          {
+            "title": "CRM and sales operations",
+            "description": "Platforms and processes that your sales team will actually use."
+          },
+          {
+            "title": "Process automation and integration",
+            "description": "Connect systems, remove manual reconciliation and rekeying."
+          },
+          {
+            "title": "Reporting and business intelligence",
+            "description": "Dashboards that management trusts."
+          },
+          {
+            "title": "Cloud ERP migrations",
+            "description": "Move from legacy or in-house systems without losing operations."
+          },
+          {
+            "title": "Technology strategy and audit",
+            "description": "A clear view of where your systems help and where they hold you back."
+          }
+        ]
+      },
+      {
+        "type": "cards",
+        "id": "fixed-scope-reviews",
+        "eyebrow": "Fixed-scope reviews",
+        "heading": "Two ways to start, with a clear scope and a fixed fee",
+        "intro": "Fee is agreed after a short call. Each review ends with a written report and a live readout in plain business language.",
+        "items": [
+          {
+            "title": "SAP Business One Health Check",
+            "description": "For companies already running SAP Business One where adoption, reporting or add-ons are not delivering.",
+            "bullets": [],
+            "meta": [
+              {
+                "title": "Duration",
+                "detail": "4 to 6 weeks, part-time"
+              },
+              {
+                "title": "You receive",
+                "detail": "Written report and executive readout"
+              }
+            ],
+            "links": [
+              {
+                "label": "View details",
+                "href": "/services/sap-business-one-health-check"
+              }
+            ]
+          },
+          {
+            "title": "MIS Assessment & Development Roadmap",
+            "description": "For companies running an in-house built MIS that has outgrown its team, its documentation or its technology.",
+            "bullets": [],
+            "meta": [
+              {
+                "title": "Duration",
+                "detail": "2 to 3 weeks"
+              },
+              {
+                "title": "You receive",
+                "detail": "Assessment report and development roadmap"
+              }
+            ],
+            "links": [
+              {
+                "label": "View details",
+                "href": "/services/mis-assessment-development-roadmap"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "checklist",
+        "id": "software-development",
+        "eyebrow": "Software Development",
+        "heading": "Custom software built around your operation",
+        "intro": "When off-the-shelf software does not fit, we build what does, and keep it maintainable.",
+        "items": [
+          {
+            "title": "AI-enabled applications",
+            "description": "Practical use of AI where it saves real time or money, including AI Agents that handle routine work."
+          },
+          {
+            "title": "Custom business applications",
+            "description": "Management systems for trading, manufacturing, distribution and leasing."
+          },
+          {
+            "title": "Web and mobile apps",
+            "description": "Customer and supplier portals, field and sales apps."
+          },
+          {
+            "title": "APIs and system connectors",
+            "description": "Reliable links between your ERP, apps and partners."
+          },
+          {
+            "title": "Workflow automation",
+            "description": "Approvals, alerts and routine tasks handled by software."
+          }
+        ]
+      },
+      {
+        "type": "cards",
+        "items": [
+          {
+            "badge": "New",
+            "title": "AI Agents for everyday business work",
+            "description": "Software that reads, checks, drafts and follows up on routine work, with your people staying in control.",
+            "bullets": [],
+            "meta": [],
+            "links": [
+              {
+                "label": "Explore AI Agents",
+                "href": "/services/ai-agents"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "checklist",
+        "id": "technology-it-services",
+        "eyebrow": "Technology & IT Services",
+        "heading": "Reliable IT without the overspend",
+        "intro": "Sensible infrastructure, security and support decisions, tied to what your business actually needs.",
+        "items": [
+          {
+            "title": "Infrastructure and cloud",
+            "description": "Servers, networks and cloud governance."
+          },
+          {
+            "title": "Cybersecurity and audit readiness",
+            "description": "Controls that hold up under external audit."
+          },
+          {
+            "title": "Backup and business continuity",
+            "description": "Recovery plans that have been tested."
+          },
+          {
+            "title": "IT strategy and budgets",
+            "description": "Roadmaps and vendor evaluations aligned to the P&L."
+          },
+          {
+            "title": "Systems support and maintenance",
+            "description": "Ongoing care for the systems you rely on."
+          }
+        ]
+      },
+      {
+        "type": "faq",
+        "eyebrow": "Common questions",
+        "heading": "About our services",
+        "items": [
+          {
+            "question": "How long does an ERP implementation take?",
+            "answer": "It depends on scope, modules and how ready your data is. We give a realistic timeline after the Understand and Analyze steps, not before."
+          },
+          {
+            "question": "Can you improve an ERP we already own?",
+            "answer": "Yes. Many of our engagements start with an existing system that is under-used, over-customized or poorly integrated."
+          },
+          {
+            "question": "Do you build custom software as well as implement ERP?",
+            "answer": "Yes. Our team covers both, so integrations and custom modules are planned together with the ERP, not bolted on later."
+          },
+          {
+            "question": "Is Odoo a good fit for a small or mid-size business?",
+            "answer": "Often, yes. Odoo covers accounting, sales, purchasing, inventory, manufacturing and CRM in one system, and it can be introduced one area at a time. We will tell you honestly if your operation is better served by another platform."
+          },
+          {
+            "question": "What is the difference between Odoo Community and Odoo Enterprise?",
+            "answer": "Community is the open-source edition with no license fee and covers the core business apps. Enterprise is the licensed edition with additional apps, vendor-hosted options and vendor support. We help you choose based on the features you actually need."
+          },
+          {
+            "question": "What does an Odoo project cost?",
+            "answer": "Odoo Community has no license fee, so the cost sits in implementation, customization, hosting and support. We scope these after a short call so you see the full picture before you commit."
+          },
+          {
+            "question": "Can Odoo be customized and connected to our other systems?",
+            "answer": "Yes. Odoo can be extended with custom modules and connected to your website, banks, courier services and other software. We keep customizations clean so future upgrades stay manageable."
+          }
+        ]
+      },
+      {
+        "type": "cta",
+        "heading": "Not sure which service you need?",
+        "body": "Tell us what is going wrong and we will point you to the right starting point.",
+        "button": {
+          "label": "Talk to Us",
+          "href": "/contact"
+        }
+      }
+    ]
+  },
+  "aiAgentsPage": {
+    "seo": {
+      "title": "AI Agents for Business Work | Entrpryz",
+      "description": "Practical AI Agents that handle routine business tasks inside your ERP, email and documents, with your people in control. Start with a small pilot."
+    },
+    "blocks": [
+      {
+        "type": "hero",
+        "eyebrow": "Software Development",
+        "heading": "AI Agents for everyday business work",
+        "body": "Software that reads, checks, drafts and follows up on routine work, so your team can spend its time on decisions. Your people stay in control, and the agent works inside the systems you already use.",
+        "buttons": [
+          {
+            "label": "Talk to Us",
+            "href": "/contact"
+          },
+          {
+            "label": "See all services",
+            "href": "/services"
+          }
+        ],
+        "aside": {
+          "heading": "At a glance",
+          "items": [
+            {
+              "title": "Start",
+              "detail": "A short pilot on one real task"
+            },
+            {
+              "title": "Control",
+              "detail": "Your people approve what matters"
+            },
+            {
+              "title": "Works with",
+              "detail": "Your ERP, email, documents and WhatsApp"
+            },
+            {
+              "title": "Fee",
+              "detail": "Agreed after a short call"
+            }
+          ]
+        }
+      },
+      {
+        "type": "cards",
+        "eyebrow": "What an AI Agent does",
+        "heading": "Practical help for tasks that eat your team's day",
+        "intro": "An AI Agent is software that can take a task, work through the steps and hand back a result. It reads the incoming document or message, checks it against your data, and prepares the next action for a person to approve.",
+        "items": [
+          {
+            "title": "Handle incoming enquiries",
+            "description": "Answer common questions, collect the missing details and pass qualified requests to the right person.",
+            "bullets": [],
+            "meta": [],
+            "links": []
+          },
+          {
+            "title": "Read and check documents",
+            "description": "Pull the key fields from invoices, purchase orders and delivery notes, and flag anything that does not match your records.",
+            "bullets": [],
+            "meta": [],
+            "links": []
+          },
+          {
+            "title": "Answer questions about your data",
+            "description": "Ask a plain-language question about stock, sales or receivables and get an answer from your system, with the source shown.",
+            "bullets": [],
+            "meta": [],
+            "links": []
+          },
+          {
+            "title": "Prepare reports and summaries",
+            "description": "Draft the weekly numbers, exception lists and management summaries your team now assembles by hand.",
+            "bullets": [],
+            "meta": [],
+            "links": []
+          },
+          {
+            "title": "Follow up and remind",
+            "description": "Chase overdue approvals, payments and replies so nothing waits for someone to remember.",
+            "bullets": [],
+            "meta": [],
+            "links": []
+          },
+          {
+            "title": "Triage and route work",
+            "description": "Sort requests by type and urgency and send them to the person who should deal with them.",
+            "bullets": [],
+            "meta": [],
+            "links": []
+          }
+        ]
+      },
+      {
+        "type": "steps",
+        "eyebrow": "How we build them",
+        "heading": "Start small, prove it, then extend",
+        "items": [
+          {
+            "title": "Pick one task",
+            "description": "We choose a task that is repetitive, clearly defined and worth the effort."
+          },
+          {
+            "title": "Build a pilot",
+            "description": "A working agent on your real data, with a person approving each result."
+          },
+          {
+            "title": "Measure",
+            "description": "We compare time, errors and effort before and after, using your numbers."
+          },
+          {
+            "title": "Extend",
+            "description": "If it works, we widen its scope. If not, we say so and stop."
+          }
+        ]
+      },
+      {
+        "type": "checklist",
+        "eyebrow": "How we work",
+        "heading": "Clear boundaries, no black boxes",
+        "items": [
+          {
+            "title": "People stay in control",
+            "description": "Agents prepare and suggest. Sensitive actions such as payments, postings and customer commitments wait for human approval."
+          },
+          {
+            "title": "Your data stays yours",
+            "description": "We agree where data is processed and stored before the build starts, and we use only what the task needs."
+          },
+          {
+            "title": "Built into your systems",
+            "description": "Agents connect to your ERP, email, documents and messaging, instead of sitting in a separate tool nobody opens."
+          },
+          {
+            "title": "Honest about limits",
+            "description": "AI makes mistakes. We design checks, logs and fallbacks so errors are caught early and are easy to trace."
+          }
+        ]
+      },
+      {
+        "type": "faq",
+        "eyebrow": "Common questions",
+        "heading": "About AI Agents",
+        "items": [
+          {
+            "question": "What is an AI Agent?",
+            "answer": "An AI Agent is software that takes a task, works through the steps using your data and tools, and returns a result for a person to review or approve. It is different from a simple chatbot because it can act on information in your systems."
+          },
+          {
+            "question": "Will an AI Agent replace my staff?",
+            "answer": "That is not our goal. Agents take over repetitive tasks such as checking, copying and chasing, so your team has time for work that needs judgement. People review the results and make the decisions."
+          },
+          {
+            "question": "Is my business data safe?",
+            "answer": "We agree up front which data the agent can see, where it is processed and who can access the results. We use only the data the task needs, and we build access controls and logs into every agent."
+          },
+          {
+            "question": "Can an agent work with our ERP?",
+            "answer": "Yes. We connect agents to platforms such as NetSuite, SAP Business One, Odoo and Dynamics 365, as well as email, documents and WhatsApp, depending on what your process uses."
+          },
+          {
+            "question": "How do we start?",
+            "answer": "Send a short note about the task that costs you the most time. We will talk it through, tell you honestly whether an agent is the right answer, and propose a small pilot if it is."
+          }
+        ]
+      },
+      {
+        "type": "cta",
+        "heading": "Have a task in mind?",
+        "body": "Tell us the job that costs your team the most time. We will tell you honestly if an AI Agent can help.",
+        "button": {
+          "label": "Talk to Us",
+          "href": "/contact"
+        }
+      }
+    ]
+  },
+  "sapHealthCheckPage": {
+    "seo": {
+      "title": "SAP Business One Health Check | Entrpryz",
+      "description": "Independent 4 to 6 week review of your SAP Business One system. Written report and executive readout. Fixed fee agreed after a short call."
+    },
+    "blocks": [
+      {
+        "type": "hero",
+        "eyebrow": "Fixed-scope review",
+        "heading": "SAP Business One Health Check",
+        "body": "An independent review for companies that already run SAP Business One and want to know why adoption, reporting or add-ons are not delivering.",
+        "buttons": [
+          {
+            "label": "Book a short call",
+            "href": "/contact"
+          }
+        ],
+        "aside": {
+          "heading": "At a glance",
+          "items": [
+            {
+              "title": "Duration",
+              "detail": "4 to 6 weeks, part-time"
+            },
+            {
+              "title": "Format",
+              "detail": "Remote first, with limited on-site sessions"
+            },
+            {
+              "title": "You receive",
+              "detail": "Written report and a live executive readout"
+            },
+            {
+              "title": "Fee",
+              "detail": "Fixed, agreed after a short call"
+            }
+          ]
+        }
+      },
+      {
+        "type": "checklist",
+        "eyebrow": "Who it is for",
+        "heading": "You will recognize at least one of these",
+        "items": [
+          {
+            "description": "Leadership inherited a system they did not choose."
+          },
+          {
+            "description": "Reports do not match what the business sees on the ground."
+          },
+          {
+            "description": "Custom add-ons exist, but nobody has documented them."
+          },
+          {
+            "description": "The original implementation partner is gone or too expensive."
+          },
+          {
+            "description": "Teams work around the system instead of in it."
+          }
+        ]
+      },
+      {
+        "type": "cards",
+        "eyebrow": "What we review",
+        "heading": "Six areas, in plain business terms",
+        "items": [
+          {
+            "title": "Process fit and adoption",
+            "description": "Does the system follow how you actually work, and do people use it?",
+            "bullets": [],
+            "meta": [],
+            "links": []
+          },
+          {
+            "title": "Reporting and data",
+            "description": "Can management trust the numbers, and where do they break?",
+            "bullets": [],
+            "meta": [],
+            "links": []
+          },
+          {
+            "title": "Add-ons and integrations",
+            "description": "What was built on top, who maintains it, and how risky is it?",
+            "bullets": [],
+            "meta": [],
+            "links": []
+          },
+          {
+            "title": "Users, roles and controls",
+            "description": "Who can do what, and does it hold up under audit?",
+            "bullets": [],
+            "meta": [],
+            "links": []
+          },
+          {
+            "title": "Performance and resilience",
+            "description": "Backup, speed, and readiness for upgrades.",
+            "bullets": [],
+            "meta": [],
+            "links": []
+          },
+          {
+            "title": "Support arrangements",
+            "description": "What you pay for, and what you actually receive.",
+            "bullets": [],
+            "meta": [],
+            "links": []
+          }
+        ]
+      },
+      {
+        "type": "steps",
+        "eyebrow": "How it runs",
+        "heading": "Four steps, with no surprises",
+        "items": [
+          {
+            "title": "Scoping call",
+            "description": "A short conversation to confirm scope and fee. No obligation."
+          },
+          {
+            "title": "Interviews and walk-throughs",
+            "description": "We talk to your users and look at the live system."
+          },
+          {
+            "title": "Analysis",
+            "description": "Findings are ranked by business impact and effort."
+          },
+          {
+            "title": "Report and readout",
+            "description": "A written report, then a live session with leadership."
+          }
+        ]
+      },
+      {
+        "type": "faq",
+        "eyebrow": "Common questions",
+        "heading": "About the health check",
+        "items": [
+          {
+            "question": "Do you need access to our live system?",
+            "answer": "We need read access and a walk-through with your key users. We agree what access is appropriate before we start."
+          },
+          {
+            "question": "Will you recommend replacing SAP Business One?",
+            "answer": "Only if the evidence supports it. Many systems are fixed by changing process, data and add-ons rather than the platform."
+          },
+          {
+            "question": "Can you also fix what you find?",
+            "answer": "Yes, as a separate engagement. The review stands on its own, so you are free to take the report to any partner."
+          }
+        ]
+      },
+      {
+        "type": "cta",
+        "heading": "Want to know where your system stands?",
+        "body": "Start with a short call. Fee is fixed and agreed before any work begins.",
+        "button": {
+          "label": "Talk to Us",
+          "href": "/contact"
+        }
+      }
+    ]
+  },
+  "misAssessmentPage": {
+    "seo": {
+      "title": "MIS Assessment & Development Roadmap | Entrpryz",
+      "description": "Independent 2 to 3 week assessment of your in-house MIS, with a clear roadmap to stabilize, modernize or replace it. Fixed fee agreed after a short call."
+    },
+    "blocks": [
+      {
+        "type": "hero",
+        "eyebrow": "Fixed-scope review",
+        "heading": "MIS Assessment & Development Roadmap",
+        "body": "An independent review for companies that run an in-house built MIS and need to know whether to stabilize it, modernize it or replace it.",
+        "buttons": [
+          {
+            "label": "Book a short call",
+            "href": "/contact"
+          }
+        ],
+        "aside": {
+          "heading": "At a glance",
+          "items": [
+            {
+              "title": "Duration",
+              "detail": "2 to 3 weeks"
+            },
+            {
+              "title": "Format",
+              "detail": "Remote first, with limited on-site sessions"
+            },
+            {
+              "title": "You receive",
+              "detail": "Assessment report and development roadmap"
+            },
+            {
+              "title": "Fee",
+              "detail": "Fixed, agreed after a short call"
+            }
+          ]
+        }
+      },
+      {
+        "type": "checklist",
+        "eyebrow": "Who it is for",
+        "heading": "You will recognize at least one of these",
+        "items": [
+          {
+            "description": "The system was built years ago and only one or two people understand it."
+          },
+          {
+            "description": "Every new request takes longer and breaks something else."
+          },
+          {
+            "description": "Documentation is thin, outdated or missing."
+          },
+          {
+            "description": "Reports need manual work in spreadsheets to be trusted."
+          },
+          {
+            "description": "Leadership is unsure whether to keep, rebuild or replace the system."
+          }
+        ]
+      },
+      {
+        "type": "cards",
+        "eyebrow": "What we assess",
+        "heading": "Six areas, in plain business terms",
+        "items": [
+          {
+            "title": "Business coverage",
+            "description": "Which processes the system supports, and where people work outside it.",
+            "bullets": [],
+            "meta": [],
+            "links": []
+          },
+          {
+            "title": "Data and reporting",
+            "description": "Data quality, duplicate records and whether management reports can be trusted.",
+            "bullets": [],
+            "meta": [],
+            "links": []
+          },
+          {
+            "title": "Technology and code",
+            "description": "Platform age, structure and how easy the system is to change safely.",
+            "bullets": [],
+            "meta": [],
+            "links": []
+          },
+          {
+            "title": "Security and access",
+            "description": "User roles, approvals, audit trails and backup arrangements.",
+            "bullets": [],
+            "meta": [],
+            "links": []
+          },
+          {
+            "title": "Documentation and knowledge",
+            "description": "What is written down, and how dependent the system is on individuals.",
+            "bullets": [],
+            "meta": [],
+            "links": []
+          },
+          {
+            "title": "Team and support",
+            "description": "Skills in the team, support arrangements and the cost of keeping things running.",
+            "bullets": [],
+            "meta": [],
+            "links": []
+          }
+        ]
+      },
+      {
+        "type": "checklist",
+        "eyebrow": "What you receive",
+        "heading": "A clear decision, not just a report",
+        "items": [
+          {
+            "title": "Assessment report",
+            "description": "Findings in plain language, ranked by business impact and risk."
+          },
+          {
+            "title": "Development roadmap",
+            "description": "Options to stabilize, modernize or replace, with a recommended path, phasing and effort."
+          },
+          {
+            "title": "Executive readout",
+            "description": "A live session with leadership to walk through the findings and answer questions."
+          }
+        ]
+      },
+      {
+        "type": "steps",
+        "eyebrow": "How it runs",
+        "heading": "Four steps, with no surprises",
+        "items": [
+          {
+            "title": "Scoping call",
+            "description": "A short conversation to confirm scope and fee. No obligation."
+          },
+          {
+            "title": "Interviews and walk-throughs",
+            "description": "We talk to users and the people who maintain the system."
+          },
+          {
+            "title": "Analysis",
+            "description": "We review the system, data and documentation and rank what we find."
+          },
+          {
+            "title": "Report and readout",
+            "description": "A written report and roadmap, then a live session with leadership."
+          }
+        ]
+      },
+      {
+        "type": "faq",
+        "eyebrow": "Common questions",
+        "heading": "About the MIS assessment",
+        "items": [
+          {
+            "question": "What is an in-house MIS?",
+            "answer": "It is a management information system built for your company, often by an internal developer or a small outside team, that runs processes such as sales, stock, production, accounts or HR."
+          },
+          {
+            "question": "Will you recommend replacing our system?",
+            "answer": "Only if the evidence supports it. Many in-house systems can be stabilized and extended at a fraction of the cost of a replacement. The roadmap sets out each option honestly."
+          },
+          {
+            "question": "Do you need access to our source code and data?",
+            "answer": "We need read access to the system and a walk-through with the people who maintain it. We agree what access is appropriate, and keep your information confidential."
+          },
+          {
+            "question": "Can you also carry out the roadmap?",
+            "answer": "Yes, as a separate engagement. The assessment stands on its own, so you are free to take the roadmap to any partner."
+          }
+        ]
+      },
+      {
+        "type": "cta",
+        "heading": "Want a clear plan for your MIS?",
+        "body": "Start with a short call. Fee is fixed and agreed before any work begins.",
+        "button": {
+          "label": "Talk to Us",
+          "href": "/contact"
+        }
+      }
+    ]
+  },
+  "portfolioPage": {
+    "seo": {
+      "title": "Portfolio: 40+ Organizations Served | Entrpryz",
+      "description": "25 years of ERP and software delivery across 40+ organizations in Pakistan, the UAE and beyond, grouped by who delivered the work."
+    },
+    "blocks": [
+      {
+        "type": "hero",
+        "eyebrow": "Portfolio",
+        "heading": "Experience that speaks for itself",
+        "body": "25 years of delivery across 40+ organizations in Pakistan, the UAE and beyond. Entrpryz engagements and our founder's independent work are named. Earlier work delivered through previous employers is described by platform and industry, without client names.",
+        "buttons": []
+      },
+      {
+        "type": "tags",
+        "eyebrow": "Industries served",
+        "items": [
+          {
+            "label": "Manufacturing"
+          },
+          {
+            "label": "Pharmaceuticals"
+          },
+          {
+            "label": "Insurance"
+          },
+          {
+            "label": "Real estate"
+          },
+          {
+            "label": "Utilities"
+          },
+          {
+            "label": "Retail and apparel"
+          },
+          {
+            "label": "Technology"
+          },
+          {
+            "label": "Automotive"
+          },
+          {
+            "label": "Packaging"
+          },
+          {
+            "label": "Energy distribution"
+          },
+          {
+            "label": "Trading"
+          },
+          {
+            "label": "Non-profit"
+          }
+        ]
+      },
+      {
+        "type": "tags",
+        "eyebrow": "Jump to",
+        "items": [
+          {
+            "label": "Entrpryz engagements",
+            "href": "#entrpryz-engagements"
+          },
+          {
+            "label": "Independent consulting",
+            "href": "#independent-consulting"
+          },
+          {
+            "label": "Oracle NetSuite",
+            "href": "#oracle-netsuite"
+          },
+          {
+            "label": "SAP Business One",
+            "href": "#sap-business-one"
+          },
+          {
+            "label": "Reviews and programs",
+            "href": "#reviews-and-programs"
+          },
+          {
+            "label": "Public-sector programs",
+            "href": "#public-sector-programs"
+          }
+        ]
+      },
+      {
+        "type": "group",
+        "id": "entrpryz-engagements",
+        "heading": "Entrpryz engagements",
+        "intro": "Current work, delivered directly under the Entrpryz name.",
+        "items": [
+          {
+            "name": "Digital Arts (Pvt) Ltd.",
+            "location": "Multan",
+            "description": "End-to-end ERP and CRM implementation, starting December 2026."
+          },
+          {
+            "name": "ELB Developers",
+            "description": "ERP implementation on Odoo, since November 2025."
+          },
+          {
+            "name": "Yuasa Investments Ltd.",
+            "location": "Uganda",
+            "description": "Website audit, 2026."
+          }
+        ]
+      },
+      {
+        "type": "group",
+        "id": "independent-consulting",
+        "heading": "Independent consulting",
+        "intro": "Delivered by Javed before Entrpryz was launched.",
+        "items": [
+          {
+            "name": "Yuasa Investments",
+            "location": "Uganda",
+            "description": "First online car inventory and sales operations system, moving a manual dealership onto one real-time platform."
+          },
+          {
+            "name": "GMSA Pakistan",
+            "description": "Complete trading management software."
+          },
+          {
+            "name": "Madni Ghee Mills",
+            "location": "Faisalabad",
+            "description": "Complete MIS including manufacturing management."
+          },
+          {
+            "name": "Al-Farid Fabrics",
+            "location": "Faisalabad",
+            "description": "Complete trading management software."
+          },
+          {
+            "name": "United Dairy Farms",
+            "location": "Faisalabad",
+            "description": "Complete MIS including production management."
+          },
+          {
+            "name": "Al-Aziz Packages and Printing",
+            "location": "Faisalabad",
+            "description": "Accounting, inventory, supply chain and production management."
+          },
+          {
+            "name": "Hire-purchase and leasing businesses",
+            "location": "Faisalabad",
+            "description": "Installment-sales management software used by several small businesses."
+          },
+          {
+            "name": "Gaba Traders",
+            "location": "Faisalabad",
+            "description": "Trading software covering imports, inventory and sales."
+          },
+          {
+            "name": "AKY Trading",
+            "location": "Faisalabad",
+            "description": "Software for yarn market operations."
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "heading": "Earlier track record, delivered through previous employers",
+        "paragraphs": [
+          "Client names are withheld. Work is grouped by platform and industry."
+        ]
+      },
+      {
+        "type": "group",
+        "id": "oracle-netsuite",
+        "heading": "Oracle NetSuite",
+        "intro": "Keystone Consulting, 2018 to 2022. Selected 12 of 15+ implementations.",
+        "items": [
+          {
+            "name": "Plastics manufacturing",
+            "description": "Financials, Inventory, Sales, Purchase and Advanced Manufacturing."
+          },
+          {
+            "name": "Life insurance",
+            "description": "Financials integrated with a custom .NET insurance system, replacing manual reconciliation."
+          },
+          {
+            "name": "Technology services",
+            "description": "OneWorld, Advanced Financials, Advanced Revenue Management and external integrations."
+          },
+          {
+            "name": "Chemicals",
+            "description": "CRM and Financials."
+          },
+          {
+            "name": "Real estate",
+            "description": "Financials."
+          },
+          {
+            "name": "Medical equipment trading",
+            "description": "NetSuite for import and trading."
+          },
+          {
+            "name": "Industrial manufacturing",
+            "description": "Advanced Manufacturing: work orders, assemblies, WIP and routing."
+          },
+          {
+            "name": "Non-profit",
+            "description": "Full implementation."
+          },
+          {
+            "name": "Online marketplace",
+            "description": "Financials."
+          },
+          {
+            "name": "Surgical instruments manufacturing",
+            "description": "Financials and manufacturing."
+          },
+          {
+            "name": "Apparel manufacturing",
+            "description": "All modules, including Advanced Manufacturing."
+          },
+          {
+            "name": "Industrial supply",
+            "description": "Financials."
+          }
+        ]
+      },
+      {
+        "type": "group",
+        "id": "sap-business-one",
+        "heading": "SAP Business One",
+        "intro": "Crowe Hussain Chaudhury & Co., 2014 to 2018. Selected implementations.",
+        "items": [
+          {
+            "name": "Pharmaceutical manufacturing (4)",
+            "description": "SAP Business One, including the fastest recorded SAP B1 implementation in Pakistan."
+          },
+          {
+            "name": "Retail and apparel (2)",
+            "description": "SAP Business One implementations."
+          },
+          {
+            "name": "Soap and FMCG manufacturing",
+            "description": "SAP Business One with a custom HR and payroll add-on."
+          },
+          {
+            "name": "Telecom and technology",
+            "description": "SAP Business One implementation."
+          },
+          {
+            "name": "Consumer electronics",
+            "description": "SAP Business One implementation."
+          },
+          {
+            "name": "Packaging and plastics",
+            "description": "SAP Business One implementation."
+          },
+          {
+            "name": "Energy distribution",
+            "description": "SAP Business One implementation."
+          },
+          {
+            "name": "Consumer goods manufacturing",
+            "description": "SAP Business One implementation."
+          },
+          {
+            "name": "Automotive dealership",
+            "description": "SAP Business One implementation."
+          }
+        ]
+      },
+      {
+        "type": "group",
+        "id": "reviews-and-programs",
+        "heading": "ERP reviews, turnarounds and programs",
+        "intro": "Post-implementation and governance reviews with executive-level reporting. Completed for Crowe Hussain Chaudhury & Co., as an employee and later as an independent consultant, plus program management on contract.",
+        "items": [
+          {
+            "name": "Beverage manufacturer",
+            "description": "Review of a Microsoft and Oracle ERP environment, with an executive remediation roadmap."
+          },
+          {
+            "name": "Textile group",
+            "description": "Review of an Oracle EBS environment, resolving critical workflow gaps."
+          },
+          {
+            "name": "Food and beverage company",
+            "description": "Review of the ERP environment, with a remediation plan."
+          },
+          {
+            "name": "Telecom-sector foundation",
+            "description": "Program manager, on contract, for an ERP implementation and technology governance."
+          }
+        ]
+      },
+      {
+        "type": "group",
+        "id": "public-sector-programs",
+        "heading": "Public-sector programs",
+        "intro": "Combined program value of about PKR 600 million.",
+        "items": [
+          {
+            "name": "Power utility, ERP program",
+            "description": "Built from zero: wrote the RFP, led vendor selection and partner onboarding, then oversaw SAP S/4HANA delivery. Also led a data center build-out."
+          },
+          {
+            "name": "Power utility, donor-funded",
+            "description": "Project manager for the donor, overseeing the implementation partner on an ERP and billing modernization."
+          },
+          {
+            "name": "Electricity distribution, NetSuite",
+            "description": "Financials and procurement plus a custom e-Tendering solution for public procurement and audit compliance."
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "paragraphs": [
+          "Client names for earlier work are withheld because it was delivered through previous employers. References are available on request, with the client's agreement. If you are a client described on this page and want a change or removal, contact us and we will act promptly."
+        ]
+      },
+      {
+        "type": "cta",
+        "heading": "Want to see what this looks like for your business?",
+        "body": "Tell us about your systems and we will tell you honestly where we can help.",
+        "button": {
+          "label": "Talk to Us",
+          "href": "/contact"
+        }
+      }
+    ]
+  },
+  "contactPage": {
+    "seo": {
+      "title": "Contact Entrpryz | Talk to Us",
+      "description": "Talk to the team about ERP, custom software or IT services. Based in Pakistan, serving Pakistan, the UAE and Africa."
+    },
+    "blocks": [
+      {
+        "type": "contact",
+        "eyebrow": "Contact",
+        "heading": "Let's talk about your systems",
+        "body": "A new ERP rollout, a stalled implementation, custom software or IT security. Start with a direct conversation with the people who will do the work.",
+        "emailLabel": "Email",
+        "locationLabel": "Where we work",
+        "location": "Based in Pakistan. Serving Pakistan, the UAE and Africa.",
+        "note": "Prefer a quick message? Use the WhatsApp button at the bottom right of any page.",
+        "formHeading": "Send a message"
+      }
+    ]
+  },
+  "privacyPage": {
+    "seo": {
+      "title": "Privacy Policy | Entrpryz",
+      "description": "How Entrpryz collects, uses and protects personal information on entrpryz.com, including the contact form and server logs."
+    },
+    "blocks": [
+      {
+        "type": "hero",
+        "eyebrow": "Legal",
+        "heading": "Privacy Policy",
+        "body": "Last updated: October 2026",
+        "buttons": []
+      },
+      {
+        "type": "prose",
+        "heading": "Who we are",
+        "body": [
+          {
+            "kind": "paragraph",
+            "text": "This website, entrpryz.com, is operated by Javed Ahmad Qureshi, trading as Entrpryz, based in Pakistan (\"Entrpryz\", \"we\", \"us\"). For the purposes of data protection, we are the data controller for the personal information described in this policy."
+          },
+          {
+            "kind": "paragraph",
+            "text": "You can contact us about this policy or your personal information at any time through the contact form on this website."
+          }
+        ]
+      },
+      {
+        "type": "prose",
+        "heading": "What information we collect",
+        "body": [
+          {
+            "kind": "paragraph",
+            "text": "Information you give us. When you use the contact form we collect your name, email address, company name, area of interest and the message you write. If you contact us through WhatsApp, we receive your phone number, your name as it appears in WhatsApp and the content of your messages."
+          },
+          {
+            "kind": "paragraph",
+            "text": "Information collected automatically. Like most websites, our hosting provider's servers record technical information such as your IP address, browser type, device type, pages visited and the date and time of each request. We do not use analytics or advertising tools."
+          }
+        ]
+      },
+      {
+        "type": "prose",
+        "heading": "How we use your information",
+        "body": [
+          {
+            "kind": "bullet",
+            "text": "To reply to your enquiry and discuss work with you."
+          },
+          {
+            "kind": "bullet",
+            "text": "To keep the website secure and prevent spam and abuse."
+          },
+          {
+            "kind": "bullet",
+            "text": "To meet legal and accounting obligations, where they apply."
+          },
+          {
+            "kind": "paragraph",
+            "text": "We do not sell your personal information, and we do not use it for automated decisions that significantly affect you."
+          }
+        ]
+      },
+      {
+        "type": "prose",
+        "heading": "Our legal basis",
+        "body": [
+          {
+            "kind": "paragraph",
+            "text": "Where the law requires a legal basis, we rely on our legitimate interest in running a secure website and replying to enquiries, and on taking steps at your request before entering into an agreement."
+          }
+        ]
+      },
+      {
+        "type": "prose",
+        "heading": "Cookies",
+        "body": [
+          {
+            "kind": "paragraph",
+            "text": "This website does not use analytics, advertising or tracking cookies, so there is no cookie notice to accept or decline."
+          },
+          {
+            "kind": "paragraph",
+            "text": "The only cookie the website sets is one that is strictly necessary for administrators to sign in. Visitors who do not sign in receive no cookies from us."
+          }
+        ]
+      },
+      {
+        "type": "prose",
+        "heading": "Who we share information with",
+        "body": [
+          {
+            "kind": "paragraph",
+            "text": "We share information only with service providers that help us run the website and the business, and only as needed:"
+          },
+          {
+            "kind": "bullet",
+            "text": "Vercel, our web hosting provider, which stores and serves the website and keeps its server logs."
+          },
+          {
+            "kind": "bullet",
+            "text": "Google (Gmail), our email provider, which delivers the messages you send through the contact form."
+          },
+          {
+            "kind": "bullet",
+            "text": "Meta Platforms (WhatsApp), if you choose to message us there."
+          },
+          {
+            "kind": "paragraph",
+            "text": "We may also disclose information if the law requires it or to protect our rights."
+          }
+        ]
+      },
+      {
+        "type": "prose",
+        "heading": "International transfers",
+        "body": [
+          {
+            "kind": "paragraph",
+            "text": "Some of these providers process information outside Pakistan and the UAE, including in the United States and the European Union. By using the website and the services above, you understand that your information may be processed in those locations under the safeguards each provider offers."
+          }
+        ]
+      },
+      {
+        "type": "prose",
+        "heading": "How long we keep information",
+        "body": [
+          {
+            "kind": "paragraph",
+            "text": "We keep contact form messages and related emails for as long as needed to deal with your enquiry and any resulting work, and generally for no more than 24 months after our last contact unless we are working together or the law requires us to keep them. Server logs are kept for a short period for security."
+          }
+        ]
+      },
+      {
+        "type": "prose",
+        "heading": "Your rights",
+        "body": [
+          {
+            "kind": "paragraph",
+            "text": "Depending on where you live, you may have the right to ask for a copy of your personal information, to have it corrected or deleted, to object to or restrict how we use it, to withdraw consent at any time and to complain to a data protection authority. To exercise any of these rights, contact us through the contact form and we will respond within a reasonable time."
+          }
+        ]
+      },
+      {
+        "type": "prose",
+        "heading": "Security",
+        "body": [
+          {
+            "kind": "paragraph",
+            "text": "We use reasonable technical and organizational measures to protect information, including encrypted connections (HTTPS), spam protection on the contact form and restricted access to our systems. No method of transmission or storage is completely secure, so we cannot guarantee absolute security."
+          }
+        ]
+      },
+      {
+        "type": "prose",
+        "heading": "Children",
+        "body": [
+          {
+            "kind": "paragraph",
+            "text": "This website is meant for business visitors and is not directed at children. We do not knowingly collect personal information from children."
+          }
+        ]
+      },
+      {
+        "type": "prose",
+        "heading": "Links to other websites",
+        "body": [
+          {
+            "kind": "paragraph",
+            "text": "This website may link to other websites, such as social media profiles. We are not responsible for their content or privacy practices."
+          }
+        ]
+      },
+      {
+        "type": "prose",
+        "heading": "Changes to this policy",
+        "body": [
+          {
+            "kind": "paragraph",
+            "text": "We may update this policy from time to time. The \"Last updated\" date at the top shows when it last changed."
+          }
+        ]
+      },
+      {
+        "type": "prose",
+        "heading": "Contact",
+        "body": [
+          {
+            "kind": "paragraph",
+            "text": "Questions about this policy? Use the contact form at entrpryz.com/contact and mention \"Privacy\" in your message."
+          }
+        ]
+      }
+    ]
   }
 }

@@ -1,119 +1,100 @@
 import Link from "next/link";
 import Image from "next/image";
-import { Mail } from "lucide-react";
-import { CONTACT_CONTENT, SITE_IMAGES } from "@/lib/content";
+import { Mail, MapPin } from "lucide-react";
+import { SITE_CONTENT } from "@/lib/site-content";
 import { SectionBackground } from "@/components/ui/section-background";
+import { PLATFORM_LABELS, SocialIcon } from "./social-icon";
+
+const linkClass = "hover:text-brand-orange transition-colors";
 
 export function Footer() {
+  const { site, navigation, contact, images } = SITE_CONTENT;
+  const pages = [...navigation.links, { name: "Contact", href: "/contact" }];
+  const year = new Date().getFullYear();
+
   return (
     <footer className="border-t border-surface-border bg-background text-text-secondary relative overflow-hidden">
-      {/* Abstract backdrop */}
       <SectionBackground />
-
       <div className="relative z-10 mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
-          {/* Brand Info */}
-          <div className="space-y-4 lg:col-span-5">
-            <Link href="/" className="inline-block">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-12">
+          <div className="space-y-4 lg:col-span-4">
+            <Link href="/" className="inline-block" aria-label={`${site.name} home`}>
               <div className="relative h-10 w-44">
-                <Image
-                  src={SITE_IMAGES.logo}
-                  alt="Entrpryz — Technology. Simplified."
-                  fill
-                  className="object-contain object-left"
-                />
+                <Image src={images.logo} alt={`${site.name} — ${site.tagline}`} fill className="object-contain object-left" />
               </div>
             </Link>
-            <p className="text-xs sm:text-sm text-text-secondary max-w-md leading-relaxed">
-              Digital Transformation &bull; Software Development &bull; Technology &amp; IT Services
-            </p>
             <p className="text-xs font-semibold uppercase tracking-widest text-brand-orange">
-              {CONTACT_CONTENT.tagline}
+              {site.name}. {site.tagline}
             </p>
+            {site.social.length > 0 && (
+              <ul className="flex items-center gap-3 pt-2">
+                {site.social.map((s) => (
+                  <li key={s.url}>
+                    <a
+                      href={s.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${site.name} on ${PLATFORM_LABELS[s.platform]}`}
+                      className="inline-flex h-9 w-9 items-center justify-center border border-surface-border text-text-secondary hover:border-brand-orange hover:text-brand-orange transition-colors"
+                    >
+                      <SocialIcon platform={s.platform} className="h-4 w-4" />
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
 
-          {/* Quick Links */}
-          <div className="space-y-3 lg:col-span-3">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-text-primary">
-              Navigation
-            </h4>
+          <nav aria-label="Services" className="space-y-3 lg:col-span-3">
+            <h2 className="text-xs font-semibold uppercase tracking-wider text-text-primary">Services</h2>
             <ul className="space-y-2 text-xs font-medium">
-              <li>
-                <Link href="#home" className="hover:text-brand-orange transition-colors">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="#about" className="hover:text-brand-orange transition-colors">
-                  About Entrpryz &amp; Leadership
-                </Link>
-              </li>
-              <li>
-                <Link href="#services" className="hover:text-brand-orange transition-colors">
-                  Services &amp; Solutions
-                </Link>
-              </li>
-              <li>
-                <Link href="#portfolio" className="hover:text-brand-orange transition-colors">
-                  Track Record &amp; Portfolio
-                </Link>
-              </li>
-              <li>
-                <Link href="#contact" className="hover:text-brand-orange transition-colors">
-                  Contact Us
-                </Link>
-              </li>
+              {site.footerServices.map((s) => (
+                <li key={s.href}>
+                  <Link href={s.href} className={linkClass}>
+                    {s.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
-          </div>
+          </nav>
 
-          {/* Direct Email Contacts */}
-          <div className="space-y-3 lg:col-span-4">
-            <h4 className="text-xs font-semibold uppercase tracking-wider text-text-primary">
-              Direct Contact
-            </h4>
-            <ul className="space-y-2.5 text-xs">
+          <nav aria-label="Pages" className="space-y-3 lg:col-span-2">
+            <h2 className="text-xs font-semibold uppercase tracking-wider text-text-primary">Pages</h2>
+            <ul className="space-y-2 text-xs font-medium">
+              {pages.map((p) => (
+                <li key={p.href}>
+                  <Link href={p.href} className={linkClass}>
+                    {p.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div className="space-y-3 lg:col-span-3">
+            <h2 className="text-xs font-semibold uppercase tracking-wider text-text-primary">Contact</h2>
+            <ul className="space-y-3 text-xs">
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-brand-orange shrink-0" />
-                <span className="text-text-secondary">General:</span>
-                <a
-                  href={`mailto:${CONTACT_CONTENT.contacts.general}`}
-                  className="text-text-primary hover:text-brand-orange transition-colors font-medium"
-                >
-                  {CONTACT_CONTENT.contacts.general}
+                <a href={`mailto:${contact.email}`} className="text-text-primary hover:text-brand-orange transition-colors font-medium break-all">
+                  {contact.email}
                 </a>
               </li>
-              <li className="flex items-center gap-2">
-                <Mail className="h-4 w-4 text-brand-orange shrink-0" />
-                <span className="text-text-secondary">Javed Ahmad Qureshi (Founder):</span>
-                <a
-                  href={`mailto:${CONTACT_CONTENT.contacts.javed}`}
-                  className="text-text-primary hover:text-brand-orange transition-colors font-medium"
-                >
-                  {CONTACT_CONTENT.contacts.javed}
-                </a>
-              </li>
-              <li className="flex items-center gap-2">
-                <Mail className="h-4 w-4 text-brand-orange shrink-0" />
-                <span className="text-text-secondary">Waleed Ahmad (Co-Founder):</span>
-                <a
-                  href={`mailto:${CONTACT_CONTENT.contacts.waleed}`}
-                  className="text-text-primary hover:text-brand-orange transition-colors font-medium"
-                >
-                  {CONTACT_CONTENT.contacts.waleed}
-                </a>
+              <li className="flex items-start gap-2">
+                <MapPin className="h-4 w-4 text-brand-orange shrink-0" />
+                <span>{site.location}</span>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="mt-14 flex flex-col items-center justify-between border-t border-surface-border pt-6 sm:flex-row text-xs text-text-secondary">
-          <p>© 2026 Entrpryz. All rights reserved.</p>
-          <div className="mt-4 flex items-center gap-6 sm:mt-0">
-            <span>Pakistan &amp; UAE Operations</span>
-            <span>&bull;</span>
-            <span className="text-brand-orange">Technology. Simplified.</span>
-          </div>
+        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-surface-border pt-6 sm:flex-row text-xs">
+          <p>
+            © {year} {site.copyright}
+          </p>
+          <Link href="/privacy-policy" className={linkClass}>
+            Privacy Policy
+          </Link>
         </div>
       </div>
     </footer>

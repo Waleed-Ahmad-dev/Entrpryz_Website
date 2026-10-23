@@ -1,13 +1,8 @@
 import type { ContactFormData } from "@/types";
+import { SITE_CONTENT } from "./site-content";
 
-/** Allowed "Area of interest" values — server rejects anything else. */
-export const SERVICE_OPTIONS = [
-  { value: "Digital Transformation", label: "Digital Transformation (ERP/CRM)" },
-  { value: "Software Development", label: "Software Development & Custom Apps" },
-  { value: "Technology & IT Services", label: "Technology & IT Services / Infra" },
-  { value: "ERP Turnaround / PIR", label: "ERP Post-Implementation Review / Turnaround" },
-  { value: "General Consultation", label: "General Technology Consultation" },
-] as const;
+/** Allowed "Area of interest" values (editable in /admin) — server rejects anything else. */
+export const CONTACT_AREAS: readonly string[] = SITE_CONTENT.contact.form.areas;
 
 export const FIELD_LIMITS = {
   name: 100,
@@ -57,7 +52,7 @@ export function validateContact(input: unknown): ValidationResult {
   if (data.organization.length > FIELD_LIMITS.organization)
     errors.organization = "Organization name is too long.";
 
-  if (!SERVICE_OPTIONS.some((o) => o.value === data.service))
+  if (!CONTACT_AREAS.includes(data.service))
     errors.service = "Please choose an area of interest.";
 
   if (data.message.length < 10) errors.message = "Please add a few more details (10+ characters).";
