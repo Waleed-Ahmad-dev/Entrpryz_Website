@@ -415,7 +415,8 @@
         "paragraphs": [
           "Waleed leads product engineering and technical delivery, with a focus on React Native and backend development. He builds the software products and custom applications that grow out of the problems we see in client work."
         ],
-        "quote": "Technology should make business simpler, faster and better, not more complicated."
+        "quote": "Technology should make business simpler, faster and better, not more complicated.",
+        "image": "/images/waleed-ahmad.jpg"
       },
       {
         "type": "checklist",
