@@ -23,7 +23,7 @@ npm run start        # serve the production build
 
 ```
 src/
-  app/               layout + one-pager (`page.tsx`), robots/sitemap, icons, globals.css
+  app/               root layout, (site) pages, admin, api, robots/sitemap, icons, globals.css
     api/contact/     POST endpoint: validates inquiries and emails them over SMTP
   components/
     layout/          header (scroll-spy nav), footer, section-container
