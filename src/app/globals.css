@@ -3,20 +3,29 @@
 @tailwind utilities;
 
 :root {
-  --background: 8 10 13;
+  --background: 9 11 15;
   --foreground: 245 245 245;
   --brand-orange: 255 122 24;
-  --brand-amber: 255 157 61;
+  --brand-amber: 255 166 77;
   --brand-hover: 229 104 0;
-  --surface-dark: 8 10 13;
-  --surface-card: 18 22 27;
-  --surface-border: 34 40 48;
-  --text-primary: 245 245 245;
-  --text-secondary: 155 162 173;
+  --surface-dark: 9 11 15;
+  --surface-card: 17 21 27;
+  --surface-raised: 23 28 36;
+  --surface-border: 38 45 55;
+  --text-primary: 244 245 247;
+  --text-secondary: 168 176 188;
 }
 
 html {
   scroll-behavior: smooth;
+  /* Anchor targets land below the sticky header. */
+  scroll-padding-top: 6rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
 body {
@@ -27,28 +36,76 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
 ::selection {
   background-color: rgb(var(--brand-orange));
   color: rgb(var(--background));
 }
 
-/* Premium technical grid — fades out so it never competes with copy */
+/* Technical grid — fades out so it never competes with copy */
 .abstract-grid {
   background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.032) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.032) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
   background-size: 56px 56px;
-  mask-image: radial-gradient(ellipse 90% 65% at 50% 0%, black 10%, transparent 78%);
-  -webkit-mask-image: radial-gradient(ellipse 90% 65% at 50% 0%, black 10%, transparent 78%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 10%, transparent 75%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 10%, transparent 75%);
 }
 
-/* Soft, blurred brand glow — low-key, editorial */
+/* Soft, blurred brand glow */
 .glow-orb {
-  background: radial-gradient(
-    circle,
-    rgba(255, 122, 24, 0.16) 0%,
-    rgba(255, 157, 61, 0.06) 40%,
-    transparent 68%
-  );
+  background: radial-gradient(circle, rgba(255, 122, 24, 0.18) 0%, rgba(255, 166, 77, 0.06) 40%, transparent 68%);
   filter: blur(48px);
+}
+
+/* Warm gradient text for headline accents and stat numerals */
+.text-gradient {
+  background: linear-gradient(120deg, rgb(var(--brand-amber)) 0%, rgb(var(--brand-orange)) 55%, #ff5a1f 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Hairline divider that glows in the middle — separates sections softly */
+.section-divider {
+  background: linear-gradient(90deg, transparent, rgb(var(--surface-border)) 20%, rgb(var(--brand-orange) / 0.35) 50%, rgb(var(--surface-border)) 80%, transparent);
+}
+
+/* Cards: subtle top-lit surface */
+.card-surface {
+  background:
+    linear-gradient(180deg, rgb(255 255 255 / 0.025), transparent 40%),
+    rgb(var(--surface-card));
+}
+
+/* Gentle reveal on scroll. CSS-only: content is always visible where
+   scroll-driven animations are unsupported or motion is reduced. */
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .reveal {
+      animation: reveal-up linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
