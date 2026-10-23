@@ -702,7 +702,7 @@ function FieldEditor({ path, doc, saved, errors, changed, update, hideLabel, ...
           aria-invalid={!!error}
           className={cn(inputClass, error && "border-brand-orange")}
         >
-          {!value && <option value="">Choose…</option>}
+          {(!value || optional) && <option value="">{optional ? "None" : "Choose…"}</option>}
           {CHOICES[String(last)].map((c) => (
             <option key={c} value={c}>
               {c}

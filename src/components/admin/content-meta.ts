@@ -1,3 +1,5 @@
+import { ICON_NAMES } from "@/lib/icon-names";
+
 /**
  * Presentation metadata for the content editor: section names, where each
  * section appears on the live site, and how each field should be edited.
@@ -106,6 +108,7 @@ const LONG_KEYS = new Set([
 export const CHOICES: Record<string, string[]> = {
   kind: ["paragraph", "bullet"],
   platform: ["linkedin", "facebook", "instagram", "x", "youtube"],
+  icon: [...ICON_NAMES],
 };
 
 export function fieldKind(path: Path, value: string): FieldKind {
@@ -146,15 +149,18 @@ export function newItemTemplate(arrayPath: Path): Record<string, string> | "" {
 
 /** Extra keys an object may have even when the current value omits them (optional fields). */
 export function templateKeys(arrayPath: Path, item?: unknown): string[] | null {
-  if (arrayPath[arrayPath.length - 1] === "blocks" && item && typeof item === "object") {
+  if (!item || typeof item !== "object") return null;
+  if (arrayPath[arrayPath.length - 1] === "blocks") {
     return BLOCK_FIELDS[String((item as Record<string, unknown>).type)] ?? null;
   }
+  // Cards (they have bullets) can always take an icon, image or badge.
+  if ("bullets" in item) return ["icon", "image", "badge"];
   return null;
 }
 
 /** Optional in the schema — shown, but may be left blank. */
 export const OPTIONAL_KEYS = new Set([
-  "eyebrow", "intro", "id", "badge", "detail", "location", "image", "quote", "note", "number", "message",
+  "eyebrow", "intro", "id", "badge", "detail", "location", "image", "quote", "note", "number", "message", "icon",
 ]);
 
 /** Short title for an array item, taken from its most descriptive field. */

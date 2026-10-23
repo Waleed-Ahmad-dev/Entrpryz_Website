@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { ICON_NAMES } from "./icon-names";
 
 /**
  * Schema for `content/site.json` — the single source of editable site copy.
@@ -59,6 +60,8 @@ function isHttpsUrl(v: string): boolean {
   }
 }
 
+const icon = optional(z.enum(ICON_NAMES));
+
 const httpsUrl = z.string().trim().max(500).refine(isHttpsUrl, "Must be a full https:// link");
 const email = z.string().trim().toLowerCase().max(254).email("Must be a valid email address");
 const anchorId = z
@@ -108,6 +111,8 @@ const cardsBlock = z
       z
         .object({
           id: optional(anchorId),
+          icon,
+          image: optional(imagePath),
           badge: optional(text(40)),
           title: text(120),
           description: optional(text(800)),
@@ -135,7 +140,7 @@ const checklistBlock = z
     type: z.literal("checklist"),
     ...sectionIntro,
     link: optional(button),
-    items: list(z.object({ title: optional(text(120)), description: text(600) }).strict(), 30),
+    items: list(z.object({ icon, title: optional(text(120)), description: text(600) }).strict(), 30),
   })
   .strict();
 
