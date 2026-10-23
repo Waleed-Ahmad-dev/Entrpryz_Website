@@ -1,6 +1,7 @@
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { WhatsAppButton } from "@/components/layout/whatsapp-button";
+import { HashScroll } from "@/components/layout/hash-scroll";
 
 export default function SiteLayout({
   children,
@@ -13,6 +14,7 @@ export default function SiteLayout({
       <main className="flex-1">{children}</main>
       <Footer />
       <WhatsAppButton />
+      <HashScroll />
     </>
   );
 }
