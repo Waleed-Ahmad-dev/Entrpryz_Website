@@ -59,7 +59,7 @@ Each page is a list of content blocks in `content/site.json` (rendered by `src/c
 
 The form posts to `/api/contact`, which validates input (shared rules in `src/lib/contact-validation.ts`), applies a same-origin check, honeypot, fill-time check and per-IP rate limit, then sends the inquiry via SMTP (`nodemailer`) with the visitor as `Reply-To`.
 
-Configure SMTP in Vercel environment variables — see `.env.example`. For local testing copy it to `.env.local`. Inquiries go to `CONTACT_TO_EMAIL` (default `entrpryz.digital@gmail.com`).
+Configure SMTP in Vercel environment variables — see `.env.example`. For local testing copy it to `.env.local`. Inquiries go to `CONTACT_TO_EMAIL` (default `connect@entrpryz.com`).
 
 ## Admin panel
 

@@ -6,7 +6,7 @@ import type { ContactFormData } from "@/types";
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
-const DEFAULT_RECIPIENT = "entrpryz.digital@gmail.com";
+const DEFAULT_RECIPIENT = "connect@entrpryz.com";
 const MAX_BODY_BYTES = 16 * 1024;
 const MIN_FILL_MS = 3000; // bots submit instantly
 const RATE_LIMIT = { windowMs: 10 * 60 * 1000, max: 5 };
@@ -140,7 +140,13 @@ export async function POST(req: NextRequest) {
       html,
     });
   } catch (err) {
-    console.error("[contact] Failed to send email:", err instanceof Error ? err.message : err);
+    // Log the SMTP failure class (e.g. ETIMEDOUT, EAUTH, ECONNECTION) — never credentials.
+    const code = (err as { code?: string; responseCode?: number })?.code ?? "unknown";
+    const responseCode = (err as { responseCode?: number })?.responseCode;
+    console.error(
+      `[contact] Failed to send email (code=${code}${responseCode ? `, smtp=${responseCode}` : ""}, host=${process.env.SMTP_HOST}):`,
+      err instanceof Error ? err.message : "unknown error"
+    );
     return NextResponse.json({ error: "failed" }, { status: 502 });
   }
 
