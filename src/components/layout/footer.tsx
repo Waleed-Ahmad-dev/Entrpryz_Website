@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { Mail, MapPin } from "lucide-react";
 import { SITE_CONTENT } from "@/lib/site-content";
-import { SectionBackground } from "@/components/ui/section-background";
 import { PLATFORM_LABELS, SocialIcon } from "./social-icon";
 
 const linkClass = "hover:text-brand-orange transition-colors";
@@ -13,8 +12,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-surface-border bg-background text-text-secondary relative overflow-hidden">
-      <SectionBackground />
+    <footer className="relative overflow-hidden border-t border-surface-border bg-gradient-to-b from-surface-card/60 to-background text-text-secondary">
       <div className="relative z-10 mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-12">
           <div className="space-y-4 lg:col-span-4">
@@ -23,7 +21,7 @@ export function Footer() {
                 <Image src={images.logo} alt={`${site.name} — ${site.tagline}`} fill className="object-contain object-left" />
               </div>
             </Link>
-            <p className="text-xs font-semibold uppercase tracking-widest text-brand-orange">
+            <p className="text-sm font-medium text-text-secondary">
               {site.name}. {site.tagline}
             </p>
             {site.social.length > 0 && (
@@ -35,7 +33,7 @@ export function Footer() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${site.name} on ${PLATFORM_LABELS[s.platform]}`}
-                      className="inline-flex h-9 w-9 items-center justify-center border border-surface-border text-text-secondary hover:border-brand-orange hover:text-brand-orange transition-colors"
+                      className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-surface-border text-text-secondary hover:border-brand-orange hover:text-brand-orange transition-colors"
                     >
                       <SocialIcon platform={s.platform} className="h-4 w-4" />
                     </a>
@@ -46,8 +44,8 @@ export function Footer() {
           </div>
 
           <nav aria-label="Services" className="space-y-3 lg:col-span-3">
-            <h2 className="text-xs font-semibold uppercase tracking-wider text-text-primary">Services</h2>
-            <ul className="space-y-2 text-xs font-medium">
+            <h2 className="text-sm font-semibold text-text-primary">Services</h2>
+            <ul className="space-y-2.5 text-sm">
               {site.footerServices.map((s) => (
                 <li key={s.href}>
                   <Link href={s.href} className={linkClass}>
@@ -59,8 +57,8 @@ export function Footer() {
           </nav>
 
           <nav aria-label="Pages" className="space-y-3 lg:col-span-2">
-            <h2 className="text-xs font-semibold uppercase tracking-wider text-text-primary">Pages</h2>
-            <ul className="space-y-2 text-xs font-medium">
+            <h2 className="text-sm font-semibold text-text-primary">Pages</h2>
+            <ul className="space-y-2.5 text-sm">
               {pages.map((p) => (
                 <li key={p.href}>
                   <Link href={p.href} className={linkClass}>
@@ -72,8 +70,8 @@ export function Footer() {
           </nav>
 
           <div className="space-y-3 lg:col-span-3">
-            <h2 className="text-xs font-semibold uppercase tracking-wider text-text-primary">Contact</h2>
-            <ul className="space-y-3 text-xs">
+            <h2 className="text-sm font-semibold text-text-primary">Contact</h2>
+            <ul className="space-y-3 text-sm">
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-brand-orange shrink-0" />
                 <a href={`mailto:${contact.email}`} className="text-text-primary hover:text-brand-orange transition-colors font-medium break-all">
@@ -88,7 +86,7 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-surface-border pt-6 sm:flex-row text-xs">
+        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-surface-border pt-6 sm:flex-row text-sm">
           <p>
             © {year} {site.copyright}
           </p>
