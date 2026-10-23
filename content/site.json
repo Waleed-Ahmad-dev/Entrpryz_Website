@@ -2,7 +2,7 @@
   "site": {
     "name": "Entrpryz",
     "tagline": "Technology. Simplified.",
-    "location": "Based in Pakistan. Serving Pakistan, the UAE and Africa.",
+    "location": "Based in Pakistan. Serving Pakistan and the UAE.",
     "footerServices": [
       {
         "label": "Digital Transformation",
@@ -135,7 +135,7 @@
             "label": "Organizations served"
           },
           {
-            "value": "PK + UAE + Africa",
+            "value": "PK + UAE",
             "label": "Where we operate"
           }
         ]
@@ -339,7 +339,7 @@
               "title": "Based in Pakistan"
             },
             {
-              "title": "Serving Pakistan, UAE and Africa"
+              "title": "Serving Pakistan and UAE"
             }
           ]
         }
@@ -1609,7 +1609,7 @@
   "contactPage": {
     "seo": {
       "title": "Contact Entrpryz | Talk to Us",
-      "description": "Talk to the team about ERP, custom software or IT services. Based in Pakistan, serving Pakistan, the UAE and Africa."
+      "description": "Talk to the team about ERP, custom software or IT services. Based in Pakistan, serving Pakistan and the UAE."
     },
     "blocks": [
       {
@@ -1619,7 +1619,7 @@
         "body": "A new ERP rollout, a stalled implementation, custom software or IT security. Start with a direct conversation with the people who will do the work.",
         "emailLabel": "Email",
         "locationLabel": "Where we work",
-        "location": "Based in Pakistan. Serving Pakistan, the UAE and Africa.",
+        "location": "Based in Pakistan. Serving Pakistan and the UAE.",
         "note": "Prefer a quick message? Use the WhatsApp button at the bottom right of any page.",
         "formHeading": "Send a message"
       }

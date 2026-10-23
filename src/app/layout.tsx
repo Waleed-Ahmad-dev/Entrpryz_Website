@@ -94,7 +94,7 @@ const jsonLd = {
     jobTitle: "Founder",
   },
   email: SITE_CONTENT.contact.email,
-  areaServed: ["Pakistan", "United Arab Emirates", "Africa"],
+  areaServed: ["Pakistan", "United Arab Emirates"],
 };
 
 export default function RootLayout({
