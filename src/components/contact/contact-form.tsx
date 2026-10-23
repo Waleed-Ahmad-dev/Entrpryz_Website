@@ -12,8 +12,8 @@ import type { SiteContent } from "@/lib/content-schema";
 type FormCopy = SiteContent["contact"]["form"];
 
 const inputClass =
-  "w-full bg-surface-card border border-surface-border px-4 py-3 text-sm rounded-md text-text-primary focus:border-brand-orange focus:outline-none aria-[invalid=true]:border-brand-orange";
-const labelClass = "text-xs font-semibold uppercase tracking-wider text-text-secondary";
+  "w-full rounded-xl border border-surface-border bg-background/70 px-4 py-3 text-[15px] text-text-primary placeholder:text-text-secondary/60 transition-colors focus:border-brand-orange focus:outline-none focus:ring-2 focus:ring-brand-orange/20 aria-[invalid=true]:border-brand-orange";
+const labelClass = "text-sm font-medium text-text-primary";
 
 /** Links the words "Privacy Policy" inside the editable consent note. */
 function PrivacyNote({ text }: { text: string }) {
@@ -82,7 +82,7 @@ export function ContactForm({ copy }: { copy: FormCopy }) {
 
   if (submitted) {
     return (
-      <div role="status" className="border border-brand-orange bg-surface-card p-8 text-center space-y-4">
+      <div role="status" className="rounded-2xl border border-brand-orange/40 bg-brand-orange/[0.06] p-8 text-center space-y-4">
         <CheckCircle2 className="h-12 w-12 text-brand-orange mx-auto" />
         <h3 className="text-xl font-bold text-text-primary">{copy.successHeading}</h3>
         <p className="text-sm text-text-secondary">{copy.successBody}</p>
@@ -160,12 +160,12 @@ export function ContactForm({ copy }: { copy: FormCopy }) {
       </div>
 
       {submitError && (
-        <p className="border border-brand-orange/40 bg-surface-card px-4 py-3 text-xs text-brand-orange">{submitError}</p>
+        <p className="rounded-xl border border-brand-orange/40 bg-brand-orange/[0.06] px-4 py-3 text-sm text-brand-orange">{submitError}</p>
       )}
 
       <PrivacyNote text={copy.privacyNote} />
 
-      <Button type="submit" size="lg" fullWidth className="shadow-md" disabled={submitting}>
+      <Button type="submit" size="lg" fullWidth disabled={submitting}>
         <span>{submitting ? "Sending..." : copy.submitLabel}</span>
         <Send className="h-4 w-4" />
       </Button>
