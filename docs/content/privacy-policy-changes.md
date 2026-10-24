@@ -29,3 +29,17 @@ The wording and structure are kept. Only the sentences below were changed, to ma
 | Retention | "…Analytics data is kept according to the retention settings in our Google Analytics account." | Sentence removed | No analytics data. |
 
 Not added: the cookie notice ("We use cookies to see how the site is used…"). It only applies when analytics cookies are used.
+
+## Update — October 2026 (technical audit)
+
+Cookieless **Vercel Web Analytics** was added (audit item 3). The policy now says so:
+
+| Section | Before | Now |
+|---|---|---|
+| SEO description | "…including the contact form and server logs." | "…including the contact form, server logs, visit statistics and your rights." |
+| What we collect: automatic info | "We do not use analytics or advertising tools." | "We also use Vercel Web Analytics to count page visits. It does not use cookies or store information that identifies you, and we do not use advertising tools." |
+| How we use it | — | Restored bullet: "To understand how the website is used, so that we can improve it." (no consent wording: nothing is stored on the visitor's device) |
+| Cookies, paragraph 1 | "…does not use analytics, advertising or tracking cookies…" | "…does not use advertising or tracking cookies, and its visit statistics work without cookies…" |
+| Sharing: hosting | "Vercel… keeps its server logs." | "Vercel… keeps its server logs and provides our cookieless visit statistics." |
+
+If Cloudflare Turnstile is switched on for the contact form (audit item 4), restore the approved Cloudflare bullet under "Who we share information with".

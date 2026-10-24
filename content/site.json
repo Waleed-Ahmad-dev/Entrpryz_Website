@@ -1633,7 +1633,7 @@
   "privacyPage": {
     "seo": {
       "title": "Privacy Policy | Entrpryz",
-      "description": "How Entrpryz collects, uses and protects personal information on entrpryz.com, including the contact form and server logs."
+      "description": "How Entrpryz collects, uses and protects personal information on entrpryz.com, including the contact form, server logs, visit statistics and your rights."
     },
     "blocks": [
       {
@@ -1667,7 +1667,7 @@
           },
           {
             "kind": "paragraph",
-            "text": "Information collected automatically. Like most websites, our hosting provider's servers record technical information such as your IP address, browser type, device type, pages visited and the date and time of each request. We do not use analytics or advertising tools."
+            "text": "Information collected automatically. Like most websites, our hosting provider's servers record technical information such as your IP address, browser type, device type, pages visited and the date and time of each request. We also use Vercel Web Analytics to count page visits. It does not use cookies or store information that identifies you, and we do not use advertising tools."
           }
         ]
       },
@@ -1682,6 +1682,10 @@
           {
             "kind": "bullet",
             "text": "To keep the website secure and prevent spam and abuse."
+          },
+          {
+            "kind": "bullet",
+            "text": "To understand how the website is used, so that we can improve it."
           },
           {
             "kind": "bullet",
@@ -1709,7 +1713,7 @@
         "body": [
           {
             "kind": "paragraph",
-            "text": "This website does not use analytics, advertising or tracking cookies, so there is no cookie notice to accept or decline."
+            "text": "This website does not use advertising or tracking cookies, and its visit statistics work without cookies, so there is no cookie notice to accept or decline."
           },
           {
             "kind": "paragraph",
@@ -1727,7 +1731,7 @@
           },
           {
             "kind": "bullet",
-            "text": "Vercel, our web hosting provider, which stores and serves the website and keeps its server logs."
+            "text": "Vercel, our web hosting provider, which stores and serves the website, keeps its server logs and provides our cookieless visit statistics."
           },
           {
             "kind": "bullet",

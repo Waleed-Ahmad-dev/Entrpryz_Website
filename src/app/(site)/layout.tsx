@@ -1,3 +1,4 @@
+import { Analytics } from "@vercel/analytics/next";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { WhatsAppButton } from "@/components/layout/whatsapp-button";
@@ -15,6 +16,8 @@ export default function SiteLayout({
       <Footer />
       <WhatsAppButton />
       <HashScroll />
+      {/* Cookieless page-view counts; same-origin script, so the CSP is unchanged. */}
+      <Analytics />
     </>
   );
 }

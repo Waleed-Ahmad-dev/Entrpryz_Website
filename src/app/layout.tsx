@@ -58,6 +58,11 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  // Search Console / Bing Webmaster ownership tokens (set in Vercel; DNS verification also works).
+  verification: {
+    ...(process.env.GOOGLE_SITE_VERIFICATION ? { google: process.env.GOOGLE_SITE_VERIFICATION } : {}),
+    ...(process.env.BING_SITE_VERIFICATION ? { other: { "msvalidate.01": process.env.BING_SITE_VERIFICATION } } : {}),
+  },
   themeColor: "#080A0D",
 };
 
