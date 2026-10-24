@@ -33,18 +33,6 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
-  keywords: [
-    "Enterprise Technology",
-    "ERP Optimization",
-    "Software Development",
-    "IT Services",
-    "Oracle NetSuite",
-    "SAP Business One",
-    "Odoo",
-    "Microsoft Dynamics 365",
-    "AI Agents",
-    "Entrpryz",
-  ],
   icons: {
     icon: SITE_CONTENT.images.logo,
     apple: SITE_CONTENT.images.logoSquare,
@@ -59,20 +47,11 @@ export const metadata: Metadata = {
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
     url: SITE_URL,
-    images: [
-      {
-        url: SITE_CONTENT.images.logoSquare,
-        width: 512,
-        height: 512,
-        alt: SITE_NAME,
-      },
-    ],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: SITE_TITLE,
     description: SITE_DESCRIPTION,
-    images: [SITE_CONTENT.images.logoSquare],
   },
   robots: {
     index: true,

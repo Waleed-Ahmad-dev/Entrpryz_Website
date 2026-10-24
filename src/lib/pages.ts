@@ -20,6 +20,15 @@ export function getPage(key: PageKey): PageContent {
   return SITE_CONTENT[key];
 }
 
+/** Rendered by app/opengraph-image.tsx at build time. */
+const SHARE_IMAGE = {
+  url: "/opengraph-image",
+  width: 1200,
+  height: 630,
+  alt: `${SITE_CONTENT.site.name} — ${SITE_CONTENT.site.tagline}`,
+  type: "image/png",
+};
+
 export function pageMetadata(key: PageKey): Metadata {
   const { seo } = getPage(key);
   const path = PAGE_PATHS[key];
@@ -27,7 +36,17 @@ export function pageMetadata(key: PageKey): Metadata {
     title: { absolute: seo.title },
     description: seo.description,
     alternates: { canonical: path },
-    openGraph: { title: seo.title, description: seo.description, url: `${SITE_URL}${path === "/" ? "" : path}` },
-    twitter: { title: seo.title, description: seo.description },
+    // Page-level openGraph replaces the root one, so repeat type/site name here.
+    // The share image comes from app/opengraph-image.tsx for every page.
+    openGraph: {
+      type: "website",
+      locale: "en_US",
+      siteName: SITE_CONTENT.site.name,
+      title: seo.title,
+      description: seo.description,
+      url: `${SITE_URL}${path === "/" ? "" : path}`,
+      images: [SHARE_IMAGE],
+    },
+    twitter: { card: "summary_large_image", title: seo.title, description: seo.description, images: [SHARE_IMAGE.url] },
   };
 }
