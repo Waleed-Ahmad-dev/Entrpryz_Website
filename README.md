@@ -74,3 +74,9 @@ Set all three variables in Vercel (see `.env.example`); locally they live in the
 Publishing commits `content/site.json` to GitHub, and Vercel redeploys (live in ~1–2 minutes). Uploaded images (JPG/PNG/WebP, max 4 MB, checked by file signature) are committed to `public/images/uploads/` under a content-hash filename. Saves are validated server-side against the schema and rejected if the file changed since it was loaded.
 
 Requires `GITHUB_TOKEN` (fine-grained, this repo only, Contents read/write), `GITHUB_REPO` (`owner/name`) and optionally `GITHUB_BRANCH`. Without them the editor is read-only.
+
+### Publishing safety and rollback
+
+"Review & Publish" shows every changed field before anything is committed. Each publish is one Git commit by "Entrpryz Admin". To undo one, run `git revert <commit>` and push (or use Vercel → Deployments → Instant Rollback for an immediate switch back). Admin security details and the October 2026 audit status are in `docs/technical-audit-response.md`.
+
+Optional admin protections (set in Vercel): `ADMIN_TOTP_SECRET` for a second factor (`npm run admin:totp -- <username>` generates one), and `NEXT_PUBLIC_TURNSTILE_SITE_KEY` + `TURNSTILE_SECRET_KEY` for Cloudflare Turnstile on the login and contact forms.
