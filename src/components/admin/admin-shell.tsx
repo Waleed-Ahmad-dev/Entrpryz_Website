@@ -18,6 +18,12 @@ export function AdminShell({
 }) {
   return (
     <div className="flex-1 flex flex-col">
+      <a
+        href="#main"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-brand-orange focus:px-4 focus:py-2 focus:text-sm focus:font-semibold focus:text-background"
+      >
+        Skip to content
+      </a>
       <header className="sticky top-0 z-30 border-b border-surface-border bg-surface-card">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 h-16 flex items-center gap-6">
           <Link href="/admin" className="flex items-center gap-3 shrink-0">
@@ -54,7 +60,9 @@ export function AdminShell({
           </form>
         </div>
       </header>
-      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 py-8 sm:py-10 flex-1">{children}</div>
+      <main id="main" className="mx-auto w-full max-w-7xl px-4 sm:px-6 py-8 sm:py-10 flex-1">
+        {children}
+      </main>
     </div>
   );
 }

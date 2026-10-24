@@ -160,7 +160,9 @@ export function ContentEditor({ initialContent, initialSha, canSave }: ContentEd
   const [saved, setSaved] = useState<Doc>(initialContent);
   const [sha, setSha] = useState(initialSha);
   const [query, setQuery] = useState("");
-  const [section, setSection] = useState<string>("all");
+  // One section is rendered at a time (the page used to render every field at once).
+  const [section, setSection] = useState<string>(SECTIONS[0].key);
+  const [reviewOpen, setReviewOpen] = useState(false);
   const [kind, setKind] = useState<FieldKind | "all">("all");
   const [changedOnly, setChangedOnly] = useState(false);
   const [collapsed, setCollapsed] = useState<Record<string, boolean>>({});
@@ -209,7 +211,6 @@ export function ContentEditor({ initialContent, initialSha, canSave }: ContentEd
       searching
         ? leaves.filter(
             (l) =>
-              (section === "all" || l.section === section) &&
               (kind === "all" || l.kind === kind) &&
               (!changedOnly || changed.has(l.key)) &&
               (!q ||
@@ -217,7 +218,7 @@ export function ContentEditor({ initialContent, initialSha, canSave }: ContentEd
                 l.crumbs.join(" ").toLowerCase().includes(q))
           )
         : [],
-    [searching, leaves, section, kind, changedOnly, changed, q]
+    [searching, leaves, kind, changedOnly, changed, q]
   );
 
   const handleSave = () => {
@@ -269,15 +270,30 @@ export function ContentEditor({ initialContent, initialSha, canSave }: ContentEd
     uploadImage,
   };
 
-  const visibleSections = SECTIONS.filter((s) => section === "all" || s.key === section);
+  const visibleSections = SECTIONS.filter((s) => s.key === section);
+
+  // Field-level diff against the last published content, for the review step.
+  const pendingChanges = useMemo(() => {
+    if (!reviewOpen) return [];
+    const before = new Map(collectLeaves(saved).map((l) => [l.key, l.value]));
+    const after = new Map(leaves.map((l) => [l.key, l.value]));
+    const keys = Array.from(new Set([...before.keys(), ...after.keys()]));
+    const diffs = keys
+      .filter((k) => (before.get(k) ?? "") !== (after.get(k) ?? ""))
+      .map((k) => ({ key: k, before: before.get(k) ?? "", after: after.get(k) ?? "" }));
+    // Reordering moves values between keys; anything else structural is noted per section.
+    for (const s of SECTIONS) {
+      if (changedSections.has(s.key) && !diffs.some((d) => d.key.split(".")[0] === s.key)) {
+        diffs.push({ key: s.key, before: "", after: "Items reordered" });
+      }
+    }
+    return diffs;
+  }, [reviewOpen, saved, leaves, changedSections]);
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr] gap-8">
       {/* Sidebar */}
       <aside className="lg:sticky lg:top-24 lg:self-start space-y-1">
-        <SidebarButton active={section === "all"} onClick={() => setSection("all")}>
-          All sections
-        </SidebarButton>
         {Array.from(new Set(SECTIONS.map((s) => s.group))).map((group) => (
           <div key={group} className="pt-3">
             <p className="px-3 pb-1 text-[10px] font-bold uppercase tracking-widest text-text-secondary/70">
@@ -363,9 +379,9 @@ export function ContentEditor({ initialContent, initialSha, canSave }: ContentEd
               type="button"
               size="sm"
               disabled={!dirty || isSaving || !canSave || !sha}
-              onClick={handleSave}
+              onClick={() => setReviewOpen(true)}
             >
-              <span>{isSaving ? "Publishing…" : "Publish Changes"}</span>
+              <span>{isSaving ? "Publishing…" : "Review & Publish"}</span>
             </Button>
           </div>
 
@@ -461,6 +477,79 @@ export function ContentEditor({ initialContent, initialSha, canSave }: ContentEd
             </section>
           ))
         )}
+      </div>
+      {reviewOpen && (
+        <ReviewDialog
+          changes={pendingChanges}
+          publishing={isSaving}
+          onCancel={() => setReviewOpen(false)}
+          onConfirm={() => {
+            setReviewOpen(false);
+            handleSave();
+          }}
+        />
+      )}
+    </div>
+  );
+}
+
+function ReviewDialog({
+  changes,
+  publishing,
+  onCancel,
+  onConfirm,
+}: {
+  changes: { key: string; before: string; after: string }[];
+  publishing: boolean;
+  onCancel: () => void;
+  onConfirm: () => void;
+}) {
+  const shown = changes.slice(0, 100);
+  const clip = (v: string) => (v.length > 180 ? `${v.slice(0, 177)}…` : v);
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => e.key === "Escape" && onCancel();
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [onCancel]);
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4" onClick={onCancel}>
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="review-title"
+        className="w-full max-w-3xl max-h-[85vh] flex flex-col rounded-2xl border border-surface-border bg-surface-card shadow-lift"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="p-6 border-b border-surface-border space-y-1">
+          <h2 id="review-title" className="text-lg font-display font-semibold text-text-primary">
+            Review {changes.length} change{changes.length === 1 ? "" : "s"} before publishing
+          </h2>
+          <p className="text-sm text-text-secondary">
+            These go live on www.entrpryz.com about 1–2 minutes after you publish. Every publish is a Git commit, so it
+            can be rolled back.
+          </p>
+        </div>
+        <ul className="flex-1 overflow-auto divide-y divide-surface-border">
+          {shown.map((c) => (
+            <li key={c.key} className="p-4 space-y-1.5 text-sm">
+              <p className="font-semibold text-text-primary">{describePath(c.key)}</p>
+              {c.before && <p className="text-text-secondary line-through decoration-brand-orange/60">{clip(c.before)}</p>}
+              <p className="text-emerald-400">{c.after ? clip(c.after) : <em>(removed)</em>}</p>
+            </li>
+          ))}
+          {changes.length > shown.length && (
+            <li className="p-4 text-xs text-text-secondary">…and {changes.length - shown.length} more.</li>
+          )}
+        </ul>
+        <div className="p-4 border-t border-surface-border flex justify-end gap-3">
+          <Button type="button" variant="ghost" size="sm" onClick={onCancel}>
+            <span>Keep editing</span>
+          </Button>
+          <Button type="button" size="sm" onClick={onConfirm} disabled={publishing || changes.length === 0} autoFocus>
+            <span>Publish now</span>
+          </Button>
+        </div>
       </div>
     </div>
   );
@@ -671,6 +760,8 @@ function FieldEditor({ path, doc, saved, errors, changed, update, hideLabel, ...
   const optional = typeof last === "string" && OPTIONAL_KEYS.has(last);
   const readOnly = isReadOnly(path);
   const id = `field-${key}`;
+  // Inline fields (list items, search results) have no visible <label>; name them for screen readers.
+  const a11yLabel = hideLabel ? describePath(key) : undefined;
 
   const onChange = (next: string) => update(path, optional && next === "" ? undefined : next);
 
@@ -700,6 +791,7 @@ function FieldEditor({ path, doc, saved, errors, changed, update, hideLabel, ...
       {kind === "choice" ? (
         <select
           id={id}
+          aria-label={a11yLabel}
           value={value}
           onChange={(e) => onChange(e.target.value)}
           aria-invalid={!!error}
@@ -713,10 +805,11 @@ function FieldEditor({ path, doc, saved, errors, changed, update, hideLabel, ...
           ))}
         </select>
       ) : kind === "image" ? (
-        <ImageField id={id} path={path} value={value} onChange={onChange} {...rest} />
+        <ImageField id={id} ariaLabel={a11yLabel} path={path} value={value} onChange={onChange} {...rest} />
       ) : kind === "longtext" ? (
         <textarea
           id={id}
+          aria-label={a11yLabel}
           value={value}
           onChange={(e) => onChange(e.target.value)}
           rows={Math.min(8, Math.max(3, Math.ceil(value.length / 90)))}
@@ -727,6 +820,7 @@ function FieldEditor({ path, doc, saved, errors, changed, update, hideLabel, ...
       ) : (
         <input
           id={id}
+          aria-label={a11yLabel}
           type={kind === "email" ? "email" : "text"}
           value={value}
           readOnly={readOnly}
@@ -748,6 +842,7 @@ function FieldEditor({ path, doc, saved, errors, changed, update, hideLabel, ...
 
 function ImageField({
   id,
+  ariaLabel,
   path,
   value,
   onChange,
@@ -756,6 +851,7 @@ function ImageField({
   setPreviews,
   uploadImage,
 }: {
+  ariaLabel?: string;
   id: string;
   path: Path;
   value: string;
@@ -803,6 +899,7 @@ function ImageField({
       <div className="flex-1 space-y-2">
         <input
           id={id}
+          aria-label={ariaLabel}
           list={`${id}-options`}
           value={value}
           onChange={(e) => onChange(e.target.value.trim())}
