@@ -8,6 +8,8 @@ import {
   SESSION_TTL_SECONDS,
   createSessionToken,
 } from "@/lib/admin-session";
+import { checkTotp, markTotpUsed } from "@/lib/totp";
+import { verifyTurnstile } from "@/lib/turnstile";
 
 export interface LoginState {
   error: string | null;
@@ -17,8 +19,13 @@ const MAX_FAILURES = 5;
 const LOCKOUT_MS = 15 * 60 * 1000;
 const MAX_FIELD_LENGTH = 256;
 
-// Best-effort per-instance throttle; serverless instances don't share memory.
+// Site-wide cap so attempts spread over many IPs are throttled too.
+const MAX_GLOBAL_FAILURES = 20;
+
+// Best-effort per-instance throttle; serverless instances don't share memory,
+// so pair this with Turnstile and the TOTP second factor (both below).
 const failures = new Map<string, { count: number; first: number }>();
+let globalFailures = { count: 0, first: Date.now() };
 
 function clientIp(): string {
   const h = headers();
@@ -35,7 +42,15 @@ function isLockedOut(ip: string): boolean {
   return entry.count >= MAX_FAILURES;
 }
 
+function globallyLocked(): boolean {
+  if (Date.now() - globalFailures.first > LOCKOUT_MS) globalFailures = { count: 0, first: Date.now() };
+  return globalFailures.count >= MAX_GLOBAL_FAILURES;
+}
+
 function recordFailure(ip: string) {
+  if (Date.now() - globalFailures.first > LOCKOUT_MS) globalFailures = { count: 0, first: Date.now() };
+  globalFailures.count += 1;
+  if (failures.size > 5000) failures.clear();
   const entry = failures.get(ip);
   if (!entry || Date.now() - entry.first > LOCKOUT_MS) {
     failures.set(ip, { count: 1, first: Date.now() });
@@ -53,8 +68,13 @@ function safeEqual(a: string, b: string): boolean {
 
 export async function login(_prev: LoginState, formData: FormData): Promise<LoginState> {
   const ip = clientIp();
-  if (isLockedOut(ip)) {
+  if (isLockedOut(ip) || globallyLocked()) {
     return { error: "Too many failed attempts. Try again in 15 minutes." };
+  }
+
+  if (!(await verifyTurnstile(formData.get("cf-turnstile-response"), ip))) {
+    recordFailure(ip);
+    return { error: "Please complete the security check." };
   }
 
   const username = formData.get("username");
@@ -80,10 +100,12 @@ export async function login(_prev: LoginState, formData: FormData): Promise<Logi
   // Evaluate both so timing doesn't reveal which one was wrong.
   const userOk = safeEqual(username, expectedUser);
   const passOk = safeEqual(password, expectedPass);
-  if (!(userOk && passOk)) {
+  // Check the one-time code even when the password is wrong, so timing reveals nothing.
+  const totpStep = checkTotp(formData.get("code"));
+  if (!(userOk && passOk && totpStep !== null)) {
     recordFailure(ip);
     await new Promise((r) => setTimeout(r, 500));
-    return { error: "Invalid username or password." };
+    return { error: "Invalid sign-in details." };
   }
 
   const token = await createSessionToken(expectedUser);
@@ -93,6 +115,7 @@ export async function login(_prev: LoginState, formData: FormData): Promise<Logi
   }
 
   failures.delete(ip);
+  markTotpUsed(totpStep);
   cookies().set(ADMIN_COOKIE, token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
