@@ -47,7 +47,7 @@ docs/
 
 All editorial copy, images, links, SEO titles and portfolio data live in `content/site.json`, never in JSX. Edit it from the admin panel (`/admin/content`) or by hand. The schema in `src/lib/content-schema.ts` is enforced at build time, so invalid content fails the build instead of shipping. Source briefs are preserved in `docs/content/`.
 
-Deploy domain is `https://entrpryz.com` by default; override via `NEXT_PUBLIC_SITE_URL`.
+Canonical origin is `https://www.entrpryz.com` (the apex 308-redirects to www); override via `NEXT_PUBLIC_SITE_URL`.
 
 ## Pages
 
