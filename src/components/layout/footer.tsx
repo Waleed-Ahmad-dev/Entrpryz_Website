@@ -4,7 +4,8 @@ import { Mail, MapPin } from "lucide-react";
 import { SITE_CONTENT } from "@/lib/site-content";
 import { PLATFORM_LABELS, SocialIcon } from "./social-icon";
 
-const linkClass = "hover:text-brand-orange transition-colors";
+// inline-flex + min-h keeps every footer link at least 24px tall (WCAG 2.2 target size).
+const linkClass = "inline-flex min-h-[28px] items-center hover:text-brand-orange transition-colors";
 
 export function Footer() {
   const { site, navigation, contact, images } = SITE_CONTENT;
@@ -44,8 +45,8 @@ export function Footer() {
           </div>
 
           <nav aria-label="Services" className="space-y-3 lg:col-span-3">
-            <h2 className="text-sm font-semibold text-text-primary">Services</h2>
-            <ul className="space-y-2.5 text-sm">
+            <p className="text-sm font-semibold text-text-primary">Services</p>
+            <ul className="space-y-1 text-sm">
               {site.footerServices.map((s) => (
                 <li key={s.href}>
                   <Link href={s.href} className={linkClass}>
@@ -57,8 +58,8 @@ export function Footer() {
           </nav>
 
           <nav aria-label="Pages" className="space-y-3 lg:col-span-2">
-            <h2 className="text-sm font-semibold text-text-primary">Pages</h2>
-            <ul className="space-y-2.5 text-sm">
+            <p className="text-sm font-semibold text-text-primary">Pages</p>
+            <ul className="space-y-1 text-sm">
               {pages.map((p) => (
                 <li key={p.href}>
                   <Link href={p.href} className={linkClass}>
@@ -70,11 +71,11 @@ export function Footer() {
           </nav>
 
           <div className="space-y-3 lg:col-span-3">
-            <h2 className="text-sm font-semibold text-text-primary">Contact</h2>
+            <p className="text-sm font-semibold text-text-primary">Contact</p>
             <ul className="space-y-3 text-sm">
               <li className="flex items-center gap-2">
                 <Mail className="h-4 w-4 text-brand-orange shrink-0" />
-                <a href={`mailto:${contact.email}`} className="text-text-primary hover:text-brand-orange transition-colors font-medium break-all">
+                <a href={`mailto:${contact.email}`} className="inline-flex min-h-[28px] items-center text-text-primary hover:text-brand-orange transition-colors font-medium break-all">
                   {contact.email}
                 </a>
               </li>
