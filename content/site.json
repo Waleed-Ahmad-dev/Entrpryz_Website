@@ -78,7 +78,8 @@
   "homePage": {
     "seo": {
       "title": "Entrpryz | ERP, Software & IT Services in Pakistan & UAE",
-      "description": "25+ years of hands-on ERP, software and IT experience. Entrpryz helps businesses in Pakistan and the UAE fix, build and modernize their systems."
+      "description": "25+ years of hands-on ERP, software and IT experience. Entrpryz helps businesses in Pakistan and the UAE fix, build and modernize their systems.",
+      "updated": "2026-10-24"
     },
     "blocks": [
       {
@@ -389,7 +390,8 @@
   "aboutPage": {
     "seo": {
       "title": "About Entrpryz and Founder Javed Ahmad Qureshi",
-      "description": "Meet the team behind Entrpryz. Javed Ahmad Qureshi brings 25+ years of ERP and IT leadership, with Waleed Ahmad leading product engineering."
+      "description": "Meet the team behind Entrpryz. Javed Ahmad Qureshi brings 25+ years of ERP and IT leadership, with Waleed Ahmad leading product engineering.",
+      "updated": "2026-10-24"
     },
     "blocks": [
       {
@@ -494,7 +496,8 @@
   "servicesPage": {
     "seo": {
       "title": "ERP, Software Development & IT Services | Entrpryz",
-      "description": "ERP implementation, custom software and IT services for growing businesses. NetSuite, SAP Business One, Odoo and custom apps."
+      "description": "ERP implementation, custom software and IT services for growing businesses. NetSuite, SAP Business One, Odoo and custom apps.",
+      "updated": "2026-10-23"
     },
     "blocks": [
       {
@@ -736,7 +739,8 @@
   "aiAgentsPage": {
     "seo": {
       "title": "AI Agents for Business Work | Entrpryz",
-      "description": "Practical AI Agents that handle routine business tasks inside your ERP, email and documents, with your people in control. Start with a small pilot."
+      "description": "Practical AI Agents that handle routine business tasks inside your ERP, email and documents, with your people in control. Start with a small pilot.",
+      "updated": "2026-10-23"
     },
     "blocks": [
       {
@@ -923,7 +927,8 @@
   "sapHealthCheckPage": {
     "seo": {
       "title": "SAP Business One Health Check | Entrpryz",
-      "description": "Independent 4 to 6 week review of your SAP Business One system. Written report and executive readout. Fixed fee agreed after a short call."
+      "description": "Independent 4 to 6 week review of your SAP Business One system. Written report and executive readout. Fixed fee agreed after a short call.",
+      "updated": "2026-10-23"
     },
     "blocks": [
       {
@@ -1092,7 +1097,8 @@
   "misAssessmentPage": {
     "seo": {
       "title": "MIS Assessment & Development Roadmap | Entrpryz",
-      "description": "Independent 2 to 3 week assessment of your in-house MIS, with a clear roadmap to stabilize, modernize or replace it. Fixed fee agreed after a short call."
+      "description": "Independent 2 to 3 week assessment of your in-house MIS, with a clear roadmap to stabilize, modernize or replace it. Fixed fee agreed after a short call.",
+      "updated": "2026-10-23"
     },
     "blocks": [
       {
@@ -1287,7 +1293,8 @@
   "portfolioPage": {
     "seo": {
       "title": "Portfolio: 40+ Organizations Served | Entrpryz",
-      "description": "25 years of ERP and software delivery across 40+ organizations in Pakistan, the UAE and beyond, grouped by who delivered the work."
+      "description": "25 years of ERP and software delivery across 40+ organizations in Pakistan, the UAE and beyond, grouped by who delivered the work.",
+      "updated": "2026-10-23"
     },
     "blocks": [
       {
@@ -1614,7 +1621,8 @@
   "contactPage": {
     "seo": {
       "title": "Contact Entrpryz | Talk to Us",
-      "description": "Talk to the team about ERP, custom software or IT services. Based in Pakistan, serving Pakistan and the UAE."
+      "description": "Talk to the team about ERP, custom software or IT services. Based in Pakistan, serving Pakistan and the UAE.",
+      "updated": "2026-10-24"
     },
     "blocks": [
       {
@@ -1633,7 +1641,8 @@
   "privacyPage": {
     "seo": {
       "title": "Privacy Policy | Entrpryz",
-      "description": "How Entrpryz collects, uses and protects personal information on entrpryz.com, including the contact form, server logs, visit statistics and your rights."
+      "description": "How Entrpryz collects, uses and protects personal information on entrpryz.com, including the contact form, server logs, visit statistics and your rights.",
+      "updated": "2026-10-24"
     },
     "blocks": [
       {

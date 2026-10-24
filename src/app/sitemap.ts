@@ -1,13 +1,15 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL } from "@/lib/site";
-import { PAGE_PATHS } from "@/lib/pages";
+import { PAGE_PATHS, getPage } from "@/lib/pages";
+import type { PageKey } from "@/lib/content-schema";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
-  return Object.values(PAGE_PATHS).map((path) => ({
-    url: `${SITE_URL}${path === "/" ? "" : path}`,
-    lastModified,
-    changeFrequency: "monthly",
-    priority: path === "/" ? 1 : path.split("/").length > 2 ? 0.6 : 0.8,
-  }));
+  return (Object.entries(PAGE_PATHS) as [PageKey, string][]).map(([key, path]) => {
+    const updated = getPage(key).seo.updated;
+    return {
+      url: `${SITE_URL}${path === "/" ? "" : path}`,
+      // Real per-page date, stamped when the page's content is published.
+      ...(updated ? { lastModified: updated } : {}),
+    };
+  });
 }

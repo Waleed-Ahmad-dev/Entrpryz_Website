@@ -253,7 +253,14 @@ export const blockSchema = z.discriminatedUnion("type", [
 
 const pageSchema = z
   .object({
-    seo: z.object({ title: text(70), description: text(200) }).strict(),
+    seo: z
+      .object({
+        title: text(70),
+        description: text(200),
+        // Last content change (YYYY-MM-DD); set automatically on publish, used as the sitemap lastmod.
+        updated: optional(z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Use YYYY-MM-DD")),
+      })
+      .strict(),
     blocks: list(blockSchema, 40),
   })
   .strict();

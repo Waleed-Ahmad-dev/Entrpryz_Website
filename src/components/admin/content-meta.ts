@@ -93,6 +93,7 @@ const LABELS: Record<string, string> = {
   social: "Social Links",
   areas: "Area of Interest Options",
   areaServed: "Service Area (search engines)",
+  updated: "Last Updated (set on publish)",
   foundingDate: "Founding Date (YYYY or YYYY-MM-DD)",
   privacyNote: "Privacy Note",
 };
@@ -127,7 +128,9 @@ export function fieldKind(path: Path, value: string): FieldKind {
 
 /** Fields that can't be edited: the block type defines the layout. */
 export function isReadOnly(path: Path): boolean {
-  return path[path.length - 1] === "type";
+  const key = path[path.length - 1];
+  // "updated" is stamped by the server on publish.
+  return key === "type" || (key === "updated" && path[path.length - 2] === "seo");
 }
 
 /** True for a page's list of sections — its layout is fixed; content inside is editable. */

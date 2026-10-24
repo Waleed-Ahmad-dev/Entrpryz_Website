@@ -2,11 +2,12 @@
 
 import { createHash } from "node:crypto";
 import { requireAdmin, UnauthorizedError } from "@/lib/admin-auth";
-import { MAX_CONTENT_BYTES, siteContentSchema } from "@/lib/content-schema";
+import { MAX_CONTENT_BYTES, PAGE_KEYS, siteContentSchema, type SiteContent } from "@/lib/content-schema";
 import {
   CONTENT_PATH,
   GitHubConfigError,
   GitHubConflictError,
+  readRepoFile,
   repoFileExists,
   writeRepoFile,
 } from "@/lib/github-store";
@@ -20,6 +21,21 @@ export type SaveResult =
     };
 
 const SHA_RE = /^[a-f0-9]{40}$/;
+
+/** Compare each page without its `updated` stamp; set today's date where it changed. */
+function stampUpdatedPages(previous: Partial<SiteContent>, next: SiteContent) {
+  const today = new Date().toISOString().slice(0, 10);
+  const strip = (page: unknown) => {
+    if (!page || typeof page !== "object") return "";
+    const { seo, ...rest } = page as { seo?: Record<string, unknown> };
+    const { updated: _ignored, ...seoRest } = seo ?? {};
+    return JSON.stringify({ ...rest, seo: seoRest });
+  };
+  for (const key of PAGE_KEYS) {
+    if (strip(previous[key]) !== strip(next[key])) next[key].seo.updated = today;
+    else if (!next[key].seo.updated && previous[key]?.seo?.updated) next[key].seo.updated = previous[key]!.seo.updated;
+  }
+}
 
 export async function saveContent(input: { content: unknown; sha: unknown }): Promise<SaveResult> {
   let username: string;
@@ -57,8 +73,20 @@ export async function saveContent(input: { content: unknown; sha: unknown }): Pr
     };
   }
 
+  // Stamp today's date on pages whose content changed (sitemap lastmod).
+  const next = parsed.data;
+  try {
+    const current = await readRepoFile(CONTENT_PATH);
+    if (current.sha !== input.sha) return { ok: false, reason: "conflict" };
+    stampUpdatedPages(JSON.parse(current.text) as Partial<SiteContent>, next);
+  } catch (err) {
+    if (err instanceof GitHubConfigError) return { ok: false, reason: "unconfigured" };
+    console.error("[admin] content read before save failed:", err instanceof Error ? err.message : "unknown");
+    return { ok: false, reason: "failed" };
+  }
+
   // Store the *parsed* value: trimmed, normalized, unknown keys impossible.
-  const body = Buffer.from(JSON.stringify(parsed.data, null, 2) + "\n", "utf8");
+  const body = Buffer.from(JSON.stringify(next, null, 2) + "\n", "utf8");
   const safeUser = username.replace(/[^A-Za-z0-9._-]/g, "").slice(0, 40);
 
   try {
