@@ -556,13 +556,18 @@ export function TagsBlock({ block, dark }: { block: BlockOf<"tags"> } & Surface)
 // ---------- group (portfolio) ----------
 
 export function GroupBlock({ block, dark }: { block: BlockOf<"group"> } & Surface) {
+  // "Pharmaceutical manufacturing (4)" counts as four engagements.
+  const engagementCount = block.items.reduce((sum, item) => {
+    const multiple = item.name.match(/\((\d+)\)\s*$/);
+    return sum + (multiple ? Number(multiple[1]) : 1);
+  }, 0);
   return (
     <SectionContainer id={block.id} darkSurface={dark}>
       <div className="space-y-10">
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
           <SectionHeading eyebrow={block.eyebrow} heading={block.heading} intro={block.intro} />
           <span className="shrink-0 self-start sm:self-end rounded-full border border-surface-border bg-surface-card px-3 py-1 text-xs font-medium text-text-secondary">
-            {block.items.length} {block.items.length === 1 ? "engagement" : "engagements"}
+            {engagementCount} {engagementCount === 1 ? "engagement" : "engagements"}
           </span>
         </div>
         <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
