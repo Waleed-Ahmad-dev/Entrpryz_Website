@@ -5,7 +5,7 @@ export type InquiryResult =
   | { ok: true }
   | {
       ok: false;
-      reason: "invalid" | "rate_limited" | "failed";
+      reason: "invalid" | "rate_limited" | "verification" | "failed";
       fields?: Partial<Record<keyof ContactFormData, string>>;
     };
 
@@ -18,7 +18,7 @@ export type InquiryResult =
  */
 export async function submitInquiry(
   data: ContactFormData,
-  meta: { website: string; startedAt: number }
+  meta: { website: string; startedAt: number; turnstileToken?: string }
 ): Promise<InquiryResult> {
   const checked = validateContact(data);
   if (!checked.ok) return { ok: false, reason: "invalid", fields: checked.errors };
@@ -31,6 +31,7 @@ export async function submitInquiry(
     });
     if (res.ok) return { ok: true };
     if (res.status === 429) return { ok: false, reason: "rate_limited" };
+    if (res.status === 403) return { ok: false, reason: "verification" };
     if (res.status === 400) {
       const body = await res.json().catch(() => ({}));
       return { ok: false, reason: "invalid", fields: body.fields };

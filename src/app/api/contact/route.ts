@@ -1,6 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import nodemailer, { type Transporter } from "nodemailer";
 import { validateContact } from "@/lib/contact-validation";
+import { verifyTurnstile } from "@/lib/turnstile";
 import type { ContactFormData } from "@/types";
 
 export const runtime = "nodejs";
@@ -96,7 +97,8 @@ export async function POST(req: NextRequest) {
   if (!req.headers.get("content-type")?.includes("application/json")) {
     return NextResponse.json({ error: "unsupported_media_type" }, { status: 415 });
   }
-  if (isRateLimited(clientIp(req))) {
+  const ip = clientIp(req);
+  if (isRateLimited(ip)) {
     return NextResponse.json({ error: "rate_limited" }, { status: 429 });
   }
 
@@ -115,6 +117,10 @@ export async function POST(req: NextRequest) {
   const startedAt = Number(body.startedAt);
   if (body.website || !Number.isFinite(startedAt) || Date.now() - startedAt < MIN_FILL_MS) {
     return NextResponse.json({ ok: true });
+  }
+
+  if (!(await verifyTurnstile(body.turnstileToken, ip))) {
+    return NextResponse.json({ error: "verification" }, { status: 403 });
   }
 
   const result = validateContact(body);

@@ -1,15 +1,19 @@
 const isProd = process.env.NODE_ENV === "production";
 
+// Cloudflare Turnstile (contact form + admin login) is allowed only when configured.
+const turnstile = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ? " https://challenges.cloudflare.com" : "";
+
 // Next.js inlines its bootstrap scripts, so scripts need 'unsafe-inline'
 // (dev also needs 'unsafe-eval' for fast refresh). Everything else is
 // locked to this origin; blob: is for admin image previews.
 const contentSecurityPolicy = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${isProd ? "" : " 'unsafe-eval'"}`,
+  `script-src 'self' 'unsafe-inline'${isProd ? "" : " 'unsafe-eval'"}${turnstile}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data: blob:",
   "font-src 'self'",
   "connect-src 'self'",
+  `frame-src ${turnstile ? turnstile.trim() : "'none'"}`,
   "frame-ancestors 'none'",
   "base-uri 'self'",
   "form-action 'self'",
