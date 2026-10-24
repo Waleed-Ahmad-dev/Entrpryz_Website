@@ -2,7 +2,7 @@
   "site": {
     "name": "Entrpryz",
     "tagline": "Technology. Simplified.",
-    "location": "Based in Pakistan. Serving Pakistan and the UAE.",
+    "location": "Based in Pakistan. Serving Pakistan, UAE and the Global market.",
     "footerServices": [
       {
         "label": "Digital Transformation",
@@ -146,6 +146,7 @@
         "heading": "Three ways we help businesses move forward",
         "items": [
           {
+            "image": "/images/services-digital-transformation.jpg",
             "title": "Digital Transformation",
             "description": "Make the systems you already own work, or choose and roll out the right ones.",
             "bullets": [
@@ -160,10 +161,10 @@
                 "label": "Explore Digital Transformation",
                 "href": "/services#digital-transformation"
               }
-            ],
-            "image": "/images/services-digital-transformation.jpg"
+            ]
           },
           {
+            "image": "/images/services-software-dev.jpg",
             "title": "Software Development",
             "description": "Custom software built around how your team works, not the other way round.",
             "bullets": [
@@ -178,10 +179,10 @@
                 "label": "Explore Software Development",
                 "href": "/services#software-development"
               }
-            ],
-            "image": "/images/services-software-dev.jpg"
+            ]
           },
           {
+            "image": "/images/services-it-infrastructure.jpg",
             "title": "Technology & IT Services",
             "description": "Reliable infrastructure and sensible IT decisions that match your budget.",
             "bullets": [
@@ -196,8 +197,7 @@
                 "label": "Explore Technology & IT Services",
                 "href": "/services#technology-it-services"
               }
-            ],
-            "image": "/images/services-it-infrastructure.jpg"
+            ]
           }
         ]
       },
