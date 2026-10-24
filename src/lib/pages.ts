@@ -16,6 +16,22 @@ export const PAGE_PATHS: Record<PageKey, string> = {
   privacyPage: "/privacy-policy",
 };
 
+/** Short names for breadcrumbs. */
+export const PAGE_LABELS: Record<PageKey, string> = {
+  homePage: "Home",
+  aboutPage: "About",
+  servicesPage: "Services",
+  aiAgentsPage: "AI Agents",
+  sapHealthCheckPage: "SAP Business One Health Check",
+  misAssessmentPage: "MIS Assessment & Development Roadmap",
+  portfolioPage: "Portfolio",
+  contactPage: "Contact",
+  privacyPage: "Privacy Policy",
+};
+
+/** Pages that describe a single service (children of /services). */
+export const SERVICE_PAGES: PageKey[] = ["aiAgentsPage", "sapHealthCheckPage", "misAssessmentPage"];
+
 export function getPage(key: PageKey): PageContent {
   return SITE_CONTENT[key];
 }

@@ -28,6 +28,7 @@ import {
   isReadOnly,
   itemTitle,
   newItemTemplate,
+  objectFieldKeys,
   pathKey,
   siteHref,
   templateKeys,
@@ -120,6 +121,7 @@ function collectLeaves(doc: Doc): Leaf[] {
       const keys = new Set(Object.keys(value));
       const parent = path.slice(0, -1);
       if (typeof path[path.length - 1] === "number") templateKeys(parent, value)?.forEach((k) => keys.add(k));
+      objectFieldKeys(path).forEach((k) => keys.add(k));
       for (const k of keys) {
         walk((value as Record<string, Json>)[k] ?? "", [...path, k], [...crumbs, fieldLabel(k)]);
       }
@@ -533,6 +535,7 @@ function NodeEditor(props: FieldProps) {
     const keys = new Set(Object.keys(value));
     const parent = props.path.slice(0, -1);
     if (typeof props.path[props.path.length - 1] === "number") templateKeys(parent, value)?.forEach((k) => keys.add(k));
+    objectFieldKeys(props.path).forEach((k) => keys.add(k));
     return (
       <div className="space-y-5">
         {Array.from(keys).map((k) => {

@@ -1,5 +1,6 @@
 import type { Block, PageKey } from "@/lib/content-schema";
 import { getPage } from "@/lib/pages";
+import { pageGraph, serializeJsonLd } from "@/lib/structured-data";
 import {
   CardsBlock,
   ChecklistBlock,
@@ -51,8 +52,12 @@ function renderBlock(block: Block, dark: boolean) {
 export function PageBlocks({ page }: { page: PageKey }) {
   const { blocks } = getPage(page);
   let shade = 0;
+  const graph = pageGraph(page);
   return (
     <>
+      {graph && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: serializeJsonLd(graph) }} />
+      )}
       {blocks.map((block, i) => {
         const fullBleed = block.type === "hero" || block.type === "cta" || block.type === "prose" || block.type === "contact";
         const dark = !fullBleed && shade++ % 2 === 0;

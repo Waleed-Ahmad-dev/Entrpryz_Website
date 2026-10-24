@@ -9,6 +9,7 @@ import {
 } from "@/lib/site";
 import { SITE_CONTENT } from "@/lib/site-content";
 import { assertValidSiteContent } from "@/lib/content-schema";
+import { serializeJsonLd, siteGraph } from "@/lib/structured-data";
 
 assertValidSiteContent(SITE_CONTENT);
 
@@ -60,22 +61,6 @@ export const metadata: Metadata = {
   themeColor: "#080A0D",
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  name: SITE_NAME,
-  url: SITE_URL,
-  logo: `${SITE_URL}${SITE_CONTENT.images.logoSquare}`,
-  description: SITE_DESCRIPTION,
-  founder: {
-    "@type": "Person",
-    name: "Javed Ahmad Qureshi",
-    jobTitle: "Founder",
-  },
-  email: SITE_CONTENT.contact.email,
-  areaServed: ["Pakistan", "United Arab Emirates"],
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -89,10 +74,8 @@ export default function RootLayout({
       <body className="min-h-screen bg-background text-text-primary antialiased flex flex-col relative selection:bg-brand-orange selection:text-background">
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            // Escape "<" so editable content can never close the script tag.
-            __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
-          }}
+          // serializeJsonLd escapes "<" so editable content can never close the tag.
+          dangerouslySetInnerHTML={{ __html: serializeJsonLd(siteGraph()) }}
         />
         {children}
       </body>

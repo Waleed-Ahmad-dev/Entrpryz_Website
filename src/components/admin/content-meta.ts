@@ -92,6 +92,8 @@ const LABELS: Record<string, string> = {
   message: "Pre-filled Message",
   social: "Social Links",
   areas: "Area of Interest Options",
+  areaServed: "Service Area (search engines)",
+  foundingDate: "Founding Date (YYYY or YYYY-MM-DD)",
   privacyNote: "Privacy Note",
 };
 
@@ -158,9 +160,18 @@ export function templateKeys(arrayPath: Path, item?: unknown): string[] | null {
   return null;
 }
 
+/** Optional fields of fixed objects (by path), shown even when currently unset. */
+const OBJECT_FIELDS: Record<string, string[]> = {
+  site: ["foundingDate"],
+};
+
+export function objectFieldKeys(path: Path): string[] {
+  return OBJECT_FIELDS[pathKey(path)] ?? [];
+}
+
 /** Optional in the schema — shown, but may be left blank. */
 export const OPTIONAL_KEYS = new Set([
-  "eyebrow", "intro", "id", "badge", "detail", "location", "image", "quote", "note", "number", "message", "icon",
+  "eyebrow", "intro", "id", "badge", "detail", "location", "image", "quote", "note", "number", "message", "icon", "foundingDate",
 ]);
 
 /** Short title for an array item, taken from its most descriptive field. */

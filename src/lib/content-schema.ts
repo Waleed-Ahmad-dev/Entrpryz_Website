@@ -282,6 +282,10 @@ export const siteContentSchema = z
         location: text(200),
         footerServices: list(button, 8),
         copyright: text(120),
+        // Used in structured data (schema.org areaServed); keep in line with the visible wording.
+        areaServed: list(text(60), 10).min(1, "Add at least one area"),
+        // Optional, e.g. 2024 or 2024-03-01.
+        foundingDate: optional(z.string().regex(/^\d{4}(-\d{2}(-\d{2})?)?$/, "Use YYYY or YYYY-MM-DD")),
         whatsapp: z
           .object({
             // Digits only, international format without "+" (e.g. 923001234567). Blank hides the button.
