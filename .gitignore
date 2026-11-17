@@ -38,3 +38,5 @@ next-env.d.ts
 /docs/branding/*.png
 /docs/branding/*.jpg
 /docs/branding/*.jpeg
+CODE_AUDIT_REPORT.md
+REMEDIATION_PLAN.md
