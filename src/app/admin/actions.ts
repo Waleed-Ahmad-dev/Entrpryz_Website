@@ -27,8 +27,8 @@ const MAX_GLOBAL_FAILURES = 20;
 const failures = new Map<string, { count: number; first: number }>();
 let globalFailures = { count: 0, first: Date.now() };
 
-function clientIp(): string {
-  const h = headers();
+async function clientIp(): Promise<string> {
+  const h = await headers();
   return h.get("x-real-ip") ?? h.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
 }
 
@@ -67,7 +67,7 @@ function safeEqual(a: string, b: string): boolean {
 }
 
 export async function login(_prev: LoginState, formData: FormData): Promise<LoginState> {
-  const ip = clientIp();
+  const ip = await clientIp();
   if (isLockedOut(ip) || globallyLocked()) {
     return { error: "Too many failed attempts. Try again in 15 minutes." };
   }
@@ -116,7 +116,7 @@ export async function login(_prev: LoginState, formData: FormData): Promise<Logi
 
   failures.delete(ip);
   markTotpUsed(totpStep);
-  cookies().set(ADMIN_COOKIE, token, {
+  (await cookies()).set(ADMIN_COOKIE, token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
     sameSite: "strict",
@@ -127,6 +127,6 @@ export async function login(_prev: LoginState, formData: FormData): Promise<Logi
 }
 
 export async function logout() {
-  cookies().delete(ADMIN_COOKIE);
+  (await cookies()).delete(ADMIN_COOKIE);
   redirect("/admin/login");
 }

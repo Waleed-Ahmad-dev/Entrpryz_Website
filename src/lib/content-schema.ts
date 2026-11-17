@@ -63,7 +63,8 @@ function isHttpsUrl(v: string): boolean {
 const icon = optional(z.enum(ICON_NAMES));
 
 const httpsUrl = z.string().trim().max(500).refine(isHttpsUrl, "Must be a full https:// link");
-const email = z.string().trim().toLowerCase().max(254).email("Must be a valid email address");
+// Normalize first, then check the format (z.email() validates the value it receives).
+const email = z.string().trim().toLowerCase().max(254).pipe(z.email("Must be a valid email address"));
 const anchorId = z
   .string()
   .regex(/^[a-z][a-z0-9-]*$/, "Lowercase letters, numbers and dashes only")

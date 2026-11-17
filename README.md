@@ -4,7 +4,7 @@ Official website for [Entrpryz](https://entrpryz.com) — ERP, software developm
 
 ## Stack
 
-- **Next.js 14** (App Router, static prerendering)
+- **Next.js 16** (App Router, static prerendering, Turbopack) on **React 19**, **Zod 4** for content validation
 - **TypeScript** (strict)
 - **Tailwind CSS** (CSS-variable tokens in `globals.css` — single source of truth)
 - **lucide-react** icons, **class-variance-authority** UI variants
@@ -63,7 +63,7 @@ Configure SMTP in Vercel environment variables — see `.env.example`. For local
 
 ## Admin panel
 
-`/admin` is protected by a username/password login (`/admin/login`). Credentials come from `ADMIN_USERNAME` / `ADMIN_PASSWORD`, and sessions are signed with `ADMIN_SESSION_SECRET` (8-hour, httpOnly, SameSite=Strict cookie). `src/middleware.ts` guards every `/admin` route and the page re-checks the session server-side. Failed logins are throttled per IP.
+`/admin` is protected by a username/password login (`/admin/login`). Credentials come from `ADMIN_USERNAME` / `ADMIN_PASSWORD`, and sessions are signed with `ADMIN_SESSION_SECRET` (8-hour, httpOnly, SameSite=Strict cookie). `src/proxy.ts` guards every `/admin` route and the page re-checks the session server-side. Failed logins are throttled per IP.
 
 Set all three variables in Vercel (see `.env.example`); locally they live in the git-ignored `.env`.
 

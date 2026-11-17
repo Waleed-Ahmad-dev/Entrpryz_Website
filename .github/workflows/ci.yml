@@ -31,9 +31,9 @@ jobs:
         env:
           NEXT_TELEMETRY_DISABLED: "1"
 
-  # Reports known vulnerabilities in production dependencies. Kept as a separate
-  # job so it is visible on every PR without blocking merges while the known Next.js
-  # advisories are open; make it a required check once remediation Phase 2 lands.
+  # Fails when a production dependency has a known high/critical vulnerability.
+  # Separate job so a newly published advisory is reported clearly; mark it as a
+  # required status check in the branch protection settings.
   audit:
     name: Dependency audit
     runs-on: ubuntu-latest

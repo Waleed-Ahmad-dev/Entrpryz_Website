@@ -96,9 +96,18 @@ describe("siteContentSchema", () => {
 
   it("normalizes the contact email to lowercase", () => {
     const content = siteContentFixture();
-    content.contact.email = "Connect@Entrpryz.COM";
+    content.contact.email = "  Connect@Entrpryz.COM ";
     expect(parse(content).data?.contact.email).toBe("connect@entrpryz.com");
   });
+
+  it.each(["not-an-email", "a@b", "two@@example.com", "spaces in@example.com"])(
+    "rejects the contact email %j",
+    (email) => {
+      const content = siteContentFixture();
+      content.contact.email = email;
+      expect(parse(content).success).toBe(false);
+    }
+  );
 
   it("rejects an unknown block type", () => {
     const content = siteContentFixture() as unknown as { homePage: { blocks: unknown[] } };

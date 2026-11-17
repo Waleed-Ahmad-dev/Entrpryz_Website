@@ -5,9 +5,10 @@ import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 const requestHeaders = new Map<string, string>();
 const cookieJar = { set: vi.fn(), delete: vi.fn() };
 
+// Next.js 16 request APIs are async-only, so the mocks return promises too.
 vi.mock("next/headers", () => ({
-  headers: () => ({ get: (name: string) => requestHeaders.get(name.toLowerCase()) ?? null }),
-  cookies: () => cookieJar,
+  headers: async () => ({ get: (name: string) => requestHeaders.get(name.toLowerCase()) ?? null }),
+  cookies: async () => cookieJar,
 }));
 
 class RedirectSignal extends Error {

@@ -1,8 +1,8 @@
 /**
  * Admin session tokens: `base64url(payload).base64url(HMAC-SHA256)`.
  *
- * Uses Web Crypto only, so the same code runs in middleware (Edge) and in
- * server components / actions (Node). Signed with ADMIN_SESSION_SECRET —
+ * Uses Web Crypto only, so the same code runs in the proxy (`src/proxy.ts`)
+ * and in server components / actions. Signed with ADMIN_SESSION_SECRET —
  * rotating that secret signs everyone out.
  */
 

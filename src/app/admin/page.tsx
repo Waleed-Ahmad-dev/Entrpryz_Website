@@ -8,7 +8,7 @@ export const dynamic = "force-dynamic";
 export const metadata = { title: "Dashboard" };
 
 export default async function AdminDashboardPage() {
-  // Middleware already guards /admin; re-check here in case it is bypassed.
+  // The proxy (src/proxy.ts) already guards /admin; re-check here in case it is bypassed.
   const session = await getAdminSession();
   if (!session) redirect("/admin/login");
 

@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { useFormState, useFormStatus } from "react-dom";
+import { useActionState, useEffect, useRef } from "react";
+import { useFormStatus } from "react-dom";
 import { LogIn } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Turnstile, type TurnstileHandle } from "@/components/ui/turnstile";
@@ -24,7 +24,7 @@ function SubmitButton() {
 }
 
 export function LoginForm({ totp }: { totp: boolean }) {
-  const [state, formAction] = useFormState(login, initialState);
+  const [state, formAction] = useActionState(login, initialState);
   const turnstile = useRef<TurnstileHandle>(null);
 
   // Turnstile tokens are single-use: get a fresh one after a failed attempt.

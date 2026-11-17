@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Montserrat, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import {
@@ -63,6 +63,9 @@ export const metadata: Metadata = {
     ...(process.env.GOOGLE_SITE_VERIFICATION ? { google: process.env.GOOGLE_SITE_VERIFICATION } : {}),
     ...(process.env.BING_SITE_VERIFICATION ? { other: { "msvalidate.01": process.env.BING_SITE_VERIFICATION } } : {}),
   },
+};
+
+export const viewport: Viewport = {
   themeColor: "#080A0D",
 };
 
@@ -74,6 +77,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      // globals.css sets smooth scrolling for in-page #links; this keeps route
+      // changes instant (Next.js 16 no longer overrides it by default).
+      data-scroll-behavior="smooth"
       className={`${montserrat.variable} ${spaceGrotesk.variable} dark`}
     >
       <body className="min-h-screen bg-background text-text-primary antialiased flex flex-col relative selection:bg-brand-orange selection:text-background">

@@ -3,11 +3,11 @@ import { cookies } from "next/headers";
 import { ADMIN_COOKIE, verifySessionToken, type AdminSession } from "./admin-session";
 
 /**
- * Server actions are public POST endpoints: middleware does not protect them
+ * Server actions are public POST endpoints: the proxy does not protect them
  * when invoked directly, so every admin action must call this first.
  */
 export async function getAdminSession(): Promise<AdminSession | null> {
-  return verifySessionToken(cookies().get(ADMIN_COOKIE)?.value);
+  return verifySessionToken((await cookies()).get(ADMIN_COOKIE)?.value);
 }
 
 export class UnauthorizedError extends Error {

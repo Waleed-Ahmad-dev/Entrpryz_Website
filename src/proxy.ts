@@ -3,7 +3,7 @@ import { ADMIN_COOKIE, verifySessionToken } from "@/lib/admin-session";
 
 const LOGIN_PATH = "/admin/login";
 
-export async function middleware(req: NextRequest) {
+export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
   const session = await verifySessionToken(req.cookies.get(ADMIN_COOKIE)?.value);
 
