@@ -15,6 +15,7 @@ import {
   Upload,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { ObjectUrlRegistry } from "@/lib/admin/object-url-registry";
 import { cn } from "@/lib/utils";
 import { saveContent, uploadImage as uploadImageAction } from "@/app/admin/content/actions";
 import {
@@ -39,7 +40,7 @@ import {
 type Json = string | number | boolean | null | Json[] | { [key: string]: Json };
 type Doc = { [key: string]: Json };
 
-export type ImageUploader = (file: File) => Promise<{ path: string } | { error: string }>;
+type ImageUploader = (file: File) => Promise<{ path: string } | { error: string }>;
 
 interface ContentEditorProps {
   initialContent: Doc;
@@ -114,7 +115,6 @@ function collectLeaves(doc: Doc): Leaf[] {
   const walk = (value: Json | undefined, path: Path, crumbs: string[]) => {
     if (Array.isArray(value)) {
       value.forEach((item, i) => walk(item, [...path, i], [...crumbs, itemTitle(item, i)]));
-      if (value.length === 0) return;
       return;
     }
     if (value && typeof value === "object") {
@@ -169,6 +169,11 @@ export function ContentEditor({ initialContent, initialSha, canSave }: ContentEd
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<{ tone: "ok" | "error"; text: string } | null>(null);
   const [previews, setPreviews] = useState<Record<string, string>>({});
+  // Local previews of uploaded images hold the file in memory until revoked:
+  // the registry revokes a replaced preview, and all of them when the editor unmounts.
+  const [previewUrls] = useState(() => new ObjectUrlRegistry());
+  useEffect(() => () => previewUrls.revokeAll(), [previewUrls]);
+  const createPreviewUrl = useCallback((key: string, file: Blob) => previewUrls.create(key, file), [previewUrls]);
   const [isSaving, startSaving] = useTransition();
 
   const leaves = useMemo(() => collectLeaves(doc), [doc]);
@@ -267,6 +272,7 @@ export function ContentEditor({ initialContent, initialSha, canSave }: ContentEd
     imageOptions,
     previews,
     setPreviews,
+    createPreviewUrl,
     uploadImage,
   };
 
@@ -613,6 +619,7 @@ interface FieldProps {
   imageOptions: string[];
   previews: Record<string, string>;
   setPreviews: React.Dispatch<React.SetStateAction<Record<string, string>>>;
+  createPreviewUrl: (key: string, file: Blob) => string;
   uploadImage?: ImageUploader;
   hideLabel?: boolean;
 }
@@ -849,6 +856,7 @@ function ImageField({
   imageOptions,
   previews,
   setPreviews,
+  createPreviewUrl,
   uploadImage,
 }: {
   ariaLabel?: string;
@@ -859,6 +867,7 @@ function ImageField({
   imageOptions: string[];
   previews: Record<string, string>;
   setPreviews: React.Dispatch<React.SetStateAction<Record<string, string>>>;
+  createPreviewUrl: (key: string, file: Blob) => string;
   uploadImage?: ImageUploader;
 }) {
   const [uploading, setUploading] = useState(false);
@@ -879,7 +888,7 @@ function ImageField({
       return;
     }
     // Newly committed images aren't served until the next deploy: preview locally.
-    const local = URL.createObjectURL(file);
+    const local = createPreviewUrl(result.path, file);
     setPreviews((p) => ({ ...p, [result.path]: local }));
     onChange(result.path);
   };

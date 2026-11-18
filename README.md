@@ -57,9 +57,9 @@ Each page is a list of content blocks in `content/site.json` (rendered by `src/c
 
 ## Contact form
 
-The form posts to `/api/contact`, which validates input (shared rules in `src/lib/contact-validation.ts`), applies a same-origin check, honeypot, fill-time check and per-IP rate limit, then sends the inquiry via SMTP (`nodemailer`) with the visitor as `Reply-To`.
+The form posts to `/api/contact`, which validates input (shared rules in `src/lib/contact-validation.ts`), accepts only requests whose `Origin` is the site's own (`NEXT_PUBLIC_SITE_URL`, its www/apex twin, or this Vercel deployment's URLs; any localhost port under `next dev`), caps the body at 16 KB, and applies a honeypot, fill-time check and per-IP rate limit, then sends the inquiry via SMTP (`nodemailer`) with the visitor as `Reply-To`.
 
-Configure SMTP in Vercel environment variables — see `.env.example`. For local testing copy it to `.env.local`. Inquiries go to `CONTACT_TO_EMAIL` (default `connect@entrpryz.com`).
+Configure SMTP in Vercel environment variables — see `.env.example`. For local testing copy it to `.env.local`. To test the form against a local production build (`next start`), also set `NEXT_PUBLIC_SITE_URL=http://localhost:3000`, or the origin check will reject it. Inquiries go to `CONTACT_TO_EMAIL` (default `connect@entrpryz.com`).
 
 ## Admin panel
 

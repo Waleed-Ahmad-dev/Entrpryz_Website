@@ -36,7 +36,7 @@ const optional = <T extends z.ZodTypeAny>(schema: T) =>
 const list = <T extends z.ZodTypeAny>(item: T, max = 50) => z.array(item).max(max, `At most ${max} items`);
 
 /** Only images served from /public/images — no remote URLs, no SVG, no traversal. */
-export const IMAGE_PATH_RE = /^\/images\/(?:uploads\/)?[a-z0-9][a-z0-9_-]*\.(?:jpe?g|png|webp)$/;
+const IMAGE_PATH_RE = /^\/images\/(?:uploads\/)?[a-z0-9][a-z0-9_-]*\.(?:jpe?g|png|webp)$/;
 const imagePath = z.string().regex(IMAGE_PATH_RE, "Must be an image under /images (jpg, png or webp)");
 
 /** Site paths (with optional #anchor), https URLs or mailto — never javascript:/data:. */
@@ -236,7 +236,7 @@ const contactBlock = z
   })
   .strict();
 
-export const blockSchema = z.discriminatedUnion("type", [
+const blockSchema = z.discriminatedUnion("type", [
   heroBlock,
   statsBlock,
   cardsBlock,

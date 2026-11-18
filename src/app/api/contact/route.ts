@@ -1,6 +1,8 @@
 import { NextResponse, type NextRequest } from "next/server";
 import nodemailer, { type Transporter } from "nodemailer";
 import { validateContact } from "@/lib/contact-validation";
+import { isAllowedOrigin } from "@/lib/http/allowed-origins";
+import { readJsonObjectBody } from "@/lib/http/read-json-body";
 import { verifyTurnstile } from "@/lib/turnstile";
 import type { ContactFormData } from "@/types";
 
@@ -31,17 +33,6 @@ function isRateLimited(ip: string): boolean {
 
 function clientIp(req: NextRequest): string {
   return req.headers.get("x-real-ip") ?? req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
-}
-
-/** Reject cross-site posts: Origin must match the host serving this route. */
-function isSameOrigin(req: NextRequest): boolean {
-  const origin = req.headers.get("origin");
-  if (!origin) return false;
-  try {
-    return new URL(origin).host === (req.headers.get("x-forwarded-host") ?? req.headers.get("host"));
-  } catch {
-    return false;
-  }
 }
 
 function escapeHtml(value: string): string {
@@ -91,7 +82,8 @@ function buildEmail(data: ContactFormData) {
 }
 
 export async function POST(req: NextRequest) {
-  if (!isSameOrigin(req)) {
+  // Cross-site posts are rejected: the Origin must be one of this site's own origins.
+  if (!isAllowedOrigin(req.headers.get("origin"))) {
     return NextResponse.json({ error: "forbidden" }, { status: 403 });
   }
   if (!req.headers.get("content-type")?.includes("application/json")) {
@@ -102,16 +94,13 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "rate_limited" }, { status: 429 });
   }
 
-  let body: Record<string, unknown>;
-  try {
-    const raw = await req.text();
-    if (raw.length > MAX_BODY_BYTES) {
-      return NextResponse.json({ error: "payload_too_large" }, { status: 413 });
-    }
-    body = JSON.parse(raw);
-  } catch {
-    return NextResponse.json({ error: "invalid" }, { status: 400 });
+  const parsed = await readJsonObjectBody(req, MAX_BODY_BYTES);
+  if (!parsed.ok) {
+    return parsed.reason === "too_large"
+      ? NextResponse.json({ error: "payload_too_large" }, { status: 413 })
+      : NextResponse.json({ error: "invalid" }, { status: 400 });
   }
+  const body = parsed.value;
 
   // Honeypot / timing trap: pretend success so bots don't adapt.
   const startedAt = Number(body.startedAt);

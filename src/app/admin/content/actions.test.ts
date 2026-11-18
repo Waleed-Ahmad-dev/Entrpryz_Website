@@ -194,6 +194,20 @@ describe("uploadImage", () => {
     expect(github.writeRepoFile).not.toHaveBeenCalled();
   });
 
+  it("treats losing an upload race for the same image as success", async () => {
+    vi.mocked(github.writeRepoFile).mockRejectedValue(new github.GitHubConflictError("exists"));
+    expect(await uploadImage(form(PNG))).toEqual({
+      ok: true,
+      path: expect.stringMatching(/^\/images\/uploads\/[a-f0-9]{24}\.png$/),
+    });
+  });
+
+  it("reports other upload failures without details", async () => {
+    vi.spyOn(console, "error").mockImplementation(() => {});
+    vi.mocked(github.writeRepoFile).mockRejectedValue(new github.GitHubRequestError("GitHub write failed (500)."));
+    expect(await uploadImage(form(PNG))).toEqual({ ok: false, error: "Upload failed. Please try again." });
+  });
+
   it("does not commit an image that is already in the repo", async () => {
     vi.mocked(github.repoFileExists).mockResolvedValue(true);
     expect(await uploadImage(form(PNG))).toMatchObject({ ok: true });

@@ -11,6 +11,7 @@ import {
   repoFileExists,
   writeRepoFile,
 } from "@/lib/github-store";
+import { sniffImageFormat } from "@/lib/image-format";
 
 export type SaveResult =
   | { ok: true; sha: string }
@@ -109,22 +110,6 @@ export type UploadResult = { ok: true; path: string } | { ok: false; error: stri
 
 const MAX_IMAGE_BYTES = 4 * 1024 * 1024;
 
-/** Identify the format from magic bytes — the browser-supplied MIME type is never trusted. */
-function sniffImage(bytes: Buffer): "jpg" | "png" | "webp" | null {
-  if (bytes.length >= 3 && bytes[0] === 0xff && bytes[1] === 0xd8 && bytes[2] === 0xff) return "jpg";
-  if (bytes.length >= 8 && bytes.subarray(0, 8).equals(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]))) {
-    return "png";
-  }
-  if (
-    bytes.length >= 12 &&
-    bytes.subarray(0, 4).toString("latin1") === "RIFF" &&
-    bytes.subarray(8, 12).toString("latin1") === "WEBP"
-  ) {
-    return "webp";
-  }
-  return null;
-}
-
 export async function uploadImage(formData: FormData): Promise<UploadResult> {
   try {
     await requireAdmin();
@@ -138,7 +123,8 @@ export async function uploadImage(formData: FormData): Promise<UploadResult> {
   if (file.size > MAX_IMAGE_BYTES) return { ok: false, error: "Image must be 4 MB or smaller." };
 
   const bytes = Buffer.from(await file.arrayBuffer());
-  const ext = sniffImage(bytes);
+  // The format comes from the file bytes; the browser-supplied MIME type is never trusted.
+  const ext = sniffImageFormat(bytes);
   if (!ext) return { ok: false, error: "Only JPG, PNG or WebP images are allowed." };
 
   // Content-addressed name: no user-controlled filename ever reaches the repo.
@@ -151,6 +137,9 @@ export async function uploadImage(formData: FormData): Promise<UploadResult> {
     }
     return { ok: true, path: `/images/uploads/${name}` };
   } catch (err) {
+    // Another upload of the same image won the race. The name is the content
+    // hash, so the file in the repo is byte-for-byte this image.
+    if (err instanceof GitHubConflictError) return { ok: true, path: `/images/uploads/${name}` };
     if (err instanceof GitHubConfigError) return { ok: false, error: "Uploads aren't configured (GitHub settings missing)." };
     console.error("[admin] image upload failed:", err instanceof Error ? err.message : "unknown");
     return { ok: false, error: "Upload failed. Please try again." };

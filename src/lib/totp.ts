@@ -10,7 +10,7 @@ const STEP_SECONDS = 30;
 const DIGITS = 6;
 const BASE32 = "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567";
 
-export function base32Decode(input: string): Buffer {
+function base32Decode(input: string): Buffer {
   const clean = input.replace(/[\s=-]/g, "").toUpperCase();
   let bits = 0;
   let value = 0;

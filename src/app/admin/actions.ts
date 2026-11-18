@@ -9,54 +9,29 @@ import {
   createSessionToken,
 } from "@/lib/admin-session";
 import { checkTotp, markTotpUsed } from "@/lib/totp";
+import { LoginThrottle } from "@/lib/login-throttle";
 import { verifyTurnstile } from "@/lib/turnstile";
 
 export interface LoginState {
   error: string | null;
 }
 
-const MAX_FAILURES = 5;
-const LOCKOUT_MS = 15 * 60 * 1000;
 const MAX_FIELD_LENGTH = 256;
+const LOCKOUT_MINUTES = 15;
 
-// Site-wide cap so attempts spread over many IPs are throttled too.
-const MAX_GLOBAL_FAILURES = 20;
-
-// Best-effort per-instance throttle; serverless instances don't share memory,
-// so pair this with Turnstile and the TOTP second factor (both below).
-const failures = new Map<string, { count: number; first: number }>();
-let globalFailures = { count: 0, first: Date.now() };
+// Per-IP lockout after 5 failed sign-ins in 15 minutes. Site-wide failures only
+// raise an alert (see LoginThrottle). Best-effort per instance until the counters
+// move to shared storage; Turnstile and the TOTP second factor sit on top.
+const throttle = new LoginThrottle({
+  maxFailures: 5,
+  windowMs: LOCKOUT_MINUTES * 60 * 1000,
+  alertThreshold: 20,
+  maxTrackedKeys: 5000,
+});
 
 async function clientIp(): Promise<string> {
   const h = await headers();
   return h.get("x-real-ip") ?? h.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "unknown";
-}
-
-function isLockedOut(ip: string): boolean {
-  const entry = failures.get(ip);
-  if (!entry) return false;
-  if (Date.now() - entry.first > LOCKOUT_MS) {
-    failures.delete(ip);
-    return false;
-  }
-  return entry.count >= MAX_FAILURES;
-}
-
-function globallyLocked(): boolean {
-  if (Date.now() - globalFailures.first > LOCKOUT_MS) globalFailures = { count: 0, first: Date.now() };
-  return globalFailures.count >= MAX_GLOBAL_FAILURES;
-}
-
-function recordFailure(ip: string) {
-  if (Date.now() - globalFailures.first > LOCKOUT_MS) globalFailures = { count: 0, first: Date.now() };
-  globalFailures.count += 1;
-  if (failures.size > 5000) failures.clear();
-  const entry = failures.get(ip);
-  if (!entry || Date.now() - entry.first > LOCKOUT_MS) {
-    failures.set(ip, { count: 1, first: Date.now() });
-  } else {
-    entry.count += 1;
-  }
 }
 
 /** Constant-time string compare (hash first so lengths always match). */
@@ -68,12 +43,13 @@ function safeEqual(a: string, b: string): boolean {
 
 export async function login(_prev: LoginState, formData: FormData): Promise<LoginState> {
   const ip = await clientIp();
-  if (isLockedOut(ip) || globallyLocked()) {
-    return { error: "Too many failed attempts. Try again in 15 minutes." };
+  if (throttle.isLockedOut(ip)) {
+    return { error: `Too many failed attempts. Try again in ${LOCKOUT_MINUTES} minutes.` };
   }
 
+  // A request that fails the bot check never reaches the credential check, so it
+  // doesn't count as a failed sign-in; otherwise bots could spend the budget.
   if (!(await verifyTurnstile(formData.get("cf-turnstile-response"), ip))) {
-    recordFailure(ip);
     return { error: "Please complete the security check." };
   }
 
@@ -103,7 +79,7 @@ export async function login(_prev: LoginState, formData: FormData): Promise<Logi
   // Check the one-time code even when the password is wrong, so timing reveals nothing.
   const totpStep = checkTotp(formData.get("code"));
   if (!(userOk && passOk && totpStep !== null)) {
-    recordFailure(ip);
+    throttle.recordFailure(ip);
     await new Promise((r) => setTimeout(r, 500));
     return { error: "Invalid sign-in details." };
   }
@@ -114,7 +90,7 @@ export async function login(_prev: LoginState, formData: FormData): Promise<Logi
     return { error: "Admin login is not configured." };
   }
 
-  failures.delete(ip);
+  throttle.reset(ip);
   markTotpUsed(totpStep);
   (await cookies()).set(ADMIN_COOKIE, token, {
     httpOnly: true,

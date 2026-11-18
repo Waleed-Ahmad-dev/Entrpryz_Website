@@ -110,12 +110,36 @@ export async function writeRepoFile(
       committer: { name: "Entrpryz Admin", email: "admin@users.noreply.entrpryz.com" },
     }),
   });
-  if (res.status === 409 || (res.status === 422 && sha)) {
-    throw new GitHubConflictError("The file changed since it was loaded.");
+  // 409: the `sha` we sent is no longer the file's current version.
+  // 422 is GitHub's generic validation error; it means a version conflict only when
+  // it is about the `sha` (e.g. creating a file that already exists without one).
+  if (res.status === 409) throw new GitHubConflictError("The file changed since it was loaded.");
+  if (res.status === 422) {
+    const reason = await githubErrorMessage(res);
+    if (/\bsha\b/i.test(reason)) throw new GitHubConflictError("The file changed since it was loaded.");
+    // GitHub's message is logged server-side for diagnosis; it is never returned to the client.
+    console.error(`[github] write rejected (422): ${reason}`);
   }
   if (!res.ok) throw new GitHubRequestError(`GitHub write failed (${res.status}).`);
   const body = (await res.json()) as { content?: { sha?: string }; commit?: { sha?: string } };
   return { sha: body.content?.sha ?? "", commitSha: body.commit?.sha ?? "" };
+}
+
+/** GitHub's error `message` (plus validation details), trimmed for logging. */
+async function githubErrorMessage(res: Response): Promise<string> {
+  try {
+    const body = (await res.json()) as { message?: unknown; errors?: unknown };
+    const parts = [typeof body.message === "string" ? body.message : ""];
+    if (Array.isArray(body.errors)) {
+      for (const e of body.errors) {
+        const detail = (e as { message?: unknown })?.message;
+        if (typeof detail === "string") parts.push(detail);
+      }
+    }
+    return parts.filter(Boolean).join(" | ").replace(/\s+/g, " ").slice(0, 300);
+  } catch {
+    return "";
+  }
 }
 
 /** True if the file already exists (used to skip re-uploading identical images). */

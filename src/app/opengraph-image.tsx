@@ -1,6 +1,7 @@
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { ImageResponse } from "next/og";
+import { IMAGE_MIME_TYPES, sniffImageFormat } from "@/lib/image-format";
 import { SITE_CONTENT } from "@/lib/site-content";
 
 export const alt = `${SITE_CONTENT.site.name} — ${SITE_CONTENT.site.tagline}`;
@@ -9,8 +10,12 @@ export const contentType = "image/png";
 
 /** 1200x630 share card used for every page (Open Graph and Twitter/X). Rendered at build time. */
 export default async function OpenGraphImage() {
-  const logo = await readFile(path.join(process.cwd(), "public", SITE_CONTENT.images.logo));
-  const logoSrc = `data:image/png;base64,${logo.toString("base64")}`;
+  const logoPath = path.join(process.cwd(), "public", SITE_CONTENT.images.logo);
+  const logo = await readFile(logoPath);
+  // Label the data URI with the file's real format (the logo may be PNG, JPG or WebP).
+  const format = sniffImageFormat(logo);
+  if (!format) throw new Error(`${SITE_CONTENT.images.logo} is not a PNG, JPG or WebP image.`);
+  const logoSrc = `data:${IMAGE_MIME_TYPES[format]};base64,${logo.toString("base64")}`;
   const [first, second] = SITE_CONTENT.site.tagline.split(/(?<=\.)\s+/);
 
   return new ImageResponse(

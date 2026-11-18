@@ -166,10 +166,9 @@ describe("admin login", () => {
     expect(await fail(login, withCode)).toEqual({ error: "Invalid sign-in details." });
   });
 
-  // Known vulnerability (audit finding #2, fixed in remediation step 1.1): 20 failures
-  // from any IPs trip a site-wide cap that also blocks the real admin. Flip to `it`
-  // when the fix lands.
-  it.fails("does not let failures from other IPs lock out the admin", async () => {
+  // Audit finding #2: failures from other IPs used to trip a site-wide cap that
+  // also blocked the real admin.
+  it("does not let failures from other IPs lock out the admin", async () => {
     const { login } = await loadActions();
     for (let i = 0; i < 20; i++) {
       fromIp(`192.0.2.${i + 1}`);
@@ -179,6 +178,51 @@ describe("admin login", () => {
     expect(await attempt(login, credentials("admin", "correct horse battery staple"))).toEqual({
       redirectedTo: "/admin",
     });
+  });
+});
+
+describe("admin login with Turnstile enabled", () => {
+  const fetchMock = vi.fn<typeof fetch>();
+
+  beforeEach(() => {
+    vi.stubEnv("ADMIN_USERNAME", "admin");
+    vi.stubEnv("ADMIN_PASSWORD", "correct horse battery staple");
+    vi.stubEnv("ADMIN_SESSION_SECRET", "s".repeat(48));
+    vi.stubEnv("ADMIN_TOTP_SECRET", "");
+    vi.stubEnv("NEXT_PUBLIC_TURNSTILE_SITE_KEY", "site-key");
+    vi.stubEnv("TURNSTILE_SECRET_KEY", "secret-key");
+    vi.stubGlobal("fetch", fetchMock);
+    // Cloudflare accepts only the token "human".
+    fetchMock.mockImplementation(async (_url, init) =>
+      Response.json({ success: (init!.body as URLSearchParams).get("response") === "human" })
+    );
+    requestHeaders.clear();
+    fromIp("203.0.113.10");
+  });
+
+  function withToken(form: FormData, token: string) {
+    form.set("cf-turnstile-response", token);
+    return form;
+  }
+
+  it("rejects a sign-in that fails the bot check", async () => {
+    const { login } = await loadActions();
+    expect(await attempt(login, credentials("admin", "correct horse battery staple"))).toEqual({
+      error: "Please complete the security check.",
+    });
+    expect(cookieJar.set).not.toHaveBeenCalled();
+  });
+
+  // Audit finding #2: bot-check failures used to count toward the lockout, so
+  // anyone could lock the admin out without ever passing Turnstile.
+  it("does not count bot-check failures toward the lockout, even from the admin's IP", async () => {
+    const { login } = await loadActions();
+    for (let i = 0; i < 25; i++) {
+      await attempt(login, withToken(credentials("admin", "guess"), "bot"));
+    }
+    expect(
+      await attempt(login, withToken(credentials("admin", "correct horse battery staple"), "human"))
+    ).toEqual({ redirectedTo: "/admin" });
   });
 });
 

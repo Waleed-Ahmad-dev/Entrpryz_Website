@@ -12,8 +12,6 @@ const buttonVariants = cva(
           "bg-brand-orange text-background shadow-[0_8px_24px_-10px_rgb(var(--brand-orange)/0.8)] hover:bg-brand-amber hover:shadow-glow",
         outline:
           "border border-surface-border bg-surface-card/60 text-text-primary backdrop-blur hover:border-brand-orange/60 hover:bg-surface-raised",
-        brandOutline:
-          "border border-brand-orange/50 bg-brand-orange/10 text-brand-orange hover:bg-brand-orange hover:text-background",
         ghost:
           "text-text-secondary border border-surface-border hover:border-brand-orange/60 hover:text-text-primary",
       },

@@ -18,9 +18,9 @@ export async function proxy(req: NextRequest) {
     res = NextResponse.next();
   }
 
-  // Admin pages must never be cached, framed or indexed.
+  // Admin pages must never be cached or indexed. Framing is already blocked
+  // site-wide (X-Frame-Options and CSP frame-ancestors in next.config.mjs).
   res.headers.set("Cache-Control", "no-store, max-age=0");
-  res.headers.set("X-Frame-Options", "DENY");
   res.headers.set("X-Robots-Tag", "noindex, nofollow");
   res.headers.set("Referrer-Policy", "same-origin");
   return res;

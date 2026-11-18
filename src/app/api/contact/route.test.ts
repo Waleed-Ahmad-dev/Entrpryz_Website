@@ -102,11 +102,41 @@ describe("POST /api/contact", () => {
     expect((await POST(post(inquiry({ message: "x".repeat(17 * 1024) })))).status).toBe(413);
   });
 
-  // Known bug (audit finding #13, fixed in remediation step 1.2): a JSON `null` body
-  // throws a TypeError and returns a 500. Flip to `it` when the fix lands.
-  it.fails("rejects a JSON null body with 400", async () => {
+  // Audit finding #13: a JSON `null` body used to throw a TypeError (500).
+  it.each([null, [], 42, "text"])("rejects the non-object JSON body %j with 400", async (body) => {
     const { POST } = await loadRoute();
-    expect((await POST(post(null))).status).toBe(400);
+    expect((await POST(post(body))).status).toBe(400);
+    expect(sendMail).not.toHaveBeenCalled();
+  });
+
+  it("rejects an oversized body that doesn't declare its length", async () => {
+    const { POST } = await loadRoute();
+    const payload = new TextEncoder().encode(JSON.stringify(inquiry({ message: "x".repeat(20 * 1024) })));
+    const stream = new ReadableStream<Uint8Array>({
+      start(controller) {
+        for (let i = 0; i < payload.length; i += 1024) controller.enqueue(payload.subarray(i, i + 1024));
+        controller.close();
+      },
+    });
+    const req = new NextRequest(`${SITE}/api/contact`, {
+      method: "POST",
+      headers: { origin: SITE, "content-type": "application/json", "x-real-ip": "203.0.113.10" },
+      body: stream,
+      duplex: "half",
+    } as ConstructorParameters<typeof NextRequest>[1]);
+    expect(req.headers.get("content-length")).toBeNull();
+    expect((await POST(req)).status).toBe(413);
+  });
+
+  // Audit finding #16: the origin used to be compared with the Host / X-Forwarded-Host
+  // headers, which the client controls.
+  it("rejects a foreign Origin even when the forwarded host is spoofed to match it", async () => {
+    const { POST } = await loadRoute();
+    const req = post(inquiry(), { origin: "https://evil.example" });
+    req.headers.set("host", "evil.example");
+    req.headers.set("x-forwarded-host", "evil.example");
+    expect((await POST(req)).status).toBe(403);
+    expect(sendMail).not.toHaveBeenCalled();
   });
 
   it("returns field errors for invalid input without sending", async () => {

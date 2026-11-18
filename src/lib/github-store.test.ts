@@ -116,10 +116,35 @@ describe("writeRepoFile", () => {
     expect(JSON.parse(String(fetchMock.mock.calls[0][1]!.body))).not.toHaveProperty("sha");
   });
 
-  it.each([409, 422])("maps HTTP %i on an update to a conflict", async (status) => {
-    fetchMock.mockResolvedValue(json(status));
+  it("maps HTTP 409 (sha no longer current) to a conflict", async () => {
+    fetchMock.mockResolvedValue(json(409, { message: "content/site.json does not match abc" }));
     await expect(writeRepoFile(CONTENT_PATH, Buffer.from("x"), "m", "old")).rejects.toBeInstanceOf(
       GitHubConflictError
+    );
+  });
+
+  it("maps a 422 about the sha to a conflict", async () => {
+    fetchMock.mockResolvedValue(json(422, { message: 'Invalid request.\n\n"sha" wasn\'t supplied.' }));
+    await expect(writeRepoFile(UPLOAD, Buffer.from("x"), "m")).rejects.toBeInstanceOf(GitHubConflictError);
+  });
+
+  // Audit finding #20: every 422 used to be reported as "changed elsewhere, reload".
+  it("reports other 422 validation errors as failures and logs GitHub's reason server-side", async () => {
+    const log = vi.spyOn(console, "error").mockImplementation(() => {});
+    fetchMock.mockResolvedValue(
+      json(422, { message: "Validation Failed", errors: [{ message: "No commit found for the ref cms-test" }] })
+    );
+    const write = writeRepoFile(CONTENT_PATH, Buffer.from("x"), "m", "old");
+    await expect(write).rejects.toBeInstanceOf(GitHubRequestError);
+    await expect(write).rejects.toThrow(/^GitHub write failed \(422\)\.$/);
+    expect(log).toHaveBeenCalledWith(expect.stringContaining("No commit found for the ref cms-test"));
+  });
+
+  it("still fails cleanly when a 422 has no readable body", async () => {
+    vi.spyOn(console, "error").mockImplementation(() => {});
+    fetchMock.mockResolvedValue(new Response("<html>", { status: 422 }));
+    await expect(writeRepoFile(CONTENT_PATH, Buffer.from("x"), "m", "old")).rejects.toBeInstanceOf(
+      GitHubRequestError
     );
   });
 
