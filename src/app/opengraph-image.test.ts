@@ -1,8 +1,7 @@
-import { cpSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
-import { tmpdir } from "node:os";
 import path from "node:path";
 import { afterAll, beforeAll, describe, expect, it, vi } from "vitest";
 import { siteContentFixture } from "@/test/fixtures";
+import { createImageProject, pngSize } from "@/test/render";
 
 // The route reads `SITE_CONTENT.images.logo` from `<cwd>/public`. Each test points
 // the logo at a fixture inside a temporary "project" directory and renders the
@@ -10,32 +9,15 @@ import { siteContentFixture } from "@/test/fixtures";
 const content = siteContentFixture();
 vi.mock("@/lib/site-content", () => ({ SITE_CONTENT: content }));
 
-const FIXTURES = path.join(__dirname, "../test/fixtures/images");
-let projectDir: string;
-
-beforeAll(() => {
-  projectDir = mkdtempSync(path.join(tmpdir(), "og-test-"));
-  cpSync(FIXTURES, path.join(projectDir, "public/images"), { recursive: true });
-  writeFileSync(path.join(projectDir, "public/images/not-an-image.png"), "<svg></svg>");
-  cpSync(path.join(FIXTURES, "logo.webp"), path.join(projectDir, "public/images/webp-named.png"));
-});
-
-afterAll(() => {
-  rmSync(projectDir, { recursive: true, force: true });
-});
+const project = createImageProject();
+afterAll(project.cleanup);
 
 async function render(logo: string): Promise<{ type: string | null; png: Buffer }> {
-  vi.spyOn(process, "cwd").mockReturnValue(projectDir);
+  vi.spyOn(process, "cwd").mockReturnValue(project.dir);
   content.images.logo = logo;
   const { default: OpenGraphImage } = await import("./opengraph-image");
   const res = await OpenGraphImage();
   return { type: res.headers.get("content-type"), png: Buffer.from(await res.arrayBuffer()) };
-}
-
-/** Width and height from a PNG's IHDR chunk. */
-function pngSize(png: Buffer) {
-  expect(png.subarray(0, 8)).toEqual(Buffer.from([0x89, 0x50, 0x4e, 0x47, 0x0d, 0x0a, 0x1a, 0x0a]));
-  return { width: png.readUInt32BE(16), height: png.readUInt32BE(20) };
 }
 
 describe("share image (/opengraph-image)", () => {

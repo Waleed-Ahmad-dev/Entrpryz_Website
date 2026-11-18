@@ -1,9 +1,16 @@
 import { describe, expect, it } from "vitest";
-import { assertValidSiteContent, siteContentSchema } from "./content-schema";
+import { assertValidSiteContent, siteContentSchema, type SiteContent } from "./content-schema";
 import { siteContentFixture } from "@/test/fixtures";
 
 function parse(content: unknown) {
   return siteContentSchema.safeParse(content);
+}
+
+/** Sets the home page hero image: an ordinary image field with only the general rules. */
+function setHeroImage(content: SiteContent, path: string) {
+  const hero = content.homePage.blocks.find((b) => b.type === "hero");
+  if (!hero || hero.type !== "hero") throw new Error("fixture has no home page hero");
+  hero.image = path;
 }
 
 describe("siteContentSchema", () => {
@@ -41,7 +48,7 @@ describe("siteContentSchema", () => {
     );
   });
 
-  // General image-path rules, checked on a plain image field (the logo has an extra rule).
+  // General image-path rules, checked on an ordinary image field (the logos have an extra rule).
   describe("image paths", () => {
     it.each([
       "/images/../secrets.png",
@@ -53,7 +60,7 @@ describe("siteContentSchema", () => {
       "/images/uploads/../../x.png",
     ])("rejects %j", (path) => {
       const content = siteContentFixture();
-      content.images.logoSquare = path;
+      setHeroImage(content, path);
       expect(parse(content).success).toBe(false);
     });
 
@@ -61,7 +68,7 @@ describe("siteContentSchema", () => {
       "accepts %j",
       (path) => {
         const content = siteContentFixture();
-        content.images.logoSquare = path;
+        setHeroImage(content, path);
         expect(parse(content).success).toBe(true);
       }
     );
@@ -75,9 +82,15 @@ describe("siteContentSchema", () => {
     expect(result.error?.issues[0]).toMatchObject({ path: ["images", "logo"] });
   });
 
-  it("still allows WebP for other images", () => {
+  it("rejects a WebP square logo, which the site-icon renderer can't draw", () => {
     const content = siteContentFixture();
     content.images.logoSquare = "/images/uploads/0123456789abcdef01234567.webp";
+    expect(parse(content).error?.issues[0]).toMatchObject({ path: ["images", "logoSquare"] });
+  });
+
+  it("still allows WebP for other images", () => {
+    const content = siteContentFixture();
+    setHeroImage(content, "/images/uploads/0123456789abcdef01234567.webp");
     expect(parse(content).success).toBe(true);
   });
 

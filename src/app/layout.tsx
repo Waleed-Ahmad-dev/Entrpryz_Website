@@ -34,10 +34,8 @@ export const metadata: Metadata = {
     template: `%s | ${SITE_NAME}`,
   },
   description: SITE_DESCRIPTION,
-  icons: {
-    icon: SITE_CONTENT.images.logo,
-    apple: SITE_CONTENT.images.logoSquare,
-  },
+  // Icons come from the file conventions: app/favicon.ico, app/icon.tsx and
+  // app/apple-icon.tsx (generated from the CMS square logo).
   alternates: {
     canonical: "/",
   },

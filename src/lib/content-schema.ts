@@ -38,6 +38,8 @@ const list = <T extends z.ZodTypeAny>(item: T, max = 50) => z.array(item).max(ma
 /** Only images served from /public/images — no remote URLs, no SVG, no traversal. */
 const IMAGE_PATH_RE = /^\/images\/(?:uploads\/)?[a-z0-9][a-z0-9_-]*\.(?:jpe?g|png|webp)$/;
 const imagePath = z.string().regex(IMAGE_PATH_RE, "Must be an image under /images (jpg, png or webp)");
+/** Images drawn by next/og (share card, site icons): it can't draw WebP. */
+const renderableImagePath = (message: string) => imagePath.refine((p) => !p.endsWith(".webp"), message);
 
 /** Site paths (with optional #anchor), https URLs or mailto — never javascript:/data:. */
 const href = z
@@ -309,9 +311,9 @@ export const siteContentSchema = z
       .strict(),
     images: z
       .object({
-        // Also embedded in the share image, whose renderer can't draw WebP.
-        logo: imagePath.refine((p) => !p.endsWith(".webp"), "The logo must be a PNG or JPG (it is used in the share image)"),
-        logoSquare: imagePath,
+        // Both logos are drawn by the share-image / icon renderer, which can't draw WebP.
+        logo: renderableImagePath("The logo must be a PNG or JPG (it is used in the share image)"),
+        logoSquare: renderableImagePath("The square logo must be a PNG or JPG (it is used for the site icons)"),
         heroBackground: imagePath,
         founderPhoto: imagePath,
       })

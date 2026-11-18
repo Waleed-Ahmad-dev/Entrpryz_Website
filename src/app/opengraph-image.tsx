@@ -1,7 +1,5 @@
-import { readFile } from "node:fs/promises";
-import path from "node:path";
 import { ImageResponse } from "next/og";
-import { IMAGE_MIME_TYPES, sniffImageFormat } from "@/lib/image-format";
+import { loadRenderableImage } from "@/lib/render-image";
 import { SITE_CONTENT } from "@/lib/site-content";
 
 export const alt = `${SITE_CONTENT.site.name} — ${SITE_CONTENT.site.tagline}`;
@@ -10,15 +8,7 @@ export const contentType = "image/png";
 
 /** 1200x630 share card used for every page (Open Graph and Twitter/X). Rendered at build time. */
 export default async function OpenGraphImage() {
-  const logoPath = path.join(process.cwd(), "public", SITE_CONTENT.images.logo);
-  const logo = await readFile(logoPath);
-  // The renderer (Satori/resvg) draws only PNG and JPEG; a WebP logo silently renders
-  // as nothing. Check the real bytes (not the extension) and fail the build instead.
-  const format = sniffImageFormat(logo);
-  if (format !== "png" && format !== "jpg") {
-    throw new Error(`${SITE_CONTENT.images.logo} must be a PNG or JPG image for the share card.`);
-  }
-  const logoSrc = `data:${IMAGE_MIME_TYPES[format]};base64,${logo.toString("base64")}`;
+  const logoSrc = await loadRenderableImage(SITE_CONTENT.images.logo, "share card");
   const [first, second] = SITE_CONTENT.site.tagline.split(/(?<=\.)\s+/);
 
   return new ImageResponse(
@@ -38,7 +28,6 @@ export default async function OpenGraphImage() {
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 24 }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={logoSrc} width={96} height={87} alt="" />
           <span style={{ fontSize: 44, fontWeight: 700, letterSpacing: -1 }}>{SITE_CONTENT.site.name}</span>
         </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -17,10 +17,11 @@ function isActive(pathname: string, href: string): boolean {
 
 export function Header() {
   const pathname = usePathname();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  // Close the drawer after navigating.
-  useEffect(() => setMobileMenuOpen(false), [pathname]);
+  // The drawer remembers the page it was opened on, so any navigation (a link,
+  // back/forward) closes it without an effect or an extra render.
+  const [menuOpenedOn, setMenuOpenedOn] = useState<string | null>(null);
+  const mobileMenuOpen = menuOpenedOn === pathname;
+  const closeMenu = () => setMenuOpenedOn(null);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-white/[0.06] bg-background/75 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60">
@@ -65,7 +66,7 @@ export function Header() {
         <div className="flex md:hidden">
           <button
             type="button"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            onClick={() => setMenuOpenedOn(mobileMenuOpen ? null : pathname)}
             className="inline-flex items-center justify-center rounded-full p-2.5 text-text-secondary border border-surface-border hover:border-brand-orange/60 hover:text-text-primary"
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-menu"
@@ -86,6 +87,7 @@ export function Header() {
                   key={link.href}
                   href={link.href}
                   aria-current={active ? "page" : undefined}
+                  onClick={closeMenu}
                   className={`block rounded-xl px-4 py-3 text-base font-semibold ${
                     active ? "bg-brand-orange/15 text-brand-orange" : "text-text-secondary hover:bg-white/[0.04] hover:text-text-primary"
                   }`}
@@ -95,7 +97,7 @@ export function Header() {
               );
             })}
             <div className="pt-4">
-              <ButtonLink href={cta.href} size="lg" fullWidth>
+              <ButtonLink href={cta.href} size="lg" fullWidth onClick={closeMenu}>
                 <span>{cta.label}</span>
                 <ArrowUpRight className="h-4 w-4" />
               </ButtonLink>

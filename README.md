@@ -15,6 +15,7 @@ Official website for [Entrpryz](https://entrpryz.com) — ERP, software developm
 npm install          # install dependencies
 npm run dev          # start dev server on localhost:3000
 npm run typecheck    # tsc --noEmit
+npm run lint         # ESLint (Next.js core-web-vitals + TypeScript rules)
 npm test             # unit tests (offline; run in CI)
 npm run test:github  # live check of the GitHub client (see below)
 npm run build        # production build
@@ -56,6 +57,10 @@ docs/
 All editorial copy, images, links, SEO titles and portfolio data live in `content/site.json`, never in JSX. Edit it from the admin panel (`/admin/content`) or by hand. The schema in `src/lib/content-schema.ts` is enforced at build time, so invalid content fails the build instead of shipping. Source briefs are preserved in `docs/content/`.
 
 Canonical origin is `https://www.entrpryz.com` (the apex 308-redirects to www); override via `NEXT_PUBLIC_SITE_URL`.
+
+## Icons and share image
+
+The browser-tab icon (`/icon`, 512×512) and the iOS home-screen icon (`/apple-icon`, 180×180) are generated at build time from the CMS's **square logo** (`images.logoSquare`, `src/app/icon.tsx` / `apple-icon.tsx`). The share card (`/opengraph-image`) uses the main logo. Both logos must be PNG or JPG: the renderer can't draw WebP, so the content schema rejects WebP for them and the build fails if a file's real format is wrong. `src/app/favicon.ico` is a fixed file (the .ico format can't be generated); regenerate it by hand if the logo changes.
 
 ## Pages
 

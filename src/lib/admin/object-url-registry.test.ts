@@ -6,7 +6,7 @@ function fakeApi() {
   const live = new Set<string>();
   return {
     live,
-    createObjectURL: vi.fn((_blob: Blob) => {
+    createObjectURL: vi.fn<(blob: Blob) => string>(() => {
       const url = `blob:test/${next++}`;
       live.add(url);
       return url;

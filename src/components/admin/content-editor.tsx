@@ -872,10 +872,11 @@ function ImageField({
 }) {
   const [uploading, setUploading] = useState(false);
   const [uploadError, setUploadError] = useState<string | null>(null);
-  const [broken, setBroken] = useState(false);
+  // Remember which source failed to load, so a new preview starts unbroken
+  // without an effect (and without a frame of stale "broken" state).
+  const [brokenSrc, setBrokenSrc] = useState<string | null>(null);
   const preview = previews[value] ?? value;
-
-  useEffect(() => setBroken(false), [preview]);
+  const broken = brokenSrc === preview;
 
   const onFile = async (file: File | undefined) => {
     if (!file || !uploadImage) return;
@@ -898,7 +899,7 @@ function ImageField({
       <div className="w-full sm:w-40 aspect-video shrink-0 border border-surface-border bg-background flex items-center justify-center overflow-hidden">
         {value && !broken ? (
           // eslint-disable-next-line @next/next/no-img-element -- admin preview, may be a local blob URL
-          <img src={preview} alt="" className="h-full w-full object-cover" onError={() => setBroken(true)} />
+          <img src={preview} alt="" className="h-full w-full object-cover" onError={() => setBrokenSrc(preview)} />
         ) : (
           <span className="text-[10px] text-text-secondary text-center px-2">
             {value ? "Available after next deploy" : "No image"}

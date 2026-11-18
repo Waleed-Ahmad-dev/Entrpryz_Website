@@ -29,8 +29,8 @@ function stampUpdatedPages(previous: Partial<SiteContent>, next: SiteContent) {
   const strip = (page: unknown) => {
     if (!page || typeof page !== "object") return "";
     const { seo, ...rest } = page as { seo?: Record<string, unknown> };
-    const { updated: _ignored, ...seoRest } = seo ?? {};
-    return JSON.stringify({ ...rest, seo: seoRest });
+    // JSON.stringify drops undefined values, so this compares everything except the stamp.
+    return JSON.stringify({ ...rest, seo: { ...seo, updated: undefined } });
   };
   for (const key of PAGE_KEYS) {
     if (strip(previous[key]) !== strip(next[key])) next[key].seo.updated = today;

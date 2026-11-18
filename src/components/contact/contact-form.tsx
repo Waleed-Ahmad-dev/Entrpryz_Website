@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { Send, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -49,7 +49,12 @@ export function ContactForm({ copy }: { copy: FormCopy }) {
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [fieldErrors, setFieldErrors] = useState<Partial<Record<keyof ContactFormData, string>>>({});
   const [honeypot, setHoneypot] = useState("");
-  const startedAt = useRef(Date.now());
+  // Anti-bot fill timer: starts when the form becomes interactive (after mount),
+  // not during render, which must stay pure.
+  const startedAt = useRef<number | null>(null);
+  useEffect(() => {
+    startedAt.current = Date.now();
+  }, []);
   const turnstile = useRef<TurnstileHandle>(null);
   const [turnstileToken, setTurnstileToken] = useState("");
   const [formData, setFormData] = useState<ContactFormData>({
@@ -75,7 +80,9 @@ export function ContactForm({ copy }: { copy: FormCopy }) {
     setFieldErrors({});
     const result = await submitInquiry(formData, {
       website: honeypot,
-      startedAt: startedAt.current,
+      // Effects run before any user input can reach the form, so this is always set;
+      // 0 only guards the type, and it would pass the timer rather than drop a real message.
+      startedAt: startedAt.current ?? 0,
       turnstileToken: turnstileToken || undefined,
     });
     if (!result.ok) turnstile.current?.reset();
