@@ -309,7 +309,8 @@ export const siteContentSchema = z
       .strict(),
     images: z
       .object({
-        logo: imagePath,
+        // Also embedded in the share image, whose renderer can't draw WebP.
+        logo: imagePath.refine((p) => !p.endsWith(".webp"), "The logo must be a PNG or JPG (it is used in the share image)"),
         logoSquare: imagePath,
         heroBackground: imagePath,
         founderPhoto: imagePath,

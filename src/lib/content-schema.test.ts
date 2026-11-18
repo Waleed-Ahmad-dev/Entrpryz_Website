@@ -41,6 +41,7 @@ describe("siteContentSchema", () => {
     );
   });
 
+  // General image-path rules, checked on a plain image field (the logo has an extra rule).
   describe("image paths", () => {
     it.each([
       "/images/../secrets.png",
@@ -52,7 +53,7 @@ describe("siteContentSchema", () => {
       "/images/uploads/../../x.png",
     ])("rejects %j", (path) => {
       const content = siteContentFixture();
-      content.images.logo = path;
+      content.images.logoSquare = path;
       expect(parse(content).success).toBe(false);
     });
 
@@ -60,10 +61,24 @@ describe("siteContentSchema", () => {
       "accepts %j",
       (path) => {
         const content = siteContentFixture();
-        content.images.logo = path;
+        content.images.logoSquare = path;
         expect(parse(content).success).toBe(true);
       }
     );
+  });
+
+  it("rejects a WebP logo, which the share image can't render", () => {
+    const content = siteContentFixture();
+    content.images.logo = "/images/uploads/0123456789abcdef01234567.webp";
+    const result = parse(content);
+    expect(result.success).toBe(false);
+    expect(result.error?.issues[0]).toMatchObject({ path: ["images", "logo"] });
+  });
+
+  it("still allows WebP for other images", () => {
+    const content = siteContentFixture();
+    content.images.logoSquare = "/images/uploads/0123456789abcdef01234567.webp";
+    expect(parse(content).success).toBe(true);
   });
 
   it("rejects unknown keys instead of storing them", () => {

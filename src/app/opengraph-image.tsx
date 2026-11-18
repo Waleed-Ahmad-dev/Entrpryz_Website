@@ -12,9 +12,12 @@ export const contentType = "image/png";
 export default async function OpenGraphImage() {
   const logoPath = path.join(process.cwd(), "public", SITE_CONTENT.images.logo);
   const logo = await readFile(logoPath);
-  // Label the data URI with the file's real format (the logo may be PNG, JPG or WebP).
+  // The renderer (Satori/resvg) draws only PNG and JPEG; a WebP logo silently renders
+  // as nothing. Check the real bytes (not the extension) and fail the build instead.
   const format = sniffImageFormat(logo);
-  if (!format) throw new Error(`${SITE_CONTENT.images.logo} is not a PNG, JPG or WebP image.`);
+  if (format !== "png" && format !== "jpg") {
+    throw new Error(`${SITE_CONTENT.images.logo} must be a PNG or JPG image for the share card.`);
+  }
   const logoSrc = `data:${IMAGE_MIME_TYPES[format]};base64,${logo.toString("base64")}`;
   const [first, second] = SITE_CONTENT.site.tagline.split(/(?<=\.)\s+/);
 

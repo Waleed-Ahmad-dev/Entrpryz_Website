@@ -15,9 +15,17 @@ Official website for [Entrpryz](https://entrpryz.com) — ERP, software developm
 npm install          # install dependencies
 npm run dev          # start dev server on localhost:3000
 npm run typecheck    # tsc --noEmit
+npm test             # unit tests (offline; run in CI)
+npm run test:github  # live check of the GitHub client (see below)
 npm run build        # production build
 npm run start        # serve the production build
 ```
+
+## Tests
+
+`npm test` runs the unit tests (Vitest). They are offline and fast, and CI runs them on every push and pull request.
+
+`npm run test:github` checks the CMS's GitHub client against the real GitHub API: reading `content/site.json`, and that GitHub's rejections are classified correctly (someone else published, a write without a version, a missing branch). It **commits nothing**: every write it sends must be rejected, and each one carries the file's current bytes. It needs the admin panel's `GITHUB_TOKEN` and `GITHUB_REPO` (optionally `GITHUB_BRANCH`) in your shell or `.env.local`. Run it by hand after changing `src/lib/github-store.ts` or the token; it never runs in CI.
 
 ## Structure
 
