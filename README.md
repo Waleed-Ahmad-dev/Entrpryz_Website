@@ -84,7 +84,7 @@ Set all three variables in Vercel (see `.env.example`); locally they live in the
 
 `/admin/content` lists every piece of site content by section, with full-text search, a field-type filter (text, paragraphs, images, links, emails), a "changed only" view, and "View on site" links to each section.
 
-Publishing commits `content/site.json` to GitHub, and Vercel redeploys (live in ~1–2 minutes). Uploaded images (JPG/PNG/WebP, max 4 MB, checked by file signature) are committed to `public/images/uploads/` under a content-hash filename. Saves are validated server-side against the schema and rejected if the file changed since it was loaded.
+Publishing makes **one Git commit** containing `content/site.json` and any images it newly uses, and Vercel redeploys (live in ~1–2 minutes). Uploading an image (JPG/PNG/WebP, max 4 MB, checked by file signature) only stores it in GitHub as an unattached blob under a content-hash name: nothing is committed or deployed until you publish, images you upload but don't end up using are never committed, and at publish time each image is re-checked against its name. Saves are validated server-side against the schema. Each page's "last updated" date (the sitemap `lastmod`) is set by the server: today for pages whose content changed, the repo's date for the rest; after publishing, the editor shows exactly what was committed. A publish is rejected only if `content/site.json` itself changed since it was loaded; unrelated commits (e.g. a code push) don't block it.
 
 Requires `GITHUB_TOKEN` (fine-grained, this repo only, Contents read/write), `GITHUB_REPO` (`owner/name`) and optionally `GITHUB_BRANCH`. Without them the editor is read-only.
 

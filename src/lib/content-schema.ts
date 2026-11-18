@@ -314,8 +314,6 @@ export const siteContentSchema = z
         // Both logos are drawn by the share-image / icon renderer, which can't draw WebP.
         logo: renderableImagePath("The logo must be a PNG or JPG (it is used in the share image)"),
         logoSquare: renderableImagePath("The square logo must be a PNG or JPG (it is used for the site icons)"),
-        heroBackground: imagePath,
-        founderPhoto: imagePath,
       })
       .strict(),
     navigation: z

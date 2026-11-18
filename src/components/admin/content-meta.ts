@@ -84,8 +84,6 @@ const LABELS: Record<string, string> = {
   bullets: "Bullet Points",
   logo: "Logo (transparent)",
   logoSquare: "Logo (square, for sharing)",
-  heroBackground: "Home Header Image",
-  founderPhoto: "Founder Photo",
   footerServices: "Footer Service Links",
   whatsapp: "WhatsApp Button",
   number: "WhatsApp Number",

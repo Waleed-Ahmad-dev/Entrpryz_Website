@@ -40,7 +40,7 @@ import {
 type Json = string | number | boolean | null | Json[] | { [key: string]: Json };
 type Doc = { [key: string]: Json };
 
-type ImageUploader = (file: File) => Promise<{ path: string } | { error: string }>;
+type ImageUploader = (file: File) => Promise<{ path: string; blobSha: string } | { error: string }>;
 
 interface ContentEditorProps {
   initialContent: Doc;
@@ -60,7 +60,7 @@ const uploadViaAction: ImageUploader = async (file) => {
   form.append("file", file);
   try {
     const result = await uploadImageAction(form);
-    return result.ok ? { path: result.path } : { error: result.error };
+    return result.ok ? { path: result.path, blobSha: result.blobSha } : { error: result.error };
   } catch {
     return { error: "Upload failed. Please try again." };
   }
@@ -159,6 +159,13 @@ export function ContentEditor({ initialContent, initialSha, canSave }: ContentEd
   const [doc, setDoc] = useState<Doc>(initialContent);
   const [saved, setSaved] = useState<Doc>(initialContent);
   const [sha, setSha] = useState(initialSha);
+  // Images uploaded this session (path -> blob id). They are stored in GitHub but not
+  // committed; publishing commits the ones the content uses, in the same commit.
+  const [pendingUploads, setPendingUploads] = useState<Record<string, string>>({});
+  const registerUpload = useCallback(
+    (path: string, blobSha: string) => setPendingUploads((p) => ({ ...p, [path]: blobSha })),
+    []
+  );
   const [query, setQuery] = useState("");
   // One section is rendered at a time (the page used to render every field at once).
   const [section, setSection] = useState<string>(SECTIONS[0].key);
@@ -230,14 +237,26 @@ export function ContentEditor({ initialContent, initialSha, canSave }: ContentEd
     if (!sha) return;
     setStatus(null);
     startSaving(async () => {
-      const result = await saveContent({ content: doc, sha });
+      const result = await saveContent({
+        content: doc,
+        sha,
+        uploads: Object.entries(pendingUploads).map(([path, blobSha]) => ({ path, blobSha })),
+      });
       if (result.ok) {
+        // Adopt exactly what was committed (normalized text, server-set dates), so the
+        // next publish starts from the repo's state, not from a stale local copy.
+        const committed = result.content as Doc;
+        const published = JSON.stringify(committed);
         setSha(result.sha);
-        setSaved(doc);
+        setDoc(committed);
+        setSaved(committed);
+        setPendingUploads((p) => Object.fromEntries(Object.entries(p).filter(([path]) => !published.includes(`"${path}"`))));
         setErrors({});
         setStatus({
           tone: "ok",
-          text: "Published. Vercel is redeploying — changes go live in about 1–2 minutes.",
+          text: result.committed
+            ? "Published. Vercel is redeploying — changes go live in about 1–2 minutes."
+            : "Nothing to publish: the content already matches the live version.",
         });
         return;
       }
@@ -246,6 +265,7 @@ export function ContentEditor({ initialContent, initialSha, canSave }: ContentEd
         invalid: "Some fields need fixing before publishing — see the highlighted fields.",
         conflict: "Content was changed elsewhere since you opened this page. Reload to get the latest, then re-apply your edits.",
         unconfigured: "Publishing isn't configured (GitHub settings missing).",
+        busy: "The site was being updated by someone else at the same moment. Please publish again.",
         failed: "Publishing failed. Please try again in a moment.",
       };
       setErrors(Object.fromEntries((result.issues ?? []).map((i) => [i.path, i.message])));
@@ -273,6 +293,7 @@ export function ContentEditor({ initialContent, initialSha, canSave }: ContentEd
     previews,
     setPreviews,
     createPreviewUrl,
+    registerUpload,
     uploadImage,
   };
 
@@ -317,7 +338,9 @@ export function ContentEditor({ initialContent, initialSha, canSave }: ContentEd
         ))}
       </aside>
 
-      <div className="space-y-6 min-w-0">
+      {/* Locked while publishing: the editor adopts the committed content when the
+          publish returns, so anything typed meanwhile would be overwritten. */}
+      <fieldset disabled={isSaving} className="space-y-6 min-w-0">
         {/* Toolbar */}
         <div className="sticky top-16 z-20 -mx-4 px-4 py-4 bg-background/95 backdrop-blur border-b border-surface-border space-y-3">
           <div className="flex flex-col sm:flex-row gap-3">
@@ -483,7 +506,7 @@ export function ContentEditor({ initialContent, initialSha, canSave }: ContentEd
             </section>
           ))
         )}
-      </div>
+      </fieldset>
       {reviewOpen && (
         <ReviewDialog
           changes={pendingChanges}
@@ -620,6 +643,7 @@ interface FieldProps {
   previews: Record<string, string>;
   setPreviews: React.Dispatch<React.SetStateAction<Record<string, string>>>;
   createPreviewUrl: (key: string, file: Blob) => string;
+  registerUpload: (path: string, blobSha: string) => void;
   uploadImage?: ImageUploader;
   hideLabel?: boolean;
 }
@@ -857,6 +881,7 @@ function ImageField({
   previews,
   setPreviews,
   createPreviewUrl,
+  registerUpload,
   uploadImage,
 }: {
   ariaLabel?: string;
@@ -868,6 +893,7 @@ function ImageField({
   previews: Record<string, string>;
   setPreviews: React.Dispatch<React.SetStateAction<Record<string, string>>>;
   createPreviewUrl: (key: string, file: Blob) => string;
+  registerUpload: (path: string, blobSha: string) => void;
   uploadImage?: ImageUploader;
 }) {
   const [uploading, setUploading] = useState(false);
@@ -888,7 +914,9 @@ function ImageField({
       setUploadError(result.error);
       return;
     }
-    // Newly committed images aren't served until the next deploy: preview locally.
+    // Uploaded images are committed when the content is published and served after
+    // the next deploy, so preview the local file until then.
+    registerUpload(result.path, result.blobSha);
     const local = createPreviewUrl(result.path, file);
     setPreviews((p) => ({ ...p, [result.path]: local }));
     onChange(result.path);

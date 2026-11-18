@@ -29,9 +29,7 @@
   },
   "images": {
     "logo": "/images/logo-transparent.png",
-    "logoSquare": "/images/logo-main.png",
-    "heroBackground": "/images/hero-tech-bg.jpg",
-    "founderPhoto": "/images/javed-qureshi.jpg"
+    "logoSquare": "/images/logo-main.png"
   },
   "navigation": {
     "links": [

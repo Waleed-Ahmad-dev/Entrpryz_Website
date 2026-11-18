@@ -1,21 +1,39 @@
 import { beforeEach, describe, expect, it, vi } from "vitest";
 import {
   CONTENT_PATH,
+  GitHubBranchMovedError,
   GitHubConfigError,
-  GitHubConflictError,
   GitHubRequestError,
+  commitFiles,
+  createBlob,
+  getBranchHead,
   isGitHubConfigured,
+  readBlob,
   readRepoFile,
-  repoFileExists,
-  writeRepoFile,
 } from "./github-store";
 
 const fetchMock = vi.fn<typeof fetch>();
+const REPO = "https://api.github.com/repos/Waleed-Ahmad-dev/Entrpryz_Website";
 const UPLOAD = "public/images/uploads/0123456789abcdef01234567.png";
+const sha = (c: string) => c.repeat(40);
 
 function json(status: number, body: unknown = {}) {
   return new Response(JSON.stringify(body), { status, headers: { "content-type": "application/json" } });
 }
+
+/** Responds per "METHOD path" (path relative to the repo API root). */
+function route(handlers: Record<string, () => Response>) {
+  fetchMock.mockImplementation(async (url, init) => {
+    const key = `${init?.method ?? "GET"} ${String(url).slice(REPO.length + 1)}`;
+    const handler = handlers[key];
+    if (!handler) throw new Error(`unexpected request: ${key}`);
+    return handler();
+  });
+}
+
+const calls = () =>
+  fetchMock.mock.calls.map(([url, init]) => `${init?.method ?? "GET"} ${String(url).slice(REPO.length + 1)}`);
+const bodyOf = (i: number) => JSON.parse(String(fetchMock.mock.calls[i][1]!.body));
 
 beforeEach(() => {
   vi.stubGlobal("fetch", fetchMock);
@@ -39,12 +57,12 @@ describe("configuration", () => {
   ])("is not configured with %s", async (_case, env) => {
     for (const [key, value] of Object.entries(env)) vi.stubEnv(key, value);
     expect(isGitHubConfigured()).toBe(false);
-    await expect(readRepoFile(CONTENT_PATH)).rejects.toBeInstanceOf(GitHubConfigError);
+    await expect(getBranchHead()).rejects.toBeInstanceOf(GitHubConfigError);
     expect(fetchMock).not.toHaveBeenCalled();
   });
 });
 
-describe("path allowlist", () => {
+describe("path and id allowlists", () => {
   it.each([
     "package.json",
     "src/app/layout.tsx",
@@ -53,33 +71,51 @@ describe("path allowlist", () => {
     "public/images/uploads/evil.svg",
     "public/images/uploads/0123456789abcdef01234567.png/../../../x",
     "public/images/logo.png",
-  ])("refuses to touch %s", async (path) => {
+  ])("refuses to read or commit %s", async (path) => {
     await expect(readRepoFile(path)).rejects.toBeInstanceOf(GitHubRequestError);
-    await expect(writeRepoFile(path, Buffer.from("x"), "msg")).rejects.toBeInstanceOf(GitHubRequestError);
-    await expect(repoFileExists(path)).rejects.toBeInstanceOf(GitHubRequestError);
+    await expect(commitFiles(sha("a"), [{ path, blobSha: sha("b") }], "m")).rejects.toBeInstanceOf(
+      GitHubRequestError
+    );
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it.each(["main", "../x", "A".repeat(40), "a".repeat(39)])("refuses the object id %j", async (id) => {
+    await expect(readBlob(id)).rejects.toBeInstanceOf(GitHubRequestError);
+    await expect(readRepoFile(CONTENT_PATH, id)).rejects.toBeInstanceOf(GitHubRequestError);
+    await expect(commitFiles(id, [{ path: CONTENT_PATH, blobSha: sha("b") }], "m")).rejects.toBeInstanceOf(
+      GitHubRequestError
+    );
     expect(fetchMock).not.toHaveBeenCalled();
   });
 });
 
-describe("readRepoFile", () => {
-  it("reads and decodes the file from the configured branch", async () => {
+describe("reading", () => {
+  it("reads and decodes a file from the configured branch with the token", async () => {
     fetchMock.mockResolvedValue(
       json(200, { sha: "abc", encoding: "base64", content: Buffer.from('{"a":"é"}').toString("base64") })
     );
     expect(await readRepoFile(CONTENT_PATH)).toEqual({ sha: "abc", text: '{"a":"é"}' });
-
     const [url, init] = fetchMock.mock.calls[0];
-    expect(url).toBe(
-      "https://api.github.com/repos/Waleed-Ahmad-dev/Entrpryz_Website/contents/content/site.json?ref=main"
-    );
+    expect(url).toBe(`${REPO}/contents/content/site.json?ref=main`);
     expect(new Headers(init!.headers).get("authorization")).toBe("Bearer github_pat_test");
   });
 
-  it("uses GITHUB_BRANCH when set", async () => {
-    vi.stubEnv("GITHUB_BRANCH", "cms-test");
+  it("reads a file at a specific commit", async () => {
     fetchMock.mockResolvedValue(json(200, { sha: "abc", encoding: "base64", content: "" }));
-    await readRepoFile(CONTENT_PATH);
-    expect(String(fetchMock.mock.calls[0][0])).toMatch(/\?ref=cms-test$/);
+    await readRepoFile(CONTENT_PATH, sha("c"));
+    expect(calls()).toEqual([`GET contents/content/site.json?ref=${sha("c")}`]);
+  });
+
+  it("looks up the branch head, encoding each segment of a nested branch name", async () => {
+    vi.stubEnv("GITHUB_BRANCH", "cms/test-1");
+    fetchMock.mockResolvedValue(json(200, { object: { sha: sha("d") } }));
+    expect(await getBranchHead()).toBe(sha("d"));
+    expect(calls()).toEqual(["GET git/ref/heads/cms/test-1"]);
+  });
+
+  it("reads blob bytes", async () => {
+    fetchMock.mockResolvedValue(json(200, { encoding: "base64", content: "AQID\n" }));
+    expect([...(await readBlob(sha("e")))]).toEqual([1, 2, 3]);
   });
 
   it("reports only the status on failure, never the response body", async () => {
@@ -93,81 +129,75 @@ describe("readRepoFile", () => {
   });
 });
 
-describe("writeRepoFile", () => {
-  it("commits base64 content to the branch with the expected sha", async () => {
-    fetchMock.mockResolvedValue(json(200, { content: { sha: "new" }, commit: { sha: "commit" } }));
-    expect(await writeRepoFile(CONTENT_PATH, Buffer.from("hello"), "content: update", "old")).toEqual({
-      sha: "new",
-      commitSha: "commit",
-    });
-    const [, init] = fetchMock.mock.calls[0];
-    expect(init!.method).toBe("PUT");
-    expect(JSON.parse(String(init!.body))).toMatchObject({
-      message: "content: update",
-      content: Buffer.from("hello").toString("base64"),
-      branch: "main",
-      sha: "old",
-    });
-  });
-
-  it("creates a new upload without a sha", async () => {
-    fetchMock.mockResolvedValue(json(201, { content: { sha: "new" }, commit: { sha: "commit" } }));
-    await writeRepoFile(UPLOAD, Buffer.from([1, 2, 3]), "upload");
-    expect(JSON.parse(String(fetchMock.mock.calls[0][1]!.body))).not.toHaveProperty("sha");
-  });
-
-  it("maps HTTP 409 (sha no longer current) to a conflict", async () => {
-    fetchMock.mockResolvedValue(json(409, { message: "content/site.json does not match abc" }));
-    await expect(writeRepoFile(CONTENT_PATH, Buffer.from("x"), "m", "old")).rejects.toBeInstanceOf(
-      GitHubConflictError
-    );
-  });
-
-  it("maps a 422 about the sha to a conflict", async () => {
-    fetchMock.mockResolvedValue(json(422, { message: 'Invalid request.\n\n"sha" wasn\'t supplied.' }));
-    await expect(writeRepoFile(UPLOAD, Buffer.from("x"), "m")).rejects.toBeInstanceOf(GitHubConflictError);
-  });
-
-  // Audit finding #20: every 422 used to be reported as "changed elsewhere, reload".
-  it("reports other 422 validation errors as failures and logs GitHub's reason server-side", async () => {
-    const log = vi.spyOn(console, "error").mockImplementation(() => {});
-    fetchMock.mockResolvedValue(
-      json(422, { message: "Validation Failed", errors: [{ message: "No commit found for the ref cms-test" }] })
-    );
-    const write = writeRepoFile(CONTENT_PATH, Buffer.from("x"), "m", "old");
-    await expect(write).rejects.toBeInstanceOf(GitHubRequestError);
-    await expect(write).rejects.toThrow(/^GitHub write failed \(422\)\.$/);
-    expect(log).toHaveBeenCalledWith(expect.stringContaining("No commit found for the ref cms-test"));
-  });
-
-  it("still fails cleanly when a 422 has no readable body", async () => {
-    vi.spyOn(console, "error").mockImplementation(() => {});
-    fetchMock.mockResolvedValue(new Response("<html>", { status: 422 }));
-    await expect(writeRepoFile(CONTENT_PATH, Buffer.from("x"), "m", "old")).rejects.toBeInstanceOf(
-      GitHubRequestError
-    );
-  });
-
-  it("reports other failures as request errors", async () => {
-    fetchMock.mockResolvedValue(json(500));
-    await expect(writeRepoFile(CONTENT_PATH, Buffer.from("x"), "m", "old")).rejects.toThrow(
-      /^GitHub write failed \(500\)\.$/
-    );
+describe("createBlob", () => {
+  it("stores base64 content and returns the blob id, without committing anything", async () => {
+    fetchMock.mockResolvedValue(json(201, { sha: sha("f") }));
+    expect(await createBlob(Buffer.from("hello"))).toBe(sha("f"));
+    expect(calls()).toEqual(["POST git/blobs"]);
+    expect(bodyOf(0)).toEqual({ content: Buffer.from("hello").toString("base64"), encoding: "base64" });
   });
 });
 
-describe("repoFileExists", () => {
-  it.each([
-    [200, true],
-    [404, false],
-  ])("returns %s → %s", async (status, expected) => {
-    fetchMock.mockResolvedValue(new Response(null, { status }));
-    expect(await repoFileExists(UPLOAD)).toBe(expected);
-    expect(fetchMock.mock.calls[0][1]!.method).toBe("HEAD");
+describe("commitFiles", () => {
+  const files = [
+    { path: CONTENT_PATH, blobSha: sha("1") },
+    { path: UPLOAD, blobSha: sha("2") },
+  ];
+
+  function happyPath(patch: () => Response = () => json(200, { object: { sha: sha("9") } })) {
+    route({
+      [`GET git/commits/${sha("a")}`]: () => json(200, { tree: { sha: sha("b") } }),
+      "POST git/trees": () => json(201, { sha: sha("c") }),
+      "POST git/commits": () => json(201, { sha: sha("9") }),
+      "PATCH git/refs/heads/main": patch,
+    });
+  }
+
+  it("builds one commit on the parent and fast-forwards the branch to it", async () => {
+    happyPath();
+    expect(await commitFiles(sha("a"), files, "content: update")).toBe(sha("9"));
+    expect(calls()).toEqual([
+      `GET git/commits/${sha("a")}`,
+      "POST git/trees",
+      "POST git/commits",
+      "PATCH git/refs/heads/main",
+    ]);
+    expect(bodyOf(1)).toEqual({
+      base_tree: sha("b"),
+      tree: [
+        { path: CONTENT_PATH, mode: "100644", type: "blob", sha: sha("1") },
+        { path: UPLOAD, mode: "100644", type: "blob", sha: sha("2") },
+      ],
+    });
+    expect(bodyOf(2)).toMatchObject({ message: "content: update", tree: sha("c"), parents: [sha("a")] });
+    expect(bodyOf(3)).toEqual({ sha: sha("9"), force: false });
   });
 
-  it("throws on other statuses instead of guessing", async () => {
-    fetchMock.mockResolvedValue(new Response(null, { status: 403 }));
-    await expect(repoFileExists(UPLOAD)).rejects.toBeInstanceOf(GitHubRequestError);
+  it("reports a branch that moved meanwhile (non-fast-forward) distinctly", async () => {
+    happyPath(() => json(422, { message: "Update is not a fast forward" }));
+    await expect(commitFiles(sha("a"), files, "m")).rejects.toBeInstanceOf(GitHubBranchMovedError);
+  });
+
+  it("reports other branch-update rejections as failures and logs GitHub's reason server-side", async () => {
+    const log = vi.spyOn(console, "error").mockImplementation(() => {});
+    happyPath(() => json(422, { message: "Reference cannot be updated", errors: [{ message: "protected branch" }] }));
+    const commit = commitFiles(sha("a"), files, "m");
+    await expect(commit).rejects.toBeInstanceOf(GitHubRequestError);
+    await expect(commit).rejects.not.toBeInstanceOf(GitHubBranchMovedError);
+    expect(log).toHaveBeenCalledWith(expect.stringContaining("protected branch"));
+  });
+
+  it("refuses to make an empty commit", async () => {
+    await expect(commitFiles(sha("a"), [], "m")).rejects.toThrow("Nothing to commit.");
+    expect(fetchMock).not.toHaveBeenCalled();
+  });
+
+  it("stops before touching the branch if an earlier step fails", async () => {
+    route({
+      [`GET git/commits/${sha("a")}`]: () => json(200, { tree: { sha: sha("b") } }),
+      "POST git/trees": () => json(500),
+    });
+    await expect(commitFiles(sha("a"), files, "m")).rejects.toThrow(/^GitHub tree creation failed \(500\)\.$/);
+    expect(calls()).not.toContain("PATCH git/refs/heads/main");
   });
 });

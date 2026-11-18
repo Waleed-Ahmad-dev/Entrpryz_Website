@@ -1,32 +1,35 @@
 /**
- * Live check of the GitHub client against the real GitHub API.
+ * Live check of the GitHub client and publish flow against the real GitHub API.
  *
  *   npm run test:github
  *
  * Needs GITHUB_TOKEN and GITHUB_REPO (and optionally GITHUB_BRANCH) in your
  * shell, .env.local or .env: the same values the admin panel uses.
  *
- * It commits nothing. Every write below is one GitHub must reject (stale version,
- * missing version, nonexistent branch), and each sends the file's current bytes,
- * so even an unexpected acceptance would leave content/site.json unchanged.
+ * It commits nothing and never moves the branch. It reads, stores one blob that
+ * already exists (the current content/site.json, so nothing new is created), and
+ * runs publishes that must end without a commit: one with a stale version (a
+ * conflict) and one with unchanged content (a no-op). The last check confirms the
+ * branch head didn't move.
  */
 import { randomBytes } from "node:crypto";
 import { beforeAll, describe, expect, it, vi } from "vitest";
+import { siteContentSchema, type SiteContent } from "./content-schema";
+import { publishContent } from "./content-publish";
 import {
   CONTENT_PATH,
-  GitHubConflictError,
   GitHubRequestError,
+  createBlob,
+  getBranchHead,
   isGitHubConfigured,
+  readBlob,
   readRepoFile,
-  repoFileExists,
-  writeRepoFile,
   type RepoFile,
 } from "./github-store";
 
-const MESSAGE = "test: live GitHub error check (must be rejected; never committed)";
-
+let head: string;
 let current: RepoFile;
-let currentBytes: Buffer;
+let content: SiteContent;
 
 beforeAll(async () => {
   if (!isGitHubConfigured()) {
@@ -34,58 +37,53 @@ beforeAll(async () => {
       "Set GITHUB_TOKEN and GITHUB_REPO (as for the admin panel) in .env.local or your shell, then rerun `npm run test:github`."
     );
   }
-  current = await readRepoFile(CONTENT_PATH);
-  currentBytes = Buffer.from(current.text, "utf8");
+  head = await getBranchHead();
+  current = await readRepoFile(CONTENT_PATH, head);
+  content = siteContentSchema.parse(JSON.parse(current.text));
 });
 
-/** Runs a write and returns the error it was rejected with (fails the test if it was accepted). */
-async function rejection(write: () => Promise<unknown>): Promise<unknown> {
-  vi.spyOn(console, "error").mockImplementation(() => {});
-  try {
-    await write();
-  } catch (err) {
-    return err;
-  }
-  throw new Error("GitHub accepted a write that should have been rejected (content was unchanged).");
+function publish(baseSha: string) {
+  return publishContent({
+    content,
+    baseSha,
+    uploads: [],
+    message: "test: live check (must not be committed)",
+    today: new Date().toISOString().slice(0, 10),
+  });
 }
 
-describe("GitHub client against the real API", () => {
-  it("reads content/site.json from the configured branch", () => {
+describe("GitHub publishing against the real API", () => {
+  it("reads the branch head and content/site.json at that commit", () => {
+    expect(head).toMatch(/^[a-f0-9]{40}$/);
     expect(current.sha).toMatch(/^[a-f0-9]{40}$/);
-    expect(() => JSON.parse(current.text)).not.toThrow();
   });
 
-  it("checks whether a file exists", async () => {
-    expect(await repoFileExists(CONTENT_PATH)).toBe(true);
-    expect(await repoFileExists(`public/images/uploads/${"0".repeat(24)}.png`)).toBe(false);
+  it("stores blobs content-addressed: the current file's bytes give the current file's id", async () => {
+    // Same bytes, same git object, so this creates nothing new in the repo.
+    expect(await createBlob(Buffer.from(current.text, "utf8"))).toBe(current.sha);
   });
 
-  it("reports a stale version (someone else published) as a conflict", async () => {
-    const staleSha = "0".repeat(40);
-    expect(await rejection(() => writeRepoFile(CONTENT_PATH, currentBytes, MESSAGE, staleSha))).toBeInstanceOf(
-      GitHubConflictError
-    );
+  it("reads a blob's bytes back", async () => {
+    expect((await readBlob(current.sha)).toString("utf8")).toBe(current.text);
   });
 
-  it("reports a write without a version to an existing file as a conflict", async () => {
-    expect(await rejection(() => writeRepoFile(CONTENT_PATH, currentBytes, MESSAGE))).toBeInstanceOf(
-      GitHubConflictError
-    );
+  it("reports a stale version (someone else published) as a conflict, without committing", async () => {
+    expect(await publish("0".repeat(40))).toEqual({ ok: false, reason: "conflict" });
   });
 
-  it("reports a write to a branch that doesn't exist as a failure, not a conflict", async () => {
+  it("does not commit when the content is unchanged", async () => {
+    const result = await publish(current.sha);
+    // A repo file formatted differently from the schema output would be re-saved;
+    // the content in this repo is written by the admin panel, so it should match.
+    expect(result).toMatchObject({ ok: true, committed: false, sha: current.sha });
+  });
+
+  it("reports a branch that doesn't exist as a failure", async () => {
     vi.stubEnv("GITHUB_BRANCH", `remediation-check-missing-${randomBytes(6).toString("hex")}`);
-    const err = await rejection(() => writeRepoFile(CONTENT_PATH, currentBytes, MESSAGE, current.sha));
-    expect(err).toBeInstanceOf(GitHubRequestError);
-    expect(err).not.toBeInstanceOf(GitHubConflictError);
+    await expect(getBranchHead()).rejects.toBeInstanceOf(GitHubRequestError);
   });
 
-  it("reports a read from a branch that doesn't exist as a failure", async () => {
-    vi.stubEnv("GITHUB_BRANCH", `remediation-check-missing-${randomBytes(6).toString("hex")}`);
-    await expect(readRepoFile(CONTENT_PATH)).rejects.toBeInstanceOf(GitHubRequestError);
-  });
-
-  it("left content/site.json unchanged", async () => {
-    expect((await readRepoFile(CONTENT_PATH)).sha).toBe(current.sha);
+  it("left the branch where it was", async () => {
+    expect(await getBranchHead()).toBe(head);
   });
 });
